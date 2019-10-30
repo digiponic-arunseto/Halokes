@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llAssignmentSubject"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvAssignmentSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="MATH"
+            android:textColor="@color/colorBackground"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/tvAssignmentCountBadge"
+            style="@style/MenuSubBadge"
+            android:layout_alignParentTop="false"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="12dp"
+            android:text="99" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llAssignmentSubjectContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_textlines_bold"
+        android:orientation="vertical"
+        android:paddingBottom="6dp">
+
+        <include layout="@layout/template_assignment_task"></include>
+
+        <include layout="@layout/template_assignment_task"></include>
+
+        <include layout="@layout/template_assignment_task"></include>
+
+        <include layout="@layout/template_assignment_task"></include>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -41,10 +41,14 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/llAssignmentContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical">
+                <include layout="@layout/template_assignment_subject"/>
+                <include layout="@layout/template_assignment_subject"/>
+                <include layout="@layout/template_assignment_subject"/>
 
             </LinearLayout>
 

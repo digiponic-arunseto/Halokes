@@ -27,13 +27,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AttendanceFragment extends Fragment {
+
     View view;
     int flContent;
     Context context;
+    Session session;
     TextView tvH, tvS, tvI, tvA, tvPercentage, tvPercentageDesc;
     ProgressBar pbLoading, pbPercentage;
     ScrollView svContent;
-    private Session session;
 
     @Nullable
     @Override

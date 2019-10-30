@@ -72,7 +72,8 @@
     
     <style name="MainButton" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/colorBackground</item>
-        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:background">@drawable/bg_round_corner</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <style name="MenuButtonList">
