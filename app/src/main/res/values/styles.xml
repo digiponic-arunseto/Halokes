@@ -1,0 +1,144 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:fontFamily">sans-serif</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
+    <style name="Fullscreen" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Base.Theme.AppCompat.Dialog">
+
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TitleBar">
+        <item name="android:background">@drawable/bg_gradient_bluewhite</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="MenuSubButton">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/effect_ripple</item>
+        <item name="android:layout_height">66dp</item>
+        <item name="android:layout_width">66dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:onClick">menuNavigation</item>
+    </style>
+
+    <style name="MenuSubImg">
+        <item name="android:paddingLeft">18dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingRight">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+        <item name="android:tag">imgMenu</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="MenuSubBadge">
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:background">@drawable/bg_badge</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="MainButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="MenuButtonList">
+        <item name="android:background">@drawable/effect_ripple_square</item>
+        <item name="android:drawableEnd">@drawable/ic_arrow_24dp</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="MenuTitle">
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="MenuTitle1">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="GraphToolTipX">
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:layout_marginStart">6dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GraphToolTipY">
+        <item name="android:text">N\ni\nl\na\ni</item>
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:lineHeight">12dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LayoutScheduleText">
+        <item name="android:padding">6dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_textlines</item>
+    </style>
+
+    <style name="ButtonBack">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:onClick">navBack</item>
+    </style>
+
+    <style name="AttendanceText">
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--REMOVE androidL:LayoutAnimation above to see the layout-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TitleBar">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="start"
+                android:text="Absensi"
+                android:textAlignment="center"
+                android:textColor="@color/colorBackground"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnBack"
+                style="@style/ButtonBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_arrow_back_24dp" />
+        </RelativeLayout>
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ScrollView
+            android:id="@+id/svContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_check_circle_24dp"
+                        android:drawablePadding="12dp"
+                        android:text="Hadir :" />
+
+                    <TextView
+                        android:id="@+id/tvH"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hadir" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_local_hospital_24dp"
+                        android:drawablePadding="12dp"
+                        android:text="Sakit :" />
+
+                    <TextView
+                        android:id="@+id/tvS"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sakit" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_mail_24dp"
+                        android:drawablePadding="12dp"
+                        android:text="Izin  : " />
+
+                    <TextView
+                        android:id="@+id/tvI"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Izin" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_help_24dp"
+                        android:drawablePadding="12dp"
+                        android:text="Alpha (Tanpa Keterangan) :" />
+
+                    <TextView
+                        android:id="@+id/tvA"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alpha" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_graph_24dp"
+                        android:drawablePadding="12dp"
+                        android:text="Persentase Kehadiran : " />
+
+                    <TextView
+                        android:id="@+id/tvPercentage"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="X %" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="24dp"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:id="@+id/pbPercentage"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="9"
+                            android:progress="20" />
+
+
+                        <TextView
+                            android:id="@+id/tvPercentageDesc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center|end"
+                            android:text="B/C/K"
+                            android:textColor="@color/colorDark"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>
