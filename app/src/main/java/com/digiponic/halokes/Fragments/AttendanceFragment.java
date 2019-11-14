@@ -21,6 +21,7 @@ import com.digiponic.halokes.Models.ModelUser;
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
 import com.digiponic.halokes.Storage.Session;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,6 +56,7 @@ public class AttendanceFragment extends Fragment {
         tvPercentage = view.findViewById(R.id.tvPercentage);
         pbPercentage = view.findViewById(R.id.pbPercentage);
         tvPercentageDesc = view.findViewById(R.id.tvPercentageDesc);
+
 
         //hiding Content first, to show loading bar
         svContent.setVisibility(View.GONE);

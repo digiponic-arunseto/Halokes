@@ -10,9 +10,9 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            style="@style/TitleBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TitleBar">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="match_parent"
@@ -34,10 +34,12 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/ic_arrow_back_24dp" />
         </RelativeLayout>
+
         <ProgressBar
             android:id="@+id/pbLoading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <ScrollView
             android:id="@+id/svContent"
             android:layout_width="match_parent"
@@ -187,8 +189,6 @@
                     </LinearLayout>
 
                 </RelativeLayout>
-
-
             </LinearLayout>
 
         </ScrollView>

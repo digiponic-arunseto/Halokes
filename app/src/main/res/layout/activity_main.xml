@@ -8,19 +8,22 @@
     android:clipToPadding="false"
     tools:context=".MainActivity">
 
-    <include layout="@layout/content_main" />
+    <FrameLayout
+        android:id="@+id/framelayout_content"
+        android:animateLayoutChanges="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bnvMainNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
         android:background="@color/colorBackground"
         android:elevation="6dp"
         app:elevation="6dp"
         app:labelVisibilityMode="labeled"
+        app:itemBackground="@drawable/effect_ripple_square"
         app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

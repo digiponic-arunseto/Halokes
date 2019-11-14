@@ -11,9 +11,9 @@
 
 
         <RelativeLayout
+            style="@style/TitleBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TitleBar">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="match_parent"
@@ -41,10 +41,14 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/llGradeContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical">
+
+                <include layout="@layout/template_grade_subject" />
+                <include layout="@layout/template_grade_subject" />
 
             </LinearLayout>
 

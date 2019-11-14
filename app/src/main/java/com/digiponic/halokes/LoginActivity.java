@@ -1,10 +1,13 @@
 package com.digiponic.halokes;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,16 +26,24 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     private Context context = LoginActivity.this;
     private Session session = Session.getInstance(this);
+    private Dialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etUsername = findViewById(R.id.etUsername);
+        pDialog = new  Dialog(this);
+        pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        pDialog.setContentView(R.layout.template_progress_dialog);
+        pDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        pDialog.setCancelable(false);
+
+        etUsername = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
 
         btnLogin = findViewById(R.id.btnLogin);
+
 
 //        btn1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -63,11 +74,10 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             commitLogin(email, password);
         }
-
-
     }
 
     private void commitLogin(String email, String password) {
+        pDialog.show();
         Call<ModelUser> call = RetrofitClient.getInstance().getApi().actLogin(email, password);
 
         call.enqueue(new Callback<ModelUser>() {
@@ -80,13 +90,16 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(context, MainActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(context,  "Username atau Password salah", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Username atau Password salah", Toast.LENGTH_SHORT).show();
                 }
+                pDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<ModelUser> call, Throwable t) {
                 Toast.makeText(context, t.getMessage() + "", Toast.LENGTH_SHORT).show();
+                pDialog.dismiss();
+
             }
         });
     }

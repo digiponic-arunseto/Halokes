@@ -2,6 +2,7 @@ package com.digiponic.halokes.Retrofit;
 
 import com.digiponic.halokes.Models.ModelAssignmentSubject;
 import com.digiponic.halokes.Models.ModelAttendance;
+import com.digiponic.halokes.Models.ModelGrade;
 import com.digiponic.halokes.Models.ModelUser;
 import com.digiponic.halokes.Models.StructureDefault;
 
@@ -32,6 +33,9 @@ public interface WebApi {
 
     @GET("tugas/{id_user}/all")
     Call<ModelAssignmentSubject> showAssignment(@Path("id_user") String id_user);
+
+    @GET("nilai/siswa/all/{id_user}")
+    Call<ModelGrade> showGrade(@Path("id_user") String id_user);
 //    //LISTING JENIS
 //    @GET("kendaraan/jenis")
 //    Call<ModelJenis> showJenis();

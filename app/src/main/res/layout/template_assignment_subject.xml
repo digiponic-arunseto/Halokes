@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llAssignmentSubject"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:showIn="@layout/fragment_assignment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryLight"
         android:elevation="6dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:padding="6dp">
 
         <TextView
             android:id="@+id/tvAssignmentSubject"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:text="MATH"
@@ -29,31 +31,37 @@
 
         <TextView
             android:id="@+id/tvAssignmentCountBadge"
-            style="@style/MenuSubBadge"
-            android:layout_alignParentTop="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
+            android:background="@drawable/bg_round_corner_danger"
+            android:textColor="@color/colorBackground"
+            android:textStyle="bold"
+            android:padding="6dp"
             android:layout_marginEnd="12dp"
             android:text="99" />
 
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/llAssignmentSubjectContainer"
+
+    <HorizontalScrollView
+        android:id="@+id/hsvAssignmentSubjectContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_textlines_bold"
-        android:orientation="vertical"
-        android:paddingBottom="6dp">
+        android:scrollbarSize="6dp">
 
-        <include layout="@layout/template_assignment_task"></include>
+        <LinearLayout
+            android:id="@+id/llAssignmentSubjectContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="6dp">
 
-        <include layout="@layout/template_assignment_task"></include>
+            <include layout="@layout/template_assignment_task" />
 
-        <include layout="@layout/template_assignment_task"></include>
-
-        <include layout="@layout/template_assignment_task"></include>
-    </LinearLayout>
-
+        </LinearLayout>
+    </HorizontalScrollView>
 
 </LinearLayout>

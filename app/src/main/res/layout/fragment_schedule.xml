@@ -49,7 +49,10 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical">
-
+                <!--<ProgressBar-->
+                    <!--android:id="@+id/pbLoading"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent" />-->
                 <include layout="@layout/template_schedule_day" />
 
                 <include layout="@layout/template_schedule_day" />

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="6dp"
+    app:cardUseCompatPadding="true"
+    tools:showIn="@layout/fragment_grade">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_textlines_blue_bold"
+            android:padding="6dp">
+
+            <TextView
+                android:id="@+id/tvGradeSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Subject"
+                android:textColor="@color/colorDark"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvGradeSubjectGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bg_round_corner_success"
+                android:maxLength="4"
+                android:padding="6dp"
+                android:text="100"
+                android:textColor="@color/colorBackground"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llGradeDetailContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryLight"
+            android:orientation="vertical">
+
+            <include layout="@layout/template_grade_detail" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

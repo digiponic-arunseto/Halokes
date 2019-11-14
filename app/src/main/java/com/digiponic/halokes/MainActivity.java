@@ -2,6 +2,8 @@ package com.digiponic.halokes;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +12,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
-import com.digiponic.halokes.Fragments.AnnouncementFragment;
 import com.digiponic.halokes.Fragments.AssignmentFragment;
 import com.digiponic.halokes.Fragments.AttendanceFragment;
 import com.digiponic.halokes.Fragments.BehaviorFragment;
+import com.digiponic.halokes.Fragments.BlankFragment;
+import com.digiponic.halokes.Fragments.ChatContactFragment;
 import com.digiponic.halokes.Fragments.ClassFragment;
+import com.digiponic.halokes.Fragments.ExtraFragment;
 import com.digiponic.halokes.Fragments.GradeFragment;
 import com.digiponic.halokes.Fragments.HomeFragment;
 import com.digiponic.halokes.Fragments.FeedFragment;
 import com.digiponic.halokes.Fragments.ScheduleFragment;
-import com.digiponic.halokes.Fragments.SettingsFragment;
+import com.digiponic.halokes.Fragments.AccountFragment;
 import com.digiponic.halokes.Fragments.SubjectFragment;
 import com.digiponic.halokes.Fragments.SummaryFragment;
 
@@ -31,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private int flContent;
     private BottomNavigationView bnvMainNav;
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener;
-
-
     private BottomNavigationView.OnNavigationItemReselectedListener onNavigationItemReselectedListener;
 
     @Override
@@ -56,6 +59,29 @@ public class MainActivity extends AppCompatActivity {
 
         bnvMainNav.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         bnvMainNav.setOnNavigationItemReselectedListener(onNavigationItemReselectedListener);
+
+        for (int i =0;i<bnvMainNav.getMaxItemCount();i++){
+            bottomMenuNavigationBadge(i, true);
+        }
+
+    }
+
+    public void bottomMenuNavigationBadge(int menuIndex,boolean hasNotif){
+
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bnvMainNav.getChildAt(0);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(menuIndex);
+
+        View notificationBadge = getLayoutInflater().inflate(R.layout.template_notif_badge, menuView, false);
+        TextView textView = notificationBadge.findViewById(R.id.notifications_badge);
+        if (hasNotif){
+            textView.setText(menuIndex*1+"");
+            itemView.addView(notificationBadge);
+        }else {
+            textView.setVisibility(View.GONE);
+            if (itemView.getChildCount()>=3){
+             itemView.removeViewAt(2);
+            }
+        }
     }
 
     public void bottomMenuNavigation() {
@@ -68,18 +94,27 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_home:
                         getSupportFragmentManager().beginTransaction().replace(flContent,
                                 new HomeFragment()).commit();
+                        bottomMenuNavigationBadge(0,false);
                         return true;
                     case R.id.navigation_summary:
                         getSupportFragmentManager().beginTransaction().replace(flContent,
                                 new SummaryFragment()).commit();
+                        bottomMenuNavigationBadge(1,false);
+                        return true;
+                    case R.id.navigation_chat:
+                        getSupportFragmentManager().beginTransaction().replace(flContent,
+                                new ChatContactFragment()).commit();
+                        bottomMenuNavigationBadge(2,false);
                         return true;
                     case R.id.navigation_feed:
                         getSupportFragmentManager().beginTransaction().replace(flContent,
                                 new FeedFragment()).commit();
+                        bottomMenuNavigationBadge(3,false);
                         return true;
-                    case R.id.navigation_setttings:
+                    case R.id.navigation_akun:
                         getSupportFragmentManager().beginTransaction().replace(flContent,
-                                new SettingsFragment()).commit();
+                                new AccountFragment()).commit();
+                        bottomMenuNavigationBadge(4,false);
                         return true;
                 }
                 return false;
@@ -99,11 +134,14 @@ public class MainActivity extends AppCompatActivity {
         bnvMainNav.setVisibility(View.INVISIBLE);
         //BottomSheetDialog, for "more menu"
         ScheduleFragment scheduleF = new ScheduleFragment();
-        Animation anim = AnimationUtils.loadAnimation(context, R.anim.scale);
-        view.findViewWithTag("imgMenu").startAnimation(anim);
         boolean close = true;
 //        Toast.makeText(context, view.getId()+"", Toast.LENGTH_SHORT).show();
         dialog.setCancelable(true);
+
+        //set animation on click
+        Animation anim = AnimationUtils.loadAnimation(context, R.anim.scale);
+        view.findViewWithTag("imgMenu").startAnimation(anim);
+
         switch (view.getId()) {
             case R.id.llMenuGrade:
                 //Grade
@@ -113,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.llMenuBehavior:
                 //Behavior
                 getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new BehaviorFragment()).addToBackStack("1").commit();
+                        new BlankFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuAssignment:
                 //Assignment
@@ -123,24 +161,24 @@ public class MainActivity extends AppCompatActivity {
             case R.id.llMenuSchedule:
                 //Schedule
                 getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new ScheduleFragment()).addToBackStack("1").commit();
-//                //ialog fragment
+                        new BlankFragment()).addToBackStack("1").commit();
+//                //dialog fragment
 //                scheduleF.show(getSupportFragmentManager().beginTransaction().addToBackStack("1"), "Dialog Fragment");
                 break;
             case R.id.llMenuClass:
                 //Class
                 getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new ClassFragment()).addToBackStack("1").commit();
+                        new BlankFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuSubject:
                 //Subject
                 getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new SubjectFragment()).addToBackStack("1").commit();
+                        new BlankFragment()).addToBackStack("1").commit();
                 break;
-            case R.id.llMenuAnnouncement:
+            case R.id.llMenuExtra:
                 //Announcement
                 getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new AnnouncementFragment()).addToBackStack("1").commit();
+                        new BlankFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuAttendance:
                 //Attendance

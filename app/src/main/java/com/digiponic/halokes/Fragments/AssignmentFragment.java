@@ -7,7 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ public class AssignmentFragment extends Fragment {
     Context context;
     Session session;
     LinearLayout llAssignmentContainer;
+ProgressBar pbLoading;
 
     @Nullable
     @Override
@@ -50,14 +53,14 @@ public class AssignmentFragment extends Fragment {
         session = Session.getInstance(context);
 
         llAssignmentContainer = view.findViewById(R.id.llAssignmentContainer);
+        pbLoading = view.findViewById(R.id.pbLoading);
         showAssignment();
-        llAssignmentContainer.removeAllViews();
 
         return view;
     }
 
     private void showAssignment() {
-        llAssignmentContainer.removeAllViews();
+
 
         Call<ModelAssignmentSubject> call = RetrofitClient.getInstance()
                 .getApi()
@@ -65,24 +68,37 @@ public class AssignmentFragment extends Fragment {
         call.enqueue(new Callback<ModelAssignmentSubject>() {
             //init
             ModelAssignmentSubject las;
-
-
             @Override
             public void onResponse(Call<ModelAssignmentSubject> call, Response<ModelAssignmentSubject> response) {
-                las = response.body();
+                //removing loading spinning bar
+                llAssignmentContainer.removeAllViews();
 
+                las = response.body();
                 if (response.isSuccessful() && isAdded()) {
                     for (ListAssignmentSubject lasData : las.getData()) {// mengambil data mapel
 //                        Toast.makeText(context, lasData.getNama_mapel()+"", Toast.LENGTH_SHORT).show();
                         LinearLayout rowSubject = (LinearLayout) getLayoutInflater()
                                 .inflate(R.layout.template_assignment_subject, null);
-                        TextView tvAssignmentSubject = rowSubject.findViewById(R.id.tvAssignmentSubject);
-                        TextView tvAssignmentCountBadge = rowSubject.findViewById(R.id.tvAssignmentCountBadge);
-                        LinearLayout llAssignmentSubjectContainer = rowSubject.findViewById(R.id.llAssignmentSubjectContainer);
+                        TextView tvAssignmentSubject, tvAssignmentCountBadge;
+                        final HorizontalScrollView hsvAssignmentSubjectContainer;
+                        LinearLayout llAssignmentSubjectContainer;
+
+                        tvAssignmentSubject = rowSubject.findViewById(R.id.tvAssignmentSubject);
+                        tvAssignmentCountBadge = rowSubject.findViewById(R.id.tvAssignmentCountBadge);
+                        hsvAssignmentSubjectContainer = rowSubject.findViewById(R.id.hsvAssignmentSubjectContainer);
+                        llAssignmentSubjectContainer = rowSubject.findViewById(R.id.llAssignmentSubjectContainer);
                         llAssignmentSubjectContainer.removeAllViews();
 
                         tvAssignmentSubject.setText(lasData.getNama_mapel());
                         tvAssignmentCountBadge.setText(lasData.getJumlah_tugas_mapel());
+                        tvAssignmentCountBadge.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                hsvAssignmentSubjectContainer.setSmoothScrollingEnabled(true);
+                                hsvAssignmentSubjectContainer.fullScroll(View.FOCUS_RIGHT);
+                            }
+                        });
+
 
 
                         for (ListAssignmentTask latData : lasData.getData_tugas()) {
@@ -94,7 +110,7 @@ public class AssignmentFragment extends Fragment {
                             TextView tvAssignmentDesc = rowTask.findViewById(R.id.tvAssignmentDesc);
                             //Date Formatter
                             SimpleDateFormat dateFormat =
-                                    new SimpleDateFormat("dd-MMMM-yyy", Locale.ENGLISH);
+                                    new SimpleDateFormat("dd-MMM-yyy", Locale.ENGLISH);
 
                             try {
                                 Date dateDeadline = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(latData.getDeadline());
@@ -108,6 +124,32 @@ public class AssignmentFragment extends Fragment {
                             tvAssignmentTitle.setText(latData.getJudul_tugas());
                             tvAssignmentDesc.setText(latData.getDeskripsi());
 
+                            int hoursLeft = latData.getSisa_waktu();
+                            int daysLeft = Math.round(latData.getSisa_waktu() / 24);
+                            String timeLeftMessage = "";
+                            if (hoursLeft < 0) {
+                                if (hoursLeft < -24) {
+                                    timeLeftMessage = "Lewat " + daysLeft * (-1) + " hari ";
+                                } else {
+                                    timeLeftMessage = "Lewat " + hoursLeft * (-1) + " jam";
+                                }
+                            } else if (hoursLeft < 24) {
+                                if (hoursLeft<1){
+                                    timeLeftMessage =  ">1 jam lagi";
+                                }else{
+                                    timeLeftMessage = hoursLeft + " jam lagi";
+                                }
+                            } else {
+                                timeLeftMessage = daysLeft + " hari lagi";
+                            }
+                            tvAssignmentTimeLeft.setText(timeLeftMessage);
+                            if (daysLeft<0){
+                                tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_danger));
+                            }else if (daysLeft<=3){
+                                tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_warning));
+                            }else{
+                                tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_success));
+                            }
                             llAssignmentSubjectContainer.addView(rowTask);
                         }
                         llAssignmentContainer.addView(rowSubject);

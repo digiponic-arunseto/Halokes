@@ -1,59 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llAssignmentTask"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_textlines_bold_top"
     android:orientation="vertical"
-    android:paddingStart="12dp"
-    android:paddingTop="6dp"
-    android:paddingEnd="12dp">
+    tools:showIn="@layout/template_assignment_subject">
 
+    <android.support.v7.widget.CardView
+        android:layout_width="300dp"
+        android:layout_margin="12dp"
+        android:layout_height="180dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
 
-    <TextView
-        android:id="@+id/tvAssignmentTitle"
-        style="@style/LayoutScheduleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableStart="@drawable/ic_title_30dp"
-        android:text="TUGAS ALJABAR 1"
-        android:textAllCaps="true" />
+        <LinearLayout
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvAssignmentDeadline"
-            style="@style/LayoutScheduleText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_weight="1"
-            android:drawableStart="@drawable/ic_date_30dp"
-            android:text="2019-11-04"
-            android:textStyle="bold|italic" />
+            android:layout_height="match_parent"
+            android:layout_marginEnd="12dp"
+            android:background="@color/colorBackground"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvAssignmentTimeLeft"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/LayoutScheduleText"
-            android:layout_weight="1"
-            android:drawableStart="@drawable/ic_time_counter_30dp"
-            android:text="3 Hari lagi" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvAssignmentTitle"
+                style="@style/LayoutScheduleText"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLength="30"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="TUGAS ALJABAR 1"
+                android:textSize="16dp"
+                android:textAllCaps="true" />
 
-    <TextView
-        android:id="@+id/tvAssignmentDesc"
-        style="@style/LayoutScheduleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/colorBackground"
-        android:drawableStart="@drawable/ic_info_outline_black_30dp"
-        android:text="Kerjakan Soal 4, pada Halaman 58 di Buku Cetak! Dikumpukan dengan Kertas Folio Bergaris!" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/colorPrimary" />
+
+            <LinearLayout
+                android:paddingEnd="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvAssignmentDeadline"
+                    style="@style/LayoutScheduleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_date_30dp"
+                    android:text="2019-11-04"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/tvAssignmentTimeLeft"
+                    style="@style/LayoutScheduleText"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/bg_round_corner"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBackground"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:drawableStart="@drawable/ic_time_counter_30dp"
+                    android:text="3 Hari lagi" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAssignmentDesc"
+                style="@style/LayoutScheduleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:ellipsize="marquee"
+                android:drawableStart="@drawable/ic_info_outline_black_30dp"
+                android:text="Kerjakan Soal 4, pada Halaman 58 di Buku Cetak! Dikumpukan dengan Kertas Folio Bergaris!" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>

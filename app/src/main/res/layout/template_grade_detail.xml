@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:showIn="@layout/template_grade_subject">
+
+    <RelativeLayout
+       android:padding="6dp"
+        android:paddingStart="12dp"
+        android:background="@drawable/bg_textlines"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvGradeDetailType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Type"
+            android:textColor="@color/colorDark"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/tvGradeDetailGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_round_corner"
+            android:maxLength="4"
+            android:padding="6dp"
+            android:text="100"
+            android:textColor="@color/colorBackground"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</LinearLayout>

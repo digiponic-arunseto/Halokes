@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:showIn="@layout/fragment_home">
+
+    <android.support.v7.widget.CardView
+        card_view:cardUseCompatPadding="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="18dp"
+        card_view:cardElevation="6dp">
+
+        <RelativeLayout
+            android:id="@+id/rlAnnouncement"
+            android:layout_width="300dp"
+            android:layout_height="120dp"
+            android:background="@drawable/effect_ripple_square"
+            android:clickable="true"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_temp_announcement" />
+
+                <TextView
+                    android:id="@+id/tvAnnouncementTitle"
+                    style="@style/LayoutAnnouncementText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:maxLength="36"
+                    android:maxLines="1"
+                    android:paddingEnd="6dp"
+                    android:text="Title Of Announcement Title Of Announcement"
+                    android:textColor="@color/colorDark"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/LayoutAnnouncementText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="1"
+                android:background="@drawable/bg_gradient_transparent"
+                android:ellipsize="end"
+                android:gravity="top"
+                android:maxLines="2"
+                android:minLines="2"
+                android:text="Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet "
+                android:textColor="@color/colorBackground"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
