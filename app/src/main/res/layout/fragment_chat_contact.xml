@@ -40,6 +40,7 @@
                 android:id="@+id/btnMore"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_marginStart="12dp"
                 android:background="@drawable/ic_more_vert_30dp" />
         </LinearLayout>
 
@@ -55,14 +56,14 @@
                 android:id="@+id/btnSearchBack"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@drawable/ic_arrow_back_24dp"
+                android:background="@drawable/ic_close_30dp"
                 android:backgroundTint="@color/colorPrimary" />
 
             <EditText
-                android:layout_marginStart="12dp"
                 android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
                 android:background="@drawable/bg_textlines_blue_bold"
                 android:hint="Cari...."
                 android:imeOptions="actionDone"

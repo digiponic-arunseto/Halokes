@@ -88,15 +88,15 @@ public class ChatContactFragment extends Fragment {
             public void onClick(View view) {
                 PopupMenu popupMenu = new PopupMenu(context, view);
                 //.add(groupId, itemId, order, title);
-                popupMenu.getMenu().add(1, 1, 1,"Add Contact");
-                popupMenu.getMenu().add(1, 2, 2,"Settings");
+                popupMenu.getMenu().add(1, 1, 1, "Add Contact");
+                popupMenu.getMenu().add(1, 2, 2, "Settings");
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        if (item.getOrder() == 1){
+                        if (item.getOrder() == 1) {
                             Toast.makeText(context, "Adding Contact", Toast.LENGTH_SHORT).show();
-                        } else if (item.getOrder() == 2){
+                        } else if (item.getOrder() == 2) {
                             Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show();
                         }
                         return false;

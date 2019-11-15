@@ -293,7 +293,7 @@
                         <RelativeLayout
                             android:id="@+id/llMenuAttendance"
                             style="@style/MenuSubButton"
-                            android:background="@drawable/ic_menu_attendance">
+                            android:background="@drawable/ic_menu_absensi">
 
                             <TextView
                                 android:id="@+id/tvMenuBadgeAttendance"

@@ -98,10 +98,8 @@ public class FeedFragment extends Fragment {
             public void onClick(View view) {
                 PopupMenu popupMenu = new PopupMenu(context, view);
                 //.add(groupId, itemId, order, title);
-                popupMenu.getMenu().add(1, 1, 1, "Add Contact");
-                popupMenu.getMenu().add(1, 2, 2, "Read All");
-                popupMenu.getMenu().add(1, 3, 3, "Delete All");
-                popupMenu.getMenu().add(1, 4, 4, "Settings");
+                popupMenu.getMenu().add(1, 1, 1, "Read All");
+                popupMenu.getMenu().add(1, 2, 2, "Delete All");
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {

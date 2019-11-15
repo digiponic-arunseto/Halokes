@@ -40,35 +40,37 @@
                 android:id="@+id/btnMore"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_marginStart="12dp"
                 android:background="@drawable/ic_more_vert_30dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
-            android:background="@color/colorBackground"
             android:id="@+id/llSearchBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:background="@color/colorBackground"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/btnSearchBack"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@drawable/ic_arrow_back_24dp"
+                android:background="@drawable/ic_close_30dp"
                 android:backgroundTint="@color/colorPrimary" />
 
             <EditText
-                android:layout_marginStart="12dp"
                 android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
                 android:background="@drawable/bg_textlines_blue_bold"
-                android:imeOptions="actionDone"
                 android:hint="Cari...."
+                android:imeOptions="actionDone"
                 android:singleLine="true" />
         </LinearLayout>
     </RelativeLayout>
+
     <ProgressBar
         android:id="@+id/pbLoading"
         android:layout_width="match_parent"
