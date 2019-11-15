@@ -46,8 +46,8 @@
     </RelativeLayout>
 
 
-    <HorizontalScrollView
-        android:id="@+id/hsvAssignmentSubjectContainer"
+    <ScrollView
+        android:id="@+id/svAssignmentSubjectContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbarSize="6dp">
@@ -56,12 +56,12 @@
             android:id="@+id/llAssignmentSubjectContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="6dp">
 
-            <include layout="@layout/template_assignment_task" />
+            <!--<include layout="@layout/template_assignment_task" />-->
 
         </LinearLayout>
-    </HorizontalScrollView>
+    </ScrollView>
 
 </LinearLayout>

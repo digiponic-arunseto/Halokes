@@ -15,4 +15,5 @@
     <color name="colorSuccessDark">#00AC23</color>
     <color name="transparent">#00000000</color>
     <color name="colorGray">#aaaaaa</color>
+    <color name="colorGrayLight">#DEDEDE</color>
 </resources>

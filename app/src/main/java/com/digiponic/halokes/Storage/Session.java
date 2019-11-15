@@ -32,6 +32,7 @@ public class Session {
 
         editor.putString("id_user", user.getId_user());
         editor.putString("username", user.getUsername());
+        editor.putString("nama_siswa", user.getNama_siswa());
         editor.putString("password", user.getPassword());
         editor.putString("role", user.getRole());
 
@@ -51,6 +52,7 @@ public class Session {
         return new ListUser(
                 session.getString("id_user", null),
                 session.getString("username", null),
+                session.getString("nama_siswa", null),
                 session.getString("password", null),
                 session.getString("role", null)
         );

@@ -72,9 +72,9 @@ public class GradeFragment extends Fragment {
                         } else if (nilaiKeseluruhan <= 100) {
                             tvGradeSubjectGrade.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_success));
                         }
-                        if (lg.getNilai() != null) {
+                        if (lg.getData_nilai() != null) {
 
-                            for (ListGradeDetail lgd : lg.getNilai()) {
+                            for (ListGradeDetail lgd : lg.getData_nilai()) {
                                 View rowGradeDetail = getLayoutInflater().inflate(R.layout.template_grade_detail, null);
                                 TextView tvGradeDetailType = rowGradeDetail.findViewById(R.id.tvGradeDetailType);
                                 TextView tvGradeDetailGrade = rowGradeDetail.findViewById(R.id.tvGradeDetailGrade);

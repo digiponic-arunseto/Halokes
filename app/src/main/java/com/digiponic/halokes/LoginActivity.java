@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         pDialog = new  Dialog(this);
         pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        pDialog.setContentView(R.layout.template_progress_dialog);
+        pDialog.setContentView(R.layout.layout_dialog_progress);
         pDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         pDialog.setCancelable(false);
 

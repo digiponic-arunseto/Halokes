@@ -13,13 +13,13 @@ public class ListGrade {
     @SerializedName("nilai_keseluruhan")
     int nilai_keseluruhan;
     @Nullable
-    @SerializedName("nilai")
-    List<ListGradeDetail> nilai;
+    @SerializedName("data_nilai")
+    List<ListGradeDetail> data_nilai;
 
-    public ListGrade(String mapel, int nilai_keseluruhan, @Nullable List<ListGradeDetail> nilai) {
+    public ListGrade(String mapel, int nilai_keseluruhan, @Nullable List<ListGradeDetail> data_nilai) {
         this.mapel = mapel;
         this.nilai_keseluruhan = nilai_keseluruhan;
-        this.nilai = nilai;
+        this.data_nilai = data_nilai;
     }
 
     public String getMapel() {
@@ -31,7 +31,7 @@ public class ListGrade {
     }
 
     @Nullable
-    public List<ListGradeDetail> getNilai() {
-        return nilai;
+    public List<ListGradeDetail> getData_nilai() {
+        return data_nilai;
     }
 }

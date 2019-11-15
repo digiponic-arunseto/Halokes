@@ -9,7 +9,7 @@
     <RelativeLayout
         style="@style/TitleBarMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -17,18 +17,57 @@
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
             android:layout_gravity="start"
-            android:text="Pemberitahuan"
+            android:text="Inbox"
             android:textAlignment="textStart"
-            android:textColor="@color/colorBackground"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_delete_30dp" />
+            android:gravity="center|end">
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_search_30dp" />
+
+            <Button
+                android:id="@+id/btnMore"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_more_vert_30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:background="@color/colorBackground"
+            android:id="@+id/llSearchBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSearchBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_arrow_back_24dp"
+                android:backgroundTint="@color/colorPrimary" />
+
+            <EditText
+                android:layout_marginStart="12dp"
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_textlines_blue_bold"
+                android:imeOptions="actionDone"
+                android:hint="Cari...."
+                android:singleLine="true" />
+        </LinearLayout>
     </RelativeLayout>
     <ProgressBar
         android:id="@+id/pbLoading"
@@ -45,8 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <include layout="@layout/template_feed" />
 
         </LinearLayout>
     </ScrollView>

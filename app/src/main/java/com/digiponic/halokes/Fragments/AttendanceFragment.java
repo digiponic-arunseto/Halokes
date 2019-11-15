@@ -72,7 +72,7 @@ public class AttendanceFragment extends Fragment {
             @Override
             public void onResponse(Call<ModelAttendance> call, Response<ModelAttendance> response) {
                 ModelAttendance res = response.body();
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && isAdded()) {
 //                    Toast.makeText(context, res.getMessage() + "", Toast.LENGTH_SHORT).show();
 
                     // ? is true

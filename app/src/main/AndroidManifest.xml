@@ -24,7 +24,6 @@
 
         </activity>
         <activity
-            android:theme="@style/Fullscreen"
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
         </activity>

@@ -10,31 +10,24 @@
         android:clipToPadding="false"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
+            style="@style/TitleBarMain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TitleBarMain">
+            android:layout_height="60dp">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_profile" />
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp">
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="start"
+                android:text="Akun"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tvGreeting"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Hello, Sir Username"
-                    android:textColor="@color/colorBackground"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -49,15 +42,47 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:background="@drawable/ic_profile" />
+
+                    <TextView
+                        android:id="@+id/tvAccountName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="Username"
+                        android:textColor="@color/colorDark"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAccountNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NISN: 12345"
+                        android:textColor="@color/colorDark"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_textlines">
 
                     <Button
-                        android:id="@+id/btnDataSiswa"
+                        android:id="@+id/btnEditProfile"
                         style="@style/MenuButtonList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_student_24dp"
-                        android:text="Data Siswa"
+                        android:drawableStart="@drawable/ic_student_30dp"
+                        android:text="Edit Profile"
                         android:textAllCaps="false" />
                 </LinearLayout>
 
@@ -72,7 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_exit_30dp"
-                        android:text="Logout"
+                        android:text="Keluar"
                         android:textAllCaps="false" />
                 </LinearLayout>
             </LinearLayout>

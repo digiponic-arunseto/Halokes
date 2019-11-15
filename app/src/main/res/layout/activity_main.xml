@@ -20,9 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorBackground"
-        android:elevation="6dp"
-        app:elevation="6dp"
         app:labelVisibilityMode="labeled"
+        app:itemTextAppearanceActive="@style/BottomNavigation.ActiveItemTextAppearance"
         app:itemBackground="@drawable/effect_ripple_square"
         app:menu="@menu/bottom_nav_menu" />
 

@@ -3,13 +3,14 @@ package com.digiponic.halokes.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,14 +21,9 @@ import com.digiponic.halokes.R;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
 import com.digiponic.halokes.Storage.Session;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -54,13 +50,20 @@ ProgressBar pbLoading;
 
         llAssignmentContainer = view.findViewById(R.id.llAssignmentContainer);
         pbLoading = view.findViewById(R.id.pbLoading);
+
+        showAssignmentCategory();
         showAssignment();
 
         return view;
     }
 
-    private void showAssignment() {
+    private void showAssignmentCategory(){
+        TabLayout tabLayout = view.findViewById(R.id.tlCategory);
+//        tabLayout.setupWithViewPager(viewPager);
+    }
 
+    private void showAssignment() {
+        pbLoading.setVisibility(View.VISIBLE);
 
         Call<ModelAssignmentSubject> call = RetrofitClient.getInstance()
                 .getApi()
@@ -76,19 +79,21 @@ ProgressBar pbLoading;
                 las = response.body();
                 if (response.isSuccessful() && isAdded()) {
                     for (ListAssignmentSubject lasData : las.getData()) {// mengambil data mapel
-//                        Toast.makeText(context, lasData.getNama_mapel()+"", Toast.LENGTH_SHORT).show();
+
                         LinearLayout rowSubject = (LinearLayout) getLayoutInflater()
                                 .inflate(R.layout.template_assignment_subject, null);
                         TextView tvAssignmentSubject, tvAssignmentCountBadge;
-                        final HorizontalScrollView hsvAssignmentSubjectContainer;
+                        final ScrollView hsvAssignmentSubjectContainer;
                         LinearLayout llAssignmentSubjectContainer;
 
+                        //initializing elemen dari view yang di loop
                         tvAssignmentSubject = rowSubject.findViewById(R.id.tvAssignmentSubject);
                         tvAssignmentCountBadge = rowSubject.findViewById(R.id.tvAssignmentCountBadge);
-                        hsvAssignmentSubjectContainer = rowSubject.findViewById(R.id.hsvAssignmentSubjectContainer);
+                        hsvAssignmentSubjectContainer = rowSubject.findViewById(R.id.svAssignmentSubjectContainer);
                         llAssignmentSubjectContainer = rowSubject.findViewById(R.id.llAssignmentSubjectContainer);
                         llAssignmentSubjectContainer.removeAllViews();
 
+                        //printing data
                         tvAssignmentSubject.setText(lasData.getNama_mapel());
                         tvAssignmentCountBadge.setText(lasData.getJumlah_tugas_mapel());
                         tvAssignmentCountBadge.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +109,7 @@ ProgressBar pbLoading;
                         for (ListAssignmentTask latData : lasData.getData_tugas()) {
                             LinearLayout rowTask = (LinearLayout) getLayoutInflater()
                                     .inflate(R.layout.template_assignment_task, null);
+                            //initializing elemen dari view yang di loop
                             TextView tvAssignmentTitle = rowTask.findViewById(R.id.tvAssignmentTitle);
                             TextView tvAssignmentDeadline = rowTask.findViewById(R.id.tvAssignmentDeadline);
                             TextView tvAssignmentTimeLeft = rowTask.findViewById(R.id.tvAssignmentTimeLeft);
@@ -120,7 +126,7 @@ ProgressBar pbLoading;
                                 e.printStackTrace();
                             }
 
-
+                            //printing data
                             tvAssignmentTitle.setText(latData.getJudul_tugas());
                             tvAssignmentDesc.setText(latData.getDeskripsi());
 
@@ -154,15 +160,16 @@ ProgressBar pbLoading;
                         }
                         llAssignmentContainer.addView(rowSubject);
                     }
-
                 } else {
                     Toast.makeText(context, response.message() + "", Toast.LENGTH_SHORT).show();
                 }
+                pbLoading.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ModelAssignmentSubject> call, Throwable t) {
                 Toast.makeText(context, t.getMessage() + "", Toast.LENGTH_SHORT).show();
+                pbLoading.setVisibility(View.GONE);
             }
         });
 

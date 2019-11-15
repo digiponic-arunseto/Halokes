@@ -49,8 +49,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="12dp">
 
                         <RelativeLayout
                             android:id="@+id/llMenuSchedule"
@@ -83,8 +82,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="12dp">
 
                         <RelativeLayout
                             android:id="@+id/llMenuAssignment"
@@ -117,8 +115,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="12dp">
 
                         <RelativeLayout
                             android:id="@+id/llMenuGrade"
@@ -151,8 +148,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="12dp">
 
                         <RelativeLayout
                             android:id="@+id/llMenuSubject"
@@ -193,8 +189,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="12dp">
 
                         <RelativeLayout
                             android:id="@+id/llMenuClass"
@@ -227,8 +222,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="12dp">
 
                         <RelativeLayout
                             android:id="@+id/llMenuExtra"
@@ -261,8 +255,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="12dp">
 
                         <RelativeLayout
                             android:id="@+id/llMenuBehavior"
@@ -295,13 +288,12 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="12dp">
 
                         <RelativeLayout
                             android:id="@+id/llMenuAttendance"
                             style="@style/MenuSubButton"
-                            android:background="@drawable/ic_main_attendance">
+                            android:background="@drawable/ic_menu_attendance">
 
                             <TextView
                                 android:id="@+id/tvMenuBadgeAttendance"
