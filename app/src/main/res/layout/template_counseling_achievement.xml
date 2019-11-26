@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/llAssignmentTask"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -29,34 +28,20 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvAssignmentTitle"
+                    android:id="@+id/tvAchievementName"
                     style="@style/CardHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TUGAS ALJABAR 1"
-                     />
+                    android:background="@color/colorSuccess"
+                    android:text="Olympiade XY 2020" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:paddingBottom="6dp">
-
-                <TextView
-                    android:id="@+id/tvAssignmentDesc"
-                    style="@style/CardText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:layout_weight="1"
-                    android:ellipsize="marquee"
-                    android:maxLines="2"
-                    android:text="Deskripsi\nDeskripsi" />
-
+                android:padding="12dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,28 +49,37 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvAssignmentDeadline"
+                        android:id="@+id/tvAchievementDate"
                         style="@style/CardText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_date_30dp"
                         android:text="2019-11-04"
-                        android:textSize="10sp"
                         android:textStyle="italic" />
 
                     <TextView
-                        android:id="@+id/tvAssignmentTimeLeft"
+                        android:id="@+id/tvAchievementLevel"
                         style="@style/CardText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_round_corner"
-                        android:text="3 Hari lagi"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorBackground"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
+                        android:text="Tingkat Nasional"
+                        android:textAllCaps="true"
+                        android:textStyle="bold|italic" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/tvAchievementDesc"
+                    style="@style/CardText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="180dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_round_corner_border_success"
+                    android:ellipsize="marquee"
+                    android:padding="12dp"
+                    android:text="Deskripsi\nDeskripsi"
+                    android:textColor="@color/colorSuccess" />
 
             </LinearLayout>
 

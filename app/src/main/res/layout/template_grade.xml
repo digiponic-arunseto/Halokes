@@ -11,31 +11,31 @@
         android:orientation="vertical">
 
         <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/bg_textlines_blue_bold"-->
-            <!--android:padding="6dp">-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/bg_textlines_blue_bold"-->
+        <!--android:padding="6dp">-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/tvGradeSubject"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerInParent="true"-->
-                <!--android:text="Subject"-->
-                <!--android:textColor="@color/colorDark"-->
-                <!--android:textStyle="bold" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/tvGradeSubject"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:text="Subject"-->
+        <!--android:textColor="@color/colorDark"-->
+        <!--android:textStyle="bold" />-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/tvGradeSubjectGrade"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:background="@drawable/bg_round_corner_success"-->
-                <!--android:maxLength="4"-->
-                <!--android:padding="6dp"-->
-                <!--android:text="100"-->
-                <!--android:textColor="@color/colorBackground"-->
-                <!--android:textStyle="bold" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/tvGradeSubjectGrade"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:background="@drawable/bg_round_corner_success"-->
+        <!--android:maxLength="4"-->
+        <!--android:padding="6dp"-->
+        <!--android:text="100"-->
+        <!--android:textColor="@color/colorBackground"-->
+        <!--android:textStyle="bold" />-->
         <!--</RelativeLayout>-->
 
         <HorizontalScrollView
@@ -48,7 +48,7 @@
                 android:id="@+id/llGradeDetailContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryLight"
+                android:animateLayoutChanges="true"
                 android:orientation="horizontal">
 
                 <include layout="@layout/template_grade_detail" />
@@ -56,17 +56,19 @@
 
             </LinearLayout>
         </HorizontalScrollView>
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tabDots"
             android:layout_width="match_parent"
             android:layout_height="6dp"
-            app:tabIndicatorHeight="6dp"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="center"
             app:tabIndicatorAnimationDuration="300"
             app:tabIndicatorColor="@color/colorPrimary"
-            app:tabMaxWidth="6dp"
-            app:tabBackground="@drawable/tab_selector"
-            app:tabGravity="center" />
+            app:tabIndicatorHeight="6dp"
+            app:tabMaxWidth="6dp" />
     </LinearLayout>
+
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/skvLoading"
         style="@style/SpinKitView.Large.Circle"

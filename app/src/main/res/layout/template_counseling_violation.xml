@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/llAssignmentTask"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -29,62 +28,63 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvAssignmentTitle"
+                    android:id="@+id/tvViolationName"
                     style="@style/CardHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TUGAS ALJABAR 1"
-                     />
+                    android:background="@color/colorDanger"
+                    android:text="Pelanggaran XY" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
                 android:paddingBottom="6dp">
 
-                <TextView
-                    android:id="@+id/tvAssignmentDesc"
-                    style="@style/CardText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:layout_weight="1"
-                    android:ellipsize="marquee"
-                    android:maxLines="2"
-                    android:text="Deskripsi\nDeskripsi" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvAssignmentDeadline"
+                        android:id="@+id/tvViolationDate"
                         style="@style/CardText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_date_30dp"
                         android:text="2019-11-04"
-                        android:textSize="10sp"
                         android:textStyle="italic" />
 
                     <TextView
-                        android:id="@+id/tvAssignmentTimeLeft"
+                        android:id="@+id/tvViolationLevel"
                         style="@style/CardText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_round_corner"
-                        android:text="3 Hari lagi"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorBackground"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
+                        android:text="Kategori : Sedang"
+                        android:textAllCaps="true"
+                        android:textStyle="bold|italic" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvViolationPoint"
+                    style="@style/CardText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:layout_weight="3"
+                    android:background="@drawable/bg_round_corner_border_danger"
+                    android:maxLines="2"
+                    android:text="-90"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorDanger"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>

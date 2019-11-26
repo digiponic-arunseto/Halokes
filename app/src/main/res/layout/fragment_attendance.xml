@@ -111,7 +111,7 @@
 
                     <TextView
                         android:id="@+id/tvAttendancePercentage"
-                        style="@style/AttendanceText"
+                        style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="X %" />
@@ -161,7 +161,7 @@
 
                     <TextView
                         android:id="@+id/tvAttendanceH"
-                        style="@style/AttendanceText"
+                        style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hadir" />
@@ -184,7 +184,7 @@
 
                     <TextView
                         android:id="@+id/tvAttendanceS"
-                        style="@style/AttendanceText"
+                        style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_expand_24dp"
@@ -235,7 +235,7 @@
 
                     <TextView
                         android:id="@+id/tvAttendanceI"
-                        style="@style/AttendanceText"
+                        style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_expand_24dp"
@@ -285,7 +285,7 @@
 
                     <TextView
                         android:id="@+id/tvAttendanceA"
-                        style="@style/AttendanceText"
+                        style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_expand_24dp"

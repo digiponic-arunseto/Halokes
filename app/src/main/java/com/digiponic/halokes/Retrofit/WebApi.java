@@ -2,6 +2,8 @@ package com.digiponic.halokes.Retrofit;
 
 import com.digiponic.halokes.Models.ModelAssignment;
 import com.digiponic.halokes.Models.ModelAttendance;
+import com.digiponic.halokes.Models.ModelClass;
+import com.digiponic.halokes.Models.ModelCounseling;
 import com.digiponic.halokes.Models.ModelGrade;
 import com.digiponic.halokes.Models.ModelSchedule;
 import com.digiponic.halokes.Models.ModelScheduleDetail;
@@ -66,8 +68,8 @@ public interface WebApi {
             @Path("hari") String hari);
 
     @GET("kelas/siswa/{id_user}")
-    Call<ModelSchedule> showClass(@Path("id_user") String id_user);
+    Call<ModelClass> showClass(@Path("id_user") String id_user);
 
     @GET("konseling/catatan/{id_user}")
-    Call<ModelSchedule> showCounseling(@Path("id_user") String id_user);
+    Call<ModelCounseling> showCounseling(@Path("id_user") String id_user);
 }

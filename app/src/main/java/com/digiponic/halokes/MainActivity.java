@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.digiponic.halokes.Fragments.AccountEditFragment;
 import com.digiponic.halokes.Fragments.AssignmentFragment;
 import com.digiponic.halokes.Fragments.AttendanceFragment;
-import com.digiponic.halokes.Fragments.BehaviorFragment;
 import com.digiponic.halokes.Fragments.BlankFragment;
 import com.digiponic.halokes.Fragments.ChatContactFragment;
 import com.digiponic.halokes.Fragments.ClassFragment;
@@ -29,7 +28,6 @@ import com.digiponic.halokes.Fragments.HomeFragment;
 import com.digiponic.halokes.Fragments.FeedFragment;
 import com.digiponic.halokes.Fragments.ScheduleFragment;
 import com.digiponic.halokes.Fragments.AccountFragment;
-import com.digiponic.halokes.Fragments.SubjectFragment;
 import com.digiponic.halokes.Fragments.SummaryFragment;
 
 public class MainActivity extends AppCompatActivity {

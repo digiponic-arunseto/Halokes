@@ -16,25 +16,64 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="start"
-                android:text="Pengumuman"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btnBack"
-                style="@style/ButtonBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/ic_arrow_back_30dp" />
+                <TextView
+                    style="@style/ButtonBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="start"
+                    android:drawableStart="@drawable/ic_arrow_back_30dp"
+                    android:text="Pengumuman"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center|end">
+                    <Button
+                        android:id="@+id/btnMore"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/ic_more_vert_30dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llSearchBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackground"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btnSearchBack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_close_30dp"
+                    android:backgroundTint="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_textlines_blue_bold"
+                    android:hint="Cari...."
+                    android:imeOptions="actionDone"
+                    android:singleLine="true" />
+            </LinearLayout>
         </RelativeLayout>
 
         <ScrollView
@@ -62,6 +101,7 @@
                 </android.support.v7.widget.CardView>
 
                 <LinearLayout
+                    android:padding="6dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"

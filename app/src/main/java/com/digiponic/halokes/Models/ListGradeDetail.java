@@ -7,9 +7,9 @@ public class ListGradeDetail {
     @SerializedName("topik")
     String topik;
     @SerializedName("nilai")
-    String nilai;
+    int[] nilai;
 
-    public ListGradeDetail(String topik, String nilai) {
+    public ListGradeDetail(String topik, int[] nilai) {
         this.topik = topik;
         this.nilai = nilai;
     }
@@ -18,7 +18,7 @@ public class ListGradeDetail {
         return topik;
     }
 
-    public String getNilai() {
+    public int[] getNilai() {
         return nilai;
     }
 }

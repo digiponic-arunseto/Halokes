@@ -98,13 +98,12 @@ public class GradeSubFragment extends Fragment {
                                 GraphView gvGradeDetailGraph = vGrade.findViewById(R.id.gvGradeDetailGraph);
 
                                 tvGradeDetailType.setText(lgdData.getTopik());
-                                tvGradeDetailGrade.setText(lgdData.getNilai());
+                                tvGradeDetailGrade.setText(lgdData.getNilai()[0]+"");
                                 populateGraph(gvGradeDetailGraph);
 
                                 llGradeDetailContainer.addView(vGrade);
                             }
                         } else {
-//                            tvGradeSubject.setText("------------");
 //                            Toast.makeText(context, "null gan", Toast.LENGTH_SHORT).show();
                         }
                     }

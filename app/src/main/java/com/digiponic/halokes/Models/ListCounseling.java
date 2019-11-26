@@ -14,9 +14,9 @@ public class ListCounseling {
     @SerializedName("data_prestasi")
     List<ListAchievement> data_prestasi;
     @SerializedName("data_pelanggaran")
-    List<ListViolation> data_pelanggaran;
+    ListViolation data_pelanggaran;
 
-    public ListCounseling(String nama_siswa, String kelas, String status_siswa, List<ListAchievement> data_prestasi, List<ListViolation> data_pelanggaran) {
+    public ListCounseling(String nama_siswa, String kelas, String status_siswa, List<ListAchievement> data_prestasi, ListViolation data_pelanggaran) {
         this.nama_siswa = nama_siswa;
         this.kelas = kelas;
         this.status_siswa = status_siswa;
@@ -40,7 +40,7 @@ public class ListCounseling {
         return data_prestasi;
     }
 
-    public List<ListViolation> getData_pelanggaran() {
+    public ListViolation getData_pelanggaran() {
         return data_pelanggaran;
     }
 }

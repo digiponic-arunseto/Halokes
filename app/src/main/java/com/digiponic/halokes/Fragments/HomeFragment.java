@@ -162,10 +162,10 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.replace(flContent,
                         new GradeFragment()).addToBackStack("1").commit();
                 break;
-            case R.id.llMenuBehavior:
+            case R.id.llMenuCounseling:
                 //Behavior
                 fragmentTransaction.replace(flContent,
-                        new BlankFragment()).addToBackStack("1").commit();
+                        new CounselingFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuAssignment:
                 //Assignment
@@ -182,7 +182,7 @@ public class HomeFragment extends Fragment {
             case R.id.llMenuClass:
                 //Class
                 fragmentTransaction.replace(flContent,
-                        new BlankFragment()).addToBackStack("1").commit();
+                        new ClassFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuExtra:
                 //Announcement

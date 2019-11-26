@@ -258,7 +258,7 @@
                         android:paddingTop="12dp">
 
                         <RelativeLayout
-                            android:id="@+id/llMenuBehavior"
+                            android:id="@+id/llMenuCounseling"
                             style="@style/MenuSubButton"
                             android:background="@drawable/ic_menu_konseling">
 
