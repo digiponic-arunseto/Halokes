@@ -31,7 +31,7 @@ public class FeedFragment extends Fragment {
     Context context;
     Session session;
     LinearLayout llFeedContainer;
-    ProgressBar pbLoading;
+    ProgressBar skvLoading;
     Button btnSearch, btnSearchBack, btnMore;
     EditText etSearch;
     LinearLayout llSearchBar;
@@ -44,7 +44,7 @@ public class FeedFragment extends Fragment {
         flContent = R.id.framelayout_content;
         context = getActivity();
         session = Session.getInstance(context);
-        pbLoading = view.findViewById(R.id.pbLoading);
+        skvLoading = view.findViewById(R.id.skvLoading);
 
         btnSearch = view.findViewById(R.id.btnSearch);
         llSearchBar = view.findViewById(R.id.llSearchBar);
@@ -119,7 +119,7 @@ public class FeedFragment extends Fragment {
 
     public void showFeed() {
         llFeedContainer = view.findViewById(R.id.llFeedContainer);
-        pbLoading.setVisibility(View.VISIBLE);
+        skvLoading.setVisibility(View.VISIBLE);
 
         llFeedContainer.removeAllViews();
         for (int i = 1; i <= 14; i++) {
@@ -151,6 +151,6 @@ public class FeedFragment extends Fragment {
 
             llFeedContainer.addView(viewFeed);
         }
-        pbLoading.setVisibility(View.GONE);
+        skvLoading.setVisibility(View.GONE);
     }
 }

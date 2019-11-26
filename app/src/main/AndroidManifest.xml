@@ -28,6 +28,10 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".InitializeActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:theme="@style/Fullscreen"
             android:name=".SplashActivity"
             android:screenOrientation="portrait">

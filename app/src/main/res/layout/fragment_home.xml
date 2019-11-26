@@ -32,7 +32,6 @@
                         android:id="@+id/hsvAnnouncementContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:scrollbarSize="6dp"
                         android:scrollbars="none">
 
                         <LinearLayout
@@ -55,40 +54,22 @@
                         android:id="@+id/tabDots"
                         android:layout_width="match_parent"
                         android:layout_height="6dp"
-                        app:tabIndicatorHeight="6dp"
+                        app:tabBackground="@drawable/tab_selector"
+                        app:tabGravity="center"
                         app:tabIndicatorAnimationDuration="300"
                         app:tabIndicatorColor="@color/colorPrimary"
-                        app:tabMaxWidth="6dp"
-                        app:tabBackground="@drawable/tab_selector"
-                        app:tabGravity="center" />
+                        app:tabIndicatorHeight="6dp"
+                        app:tabMaxWidth="6dp" />
 
                 </LinearLayout>
 
-                <!--<RelativeLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-
-                <!--<ViewFlipper-->
-
-                <!--android:inAnimation="@android:anim/slide_in_left"-->
-                <!--android:outAnimation="@android:anim/slide_out_right"-->
-                <!--android:background="@drawable/bg_round_side"-->
-                <!--android:id="@+id/vfAnnouncementContainer"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="horizontal">-->
-
-                <!--<include layout="@layout/template_announcement" />-->
-
-                <!--<include layout="@layout/template_announcement" />-->
-
-                <!--<include layout="@layout/template_announcement" />-->
-
-                <!--</ViewFlipper>-->
-
-                <!--</RelativeLayout>-->
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/bg_textlines" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,39 +81,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="12dp">
-
-                                <RelativeLayout
-                                    android:id="@+id/llMenuSchedule"
-                                    style="@style/MenuSubButton"
-                                    android:background="@drawable/ic_menu_jadwal">
-
-                                    <TextView
-                                        android:id="@+id/tvMenuBadgeSchedule"
-                                        style="@style/MenuSubBadge"
-                                        android:text="" />
-                                </RelativeLayout>
-                            </RelativeLayout>
-
-                            <TextView
-                                style="@style/MenuTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:text="Jadwal" />
-                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -165,113 +113,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentBottom="true"
                                 android:text="Tugas" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="12dp">
-
-                                <RelativeLayout
-                                    android:id="@+id/llMenuGrade"
-                                    style="@style/MenuSubButton"
-                                    android:background="@drawable/ic_menu_nilai">
-
-                                    <TextView
-                                        android:id="@+id/tvMenuBadgeGrade"
-                                        style="@style/MenuSubBadge"
-                                        android:text="12" />
-                                </RelativeLayout>
-                            </RelativeLayout>
-
-                            <TextView
-                                style="@style/MenuTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:text="Nilai" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="12dp">
-
-                                <RelativeLayout
-                                    android:id="@+id/llMenuSubject"
-                                    style="@style/MenuSubButton"
-                                    android:background="@drawable/ic_menu_matpel">
-
-                                    <TextView
-                                        android:id="@+id/tvMenuBadgeSubject"
-                                        style="@style/MenuSubBadge"
-                                        android:text="" />
-                                </RelativeLayout>
-                            </RelativeLayout>
-
-                            <TextView
-                                style="@style/MenuTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:text="Mata\nPelajaran" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="12dp">
-
-                                <RelativeLayout
-                                    android:id="@+id/llMenuClass"
-                                    style="@style/MenuSubButton"
-                                    android:background="@drawable/ic_menu_kelas">
-
-                                    <TextView
-                                        android:id="@+id/tvMenuBadgeClass"
-                                        style="@style/MenuSubBadge"
-                                        android:text="" />
-                                </RelativeLayout>
-                            </RelativeLayout>
-
-                            <TextView
-                                style="@style/MenuTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:text="Data Kelas" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -321,6 +162,80 @@
                                 android:paddingTop="12dp">
 
                                 <RelativeLayout
+                                    android:id="@+id/llMenuAttendance"
+                                    style="@style/MenuSubButton"
+                                    android:background="@drawable/ic_menu_absensi">
+
+                                    <TextView
+                                        android:id="@+id/tvMenuBadgeAttendance"
+                                        style="@style/MenuSubBadge"
+                                        android:text="" />
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+                            <TextView
+                                style="@style/MenuTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="Absensi " />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="12dp">
+
+                                <RelativeLayout
+                                    android:id="@+id/llMenuGrade"
+                                    style="@style/MenuSubButton"
+                                    android:background="@drawable/ic_menu_nilai">
+
+                                    <TextView
+                                        android:id="@+id/tvMenuBadgeGrade"
+                                        style="@style/MenuSubBadge"
+                                        android:text="12" />
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+                            <TextView
+                                style="@style/MenuTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="Nilai" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="12dp">
+
+                                <RelativeLayout
                                     android:id="@+id/llMenuBehavior"
                                     style="@style/MenuSubButton"
                                     android:background="@drawable/ic_menu_konseling">
@@ -338,6 +253,72 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentBottom="true"
                                 android:text="Konseling" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="12dp">
+
+                                <RelativeLayout
+                                    android:id="@+id/llMenuClass"
+                                    style="@style/MenuSubButton"
+                                    android:background="@drawable/ic_menu_kelas">
+
+                                    <TextView
+                                        android:id="@+id/tvMenuBadgeClass"
+                                        style="@style/MenuSubBadge"
+                                        android:text="" />
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+                            <TextView
+                                style="@style/MenuTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="Data Kelas" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="12dp">
+
+                                <RelativeLayout
+                                    android:id="@+id/llMenuSchedule"
+                                    style="@style/MenuSubButton"
+                                    android:background="@drawable/ic_menu_jadwal">
+
+                                    <TextView
+                                        android:id="@+id/tvMenuBadgeSchedule"
+                                        style="@style/MenuSubBadge"
+                                        android:text="" />
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+                            <TextView
+                                style="@style/MenuTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="Jadwal" />
                         </LinearLayout>
 
                         <LinearLayout

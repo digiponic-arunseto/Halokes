@@ -12,19 +12,17 @@
 
 
         <RelativeLayout
-            style="@style/TitleBar"
+            style="@style/TitleBarMain"
             android:layout_width="match_parent"
             android:layout_height="60dp">
 
             <RelativeLayout
-                android:padding="12dp"
-                android:paddingStart="6dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
                     style="@style/ButtonBack"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
@@ -32,14 +30,13 @@
                     android:drawableStart="@drawable/ic_arrow_back_30dp"
                     android:text="Tugas"
                     android:textAlignment="textStart"
-                    android:textColor="@color/colorBackground"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:gravity="center|end">
 
@@ -48,20 +45,19 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/ic_search_30dp"
-                        android:backgroundTint="@color/colorBackground" />
+                         />
 
                     <Button
                         android:layout_marginStart="12dp"
-                        android:id="@+id/btnFilter"
+                        android:id="@+id/btnSort"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/ic_sort_30dp"
-                        android:backgroundTint="@color/colorBackground" />
+                         />
                 </LinearLayout>
             </RelativeLayout>
 
             <LinearLayout
-                android:padding="12dp"
                 android:id="@+id/llSearchBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -107,30 +103,14 @@
 
             </android.support.v4.view.ViewPager>
 
-            <ProgressBar
-                android:id="@+id/pbLoading"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" />
-        </RelativeLayout>
-
-
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:id="@+id/llAssignmentContainer"
-                android:layout_width="match_parent"
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/skvLoading"
+                style="@style/SpinKitView.Large.Circle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:orientation="vertical">
-
-                <!--<include layout="@layout/template_assignment_subject" />-->
-
-            </LinearLayout>
-
-        </android.support.v4.widget.NestedScrollView>
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/colorPrimaryLighter" />
+        </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

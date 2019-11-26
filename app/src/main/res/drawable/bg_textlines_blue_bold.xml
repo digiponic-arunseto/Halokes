@@ -9,7 +9,7 @@
                 android:width="2dp"
                 android:color="@color/colorPrimaryLight" />
 
-            <solid android:color="@color/colorBackground" />
+            <solid android:color="@color/transparent" />
         </shape>
     </item>
 

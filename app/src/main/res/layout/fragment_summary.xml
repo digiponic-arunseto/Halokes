@@ -65,7 +65,7 @@
                         style="@style/GraphToolTipY"
                         android:layout_width="20dp"
                         android:layout_centerVertical="true"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/colorDark" />
 
 
@@ -76,7 +76,6 @@
                     style="@style/GraphToolTipX"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     android:text="T u g a s"
                     android:textColor="@color/colorDark" />
 

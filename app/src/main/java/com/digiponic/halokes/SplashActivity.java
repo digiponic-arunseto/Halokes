@@ -68,6 +68,8 @@ public class SplashActivity extends Activity {
                     //check the user logged in
                     if (session.isLoggedIn()) {
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                        startActivity(new Intent(SplashActivity.this, InitializeActivity.class));
+
                     } else {
 //                        Toast.makeText(SplashActivity.this, "Selamat datang kembali!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SplashActivity.this, LoginActivity.class));

@@ -3,12 +3,19 @@ package com.digiponic.halokes.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,6 +32,12 @@ public class HomeFragment extends Fragment {
     HorizontalScrollView hsvAnnouncementContainer;
     TabLayout tabDots;
 
+    // BottomSheetDialog
+    BottomSheetDialog dialogMoreMenu;
+    View viewMoreMenu;
+    BottomNavigationView bnvMainNav;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,6 +50,13 @@ public class HomeFragment extends Fragment {
         hsvAnnouncementContainer = view.findViewById(R.id.hsvAnnouncementContainer);
         tabDots = view.findViewById(R.id.tabDots);
 
+
+        bnvMainNav = getActivity().findViewById(R.id.bnvMainNav);
+
+        dialogMoreMenu = new BottomSheetDialog(context);
+        viewMoreMenu = getLayoutInflater().inflate(R.layout.fragment_more_menu, null);
+        dialogMoreMenu.setContentView(viewMoreMenu);
+        dialogMoreMenu.setCancelable(true);
 
         showAnnouncement();
 
@@ -81,7 +101,7 @@ public class HomeFragment extends Fragment {
     public void showAnnouncement() {
         llAnnouncementContainer.removeAllViews();
 
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 1; i <= 3; i++) {
             //add tab
             tabDots.addTab(tabDots.newTab());
 
@@ -89,7 +109,27 @@ public class HomeFragment extends Fragment {
             final int finalI = i;
             RelativeLayout rlAnnouncement = viewAnnouncement.findViewById(R.id.rlAnnouncement);
             TextView tvAnnouncementTitle = viewAnnouncement.findViewById(R.id.tvAnnouncementTitle);
-            tvAnnouncementTitle.setText(i + "");
+            TextView tvAnnouncementContent = viewAnnouncement.findViewById(R.id.tvAnnouncementContent);
+            tvAnnouncementTitle.setText("Upacara Bendera Hari Santri Nasional 2019");
+            String htmlTxt = Html.fromHtml("<div >\n" +
+                    "\t<p>Nomor: 001/D.2.043/Staida/X/2018</p>\n" +
+                    "<p>Assalami’alaikum Warahmatullahi Wabarakaatuh</p>\n" +
+                    "<p>Dalam rangka memperingati hari santri nasional tahun 2018, maka diwajibkan bagi semua mahasiswa prodi PAI, PGMI, Piaud dan Es Semester I-VII Staida Gresik untuk hadir pada:</p>\n" +
+                    "<blockquote><p>Hari&nbsp;&nbsp;&nbsp;&nbsp; : Senin, 22 Oktober 2018</p>\n" +
+                    "<p><b>Pukul &nbsp; : 15.30 Wib – Selesai</b></p>\n" +
+                    "<p>Tempat : Halaman Kampus STAIDA Gresik</p>\n" +
+                    "<p>Acara&nbsp;&nbsp; : Upacara Bendera Hari Santri Nasional 2018</p>\n" +
+                    "<p>Busana: Pria: Baju Taqwa Putih, Sarung dan Songkok</p>\n" +
+                    "<p>Wanita: Baju Putih, Rok Panjang/maxi, Jilbab Putih</p></blockquote>\n" +
+                    "<p>Demikian pemberitahuan ini disampaikan. Harap maklum.</p>\n" +
+                    "<p>Wassalamu’alaikum Warahmatullahi Wabarakaatuh</p>\n" +
+                    "<p>Gresik, 17 Oktober 2018</p>\n" +
+                    "<p>Ketua STAIDA<br>\n" +
+                    "Wakil Ketua,</p>\n" +
+                    "<p>Kemahasiswaan, Alumni Dan Kerjasama</p>\n" +
+                    "<p>Nur Khamim, S.Ag, M.Pd</p>\n" +
+                    "</div>").toString().trim();
+            tvAnnouncementContent.setText(htmlTxt);
             rlAnnouncement.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -103,5 +143,65 @@ public class HomeFragment extends Fragment {
 
             llAnnouncementContainer.addView(viewAnnouncement);
         }
+    }
+
+    public void menuNavigation(View view, BottomNavigationView bnvMainNav, FragmentTransaction fragmentTransaction) {
+        //Bottom Navigation Menu
+        bnvMainNav.setVisibility(View.INVISIBLE);
+        boolean close = true;
+//        Toast.makeText(context, view.getId()+"", Toast.LENGTH_SHORT).show();
+
+        //set animation on click
+        Animation anim = AnimationUtils.loadAnimation(context, R.anim.scale);
+//        view = view.findViewWithTag("imgMenu");
+        view.findViewWithTag("imgMenu").startAnimation(anim);
+        GradeFragment gf = new GradeFragment();
+        switch (view.getId()) {
+            case R.id.llMenuGrade:
+                //Grade
+                fragmentTransaction.replace(flContent,
+                        new GradeFragment()).addToBackStack("1").commit();
+                break;
+            case R.id.llMenuBehavior:
+                //Behavior
+                fragmentTransaction.replace(flContent,
+                        new BlankFragment()).addToBackStack("1").commit();
+                break;
+            case R.id.llMenuAssignment:
+                //Assignment
+                fragmentTransaction.replace(flContent,
+                        new AssignmentFragment()).addToBackStack("1").commit();
+                break;
+            case R.id.llMenuSchedule:
+                //Schedule
+                fragmentTransaction.replace(flContent,
+                        new ScheduleFragment()).addToBackStack("1").commit();
+//                //dialogMoreMenu fragment
+//                scheduleF.show(fm.addToBackStack("1"), "Dialog Fragment");
+                break;
+            case R.id.llMenuClass:
+                //Class
+                fragmentTransaction.replace(flContent,
+                        new BlankFragment()).addToBackStack("1").commit();
+                break;
+            case R.id.llMenuExtra:
+                //Announcement
+                fragmentTransaction.replace(flContent,
+                        new BlankFragment()).addToBackStack("1").commit();
+                break;
+            case R.id.llMenuAttendance:
+                //Attendance
+                fragmentTransaction.replace(flContent,
+                        new AttendanceFragment()).addToBackStack("1").commit();
+                break;
+            case R.id.llMenuMore:
+                //Attendance
+                close = false;
+                dialogMoreMenu.show();
+                bnvMainNav.setVisibility(View.VISIBLE);
+                break;
+        }
+
+        if (close) dialogMoreMenu.dismiss();
     }
 }

@@ -30,7 +30,7 @@ public class ChatContactFragment extends Fragment {
     int flContent;
     Context context;
     Session session;
-    ProgressBar pbLoading;
+    ProgressBar skvLoading;
     LinearLayout llChatContactContainer;
     ScrollView svContent;
     Button btnSearch, btnSearchBack, btnMore;
@@ -48,7 +48,7 @@ public class ChatContactFragment extends Fragment {
         session = Session.getInstance(context);
 
         llChatContactContainer = view.findViewById(R.id.llChatContactContainer);
-        pbLoading = view.findViewById(R.id.pbLoading);
+        skvLoading = view.findViewById(R.id.skvLoading);
 
         btnSearch = view.findViewById(R.id.btnSearch);
         llSearchBar = view.findViewById(R.id.llSearchBar);
@@ -123,7 +123,7 @@ public class ChatContactFragment extends Fragment {
     }
 
     public void showContact() {
-        pbLoading.setVisibility(View.VISIBLE);
+        skvLoading.setVisibility(View.VISIBLE);
 
         View viewContact;
 
@@ -145,7 +145,7 @@ public class ChatContactFragment extends Fragment {
                     showSearchBar(false);
                     tvChatContactCounter.setVisibility(View.INVISIBLE);
                     tvChatContactTime.setTextColor(getResources().getColor(R.color.colorDark));
-//                //dialog fragment
+//                //dialogMoreMenu fragment
                     ChatFragment chatF = new ChatFragment();
                     chatF.setId(finalI + "");
                     chatF.show(getFragmentManager().beginTransaction().addToBackStack("1"), "Dialog Fragment");
@@ -154,6 +154,6 @@ public class ChatContactFragment extends Fragment {
 
             llChatContactContainer.addView(viewContact);
         }
-        pbLoading.setVisibility(View.GONE);
+        skvLoading.setVisibility(View.GONE);
     }
 }

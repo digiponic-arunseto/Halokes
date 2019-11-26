@@ -4,13 +4,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.digiponic.halokes.Fragments.AssignmentSubFragment;
-import com.digiponic.halokes.Models.ListAssignmentSubject;
+import com.digiponic.halokes.Models.ListAssignment;
 
 import java.util.List;
 
 public class AssignmentPagerAdapter extends FragmentStatePagerAdapter {
     private int tabCount;
-    private List<ListAssignmentSubject> lasData;
+    private List<ListAssignment> lData;
+
 
     public AssignmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -19,7 +20,7 @@ public class AssignmentPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public AssignmentSubFragment getItem(int i) {
         AssignmentSubFragment fragment = new AssignmentSubFragment();
-        fragment.setLasData(lasData.get(i));
+        fragment.setlData(lData.get(i));
 //        Bundle args = new Bundle();
 //        // Our object is just an integer :-P
 //        args.putInt(AssignmentSubFragment.ARG_OBJECT, i + 1);
@@ -36,13 +37,13 @@ public class AssignmentPagerAdapter extends FragmentStatePagerAdapter {
         this.tabCount = tabCount;
     }
 
-    public void setLasData(List<ListAssignmentSubject> lasData) {
-        this.lasData = lasData;
+    public void setlData(List<ListAssignment> lData) {
+        this.lData = lData;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return lasData.get(position).getNama_mapel();
+        return lData.get(position).getNama_mapel();
     }
 
 }

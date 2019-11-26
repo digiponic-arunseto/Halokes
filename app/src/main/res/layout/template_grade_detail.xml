@@ -1,39 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:minHeight="300dp"
     android:background="@color/colorBackground"
-    tools:showIn="@layout/template_grade_subject">
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:showIn="@layout/template_grade">
 
-    <RelativeLayout
-       android:padding="6dp"
-        android:paddingStart="12dp"
-        android:background="@drawable/bg_textlines"
+    <android.support.design.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="12dp">
 
-        <TextView
-            android:id="@+id/tvGradeDetailType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:text="Type"
-            android:textColor="@color/colorDark"
-            android:textStyle="italic" />
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvGradeDetailGrade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/bg_round_corner"
-            android:maxLength="4"
-            android:padding="6dp"
-            android:text="100"
-            android:textColor="@color/colorBackground"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvGradeDetailType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:textColor="@color/colorDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_round_corner_border_primary"
+                    android:gravity="center"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/tvGradeDetailGradeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nilai"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvGradeDetailGrade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="90"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="12dp"-->
+                <!--android:background="@drawable/bg_round_corner_border_danger"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="12dp">-->
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Remedy"-->
+                <!--android:textColor="@color/colorDanger"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textStyle="bold" />-->
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="12dp"-->
+                <!--android:text="1"-->
+                <!--android:textColor="@color/colorDanger"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textStyle="bold" />-->
+                <!--</LinearLayout>-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <com.jjoe64.graphview.GraphView
+                            android:id="@+id/gvGradeDetailGraph"
+                            android:layout_width="wrap_content"
+                            android:layout_height="180dp"
+                            android:layout_marginStart="6dp" />
+
+
+                        <TextView
+                            style="@style/GraphToolTipY"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/colorPrimary" />
+
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        style="@style/GraphToolTipX"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="T u g a s"
+                        android:textColor="@color/colorPrimary" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvGradeDetailEtc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="6dp"
+                android:text="November 2019"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+        </RelativeLayout>
+    </android.support.design.card.MaterialCardView>
 </LinearLayout>

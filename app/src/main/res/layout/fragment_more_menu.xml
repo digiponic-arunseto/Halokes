@@ -151,12 +151,12 @@
                         android:paddingTop="12dp">
 
                         <RelativeLayout
-                            android:id="@+id/llMenuSubject"
+                            android:id="@+id/llMenuAttendance"
                             style="@style/MenuSubButton"
-                            android:background="@drawable/ic_menu_matpel">
+                            android:background="@drawable/ic_menu_absensi">
 
                             <TextView
-                                android:id="@+id/tvMenuBadgeSubject"
+                                android:id="@+id/tvMenuBadgeAttendance"
                                 style="@style/MenuSubBadge"
                                 android:text="" />
                         </RelativeLayout>
@@ -167,7 +167,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:text="Matpel" />
+                        android:text="Absensi " />
                 </LinearLayout>
 
 
@@ -277,38 +277,7 @@
                         android:text="Konseling" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
 
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="12dp">
-
-                        <RelativeLayout
-                            android:id="@+id/llMenuAttendance"
-                            style="@style/MenuSubButton"
-                            android:background="@drawable/ic_menu_absensi">
-
-                            <TextView
-                                android:id="@+id/tvMenuBadgeAttendance"
-                                style="@style/MenuSubBadge"
-                                android:text="" />
-                        </RelativeLayout>
-                    </RelativeLayout>
-
-                    <TextView
-                        style="@style/MenuTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:text="Absensi " />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

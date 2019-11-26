@@ -2,7 +2,7 @@ package com.digiponic.halokes.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ListAssignmentTask {
+public class ListAssignmentDetail {
     @SerializedName("id_tugas")
     String id_tugas;
     @SerializedName("judul_tugas")
@@ -16,7 +16,7 @@ public class ListAssignmentTask {
     @SerializedName("sisa_waktu")
     int sisa_waktu;
 
-    public ListAssignmentTask(String id_tugas, String judul_tugas, String deskripsi, String tgl_buat, String deadline, int sisa_waktu) {
+    public ListAssignmentDetail(String id_tugas, String judul_tugas, String deskripsi, String tgl_buat, String deadline, int sisa_waktu) {
         this.id_tugas = id_tugas;
         this.judul_tugas = judul_tugas;
         this.deskripsi = deskripsi;

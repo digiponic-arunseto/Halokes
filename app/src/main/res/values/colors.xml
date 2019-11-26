@@ -5,6 +5,8 @@
     <color name="colorPrimaryLight">#00A3FF</color>
     <color name="colorPrimaryLighter">#ADDFFF</color>
     <color name="colorAccent">#EE9200</color>
+    <color name="colorAccentLight">#F1B157</color>
+    <color name="colorAccentDark">#A56700</color>
     <color name="colorBackground">#fafafa</color>
     <color name="colorDarkBackground">#aaaaaa</color>
     <color name="colorDark">#383838</color>
@@ -16,4 +18,5 @@
     <color name="transparent">#00000000</color>
     <color name="colorGray">#aaaaaa</color>
     <color name="colorGrayLight">#DEDEDE</color>
+    <color name="colorText">#808080</color>
 </resources>

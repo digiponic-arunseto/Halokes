@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.digiponic.halokes.Models.ListUser;
 import com.digiponic.halokes.Models.ModelUser;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
 import com.digiponic.halokes.Storage.Session;
@@ -87,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     session.saveUser(res.getData());
                     // bypass
-//                    session.saveUser(new ListUser("123","test", "Testarino Subagio Reitmeier", "123","siswa"));
+//                    session.saveUser(new ListUser("TBOuGhQHUxMjfrqJ19Vd","test", "Testarino Subagio Reitmeier", "123","siswa"));
 
                     Toast.makeText(context, res.getMessage() + "", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(context, MainActivity.class));
@@ -95,6 +96,10 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(context, "Username atau Password salah", Toast.LENGTH_SHORT).show();
                 }
+
+                // bypass
+//                session.saveUser(new ListUser("TBOuGhQHUxMjfrqJ19Vd","test", "Testarino Subagio Reitmeier", "123","siswa"));
+
                 pDialog.dismiss();
             }
 

@@ -15,18 +15,18 @@ public class FragmentBehaviour extends Fragment {
     int flContent;
     Context context;
     Session session;
-    ProgressBar pbLoading;
+    ProgressBar skvLoading;
 
     public FragmentBehaviour(){
 
     }
 
-    public void FragmentBehaviour(View view, int flContent, Context context, Session session, ProgressBar pbLoading) {
+    public void FragmentBehaviour(View view, int flContent, Context context, Session session, ProgressBar skvLoading) {
         this.view = view;
         this.flContent = flContent;
         this.context = context;
         this.session = session;
-        this.pbLoading = pbLoading;
+        this.skvLoading = skvLoading;
     }
 
     @Nullable
@@ -49,8 +49,8 @@ public class FragmentBehaviour extends Fragment {
         return session;
     }
 
-    public ProgressBar getPbLoading() {
-        return pbLoading;
+    public ProgressBar getskvLoading() {
+        return skvLoading;
     }
 
     public void setView(View view) {
@@ -69,7 +69,7 @@ public class FragmentBehaviour extends Fragment {
         this.session = session;
     }
 
-    public void setPbLoading(ProgressBar pbLoading) {
-        this.pbLoading = pbLoading;
+    public void setskvLoading(ProgressBar skvLoading) {
+        this.skvLoading = skvLoading;
     }
 }

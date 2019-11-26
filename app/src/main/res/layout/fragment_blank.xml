@@ -18,7 +18,7 @@
 
 
         <RelativeLayout
-            style="@style/TitleBar"
+            style="@style/TitleBarMain"
             android:layout_width="match_parent"
             android:layout_height="60dp">
 
@@ -29,7 +29,7 @@
                 android:layout_gravity="start"
                 android:text=""
                 android:textAlignment="center"
-                android:textColor="@color/colorBackground"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 

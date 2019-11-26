@@ -1,17 +1,19 @@
 package com.digiponic.halokes.Retrofit;
 
-import com.digiponic.halokes.Models.ModelAssignmentSubject;
+import com.digiponic.halokes.Models.ModelAssignment;
 import com.digiponic.halokes.Models.ModelAttendance;
 import com.digiponic.halokes.Models.ModelGrade;
+import com.digiponic.halokes.Models.ModelSchedule;
+import com.digiponic.halokes.Models.ModelScheduleDetail;
 import com.digiponic.halokes.Models.ModelUser;
 import com.digiponic.halokes.Models.StructureDefault;
 
 import retrofit2.Call;
-import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -31,16 +33,41 @@ public interface WebApi {
     @GET("presensi/siswa/{id_user}")
     Call<ModelAttendance> showAttendance(@Path("id_user") String id_user);
 
-    @GET("tugas/{id_user}/all")
-    Call<ModelAssignmentSubject> showAssignment(@Path("id_user") String id_user);
+    @GET("tugas/{id_user}/")
+    Call<ModelAssignment> showAssignment(@Path("id_user") String id_user);
 
-    @GET("nilai/siswa/all/{id_user}")
+    @GET("tugas/{id_user}/{id_mapel}")
+        Call<ModelAssignment> showAssignmentDetail(
+                @Path("id_user") String id_user,
+                @Path("id_mapel") String id_mapel);
+
+    @GET("nilai/siswa/{id_user}")
     Call<ModelGrade> showGrade(@Path("id_user") String id_user);
-//    //LISTING JENIS
-//    @GET("kendaraan/jenis")
-//    Call<ModelJenis> showJenis();
 
-//    @GET("reservasi/pelanggan/{id_pelanggan}/{status}")
-//    Call<ModelBooking> showBooking(@Path("id_pelanggan") int id_pelanggan, @Path("status") String status);
+    @GET("nilai/siswa/{id_user}/{id_mapel}")
+    Call<ModelGrade> showGradeDetail(
+            @Path("id_user") String id_user,
+            @Path("id_mapel") String id_mapel);
 
+    @FormUrlEncoded
+    @POST("siswa/aktif/{id_user}/edit")
+    Call<StructureDefault> actInitialize(
+            @Path("id_user") String id_user,
+            @Field("email") String email,
+            @Field("password") String password
+    );
+
+    @GET("jadwal/siswa/{id_user}")
+    Call<ModelSchedule> showSchedule(@Path("id_user") String id_user);
+
+    @GET("jadwal/siswa/{id_user}/{hari}")
+    Call<ModelSchedule> showScheduleDetail(
+            @Path("id_user") String id_user,
+            @Path("hari") String hari);
+
+    @GET("kelas/siswa/{id_user}")
+    Call<ModelSchedule> showClass(@Path("id_user") String id_user);
+
+    @GET("konseling/catatan/{id_user}")
+    Call<ModelSchedule> showCounseling(@Path("id_user") String id_user);
 }

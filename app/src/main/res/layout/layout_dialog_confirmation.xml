@@ -22,8 +22,7 @@
             android:lineSpacingExtra="6dp"
             android:text="Yes\nOr\nNo"
             android:textColor="@color/colorPrimary"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,24 +31,24 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnYes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_round_side_border_white"
-                android:text="YES"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp" />
-
-            <Button
                 android:id="@+id/btnNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_round_side"
+                android:background="@drawable/bg_round_side_border_white"
                 android:text="NO"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnYes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_round_side"
+                android:text="YES"
                 android:textColor="@color/colorBackground"
                 android:textSize="12sp" />
         </LinearLayout>

@@ -8,17 +8,17 @@ import java.util.List;
  * Created by Arunstop on 14-Jun-19.
  */
 
-public class ModelAssignmentSubject extends StructureDefault {
+public class ModelAssignment extends StructureDefault {
 
     @SerializedName("data")
-    private List<ListAssignmentSubject> data;
+    private List<ListAssignment> data;
 
-    public ModelAssignmentSubject(boolean status, String message, List<ListAssignmentSubject> data) {
+    public ModelAssignment(boolean status, String message, List<ListAssignment> data) {
         super(status, message);
         this.data = data;
     }
 
-    public List<ListAssignmentSubject> getData() {
+    public List<ListAssignment> getData() {
         return data;
     }
 }

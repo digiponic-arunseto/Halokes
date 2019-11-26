@@ -33,6 +33,7 @@ public class SummaryFragment extends Fragment {
 
         graph = view.findViewById(R.id.lineGraph);
         graph1 = view.findViewById(R.id.barGraph);
+
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMaxY(100);
 

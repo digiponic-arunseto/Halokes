@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--REMOVE androidL:LayoutAnimation above to see the layout-->
@@ -10,135 +11,89 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            style="@style/TitleBar"
+            style="@style/TitleBarMain"
             android:layout_width="match_parent"
             android:layout_height="60dp">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="start"
-                android:text="Absensi"
-                android:textAlignment="center"
-                android:textColor="@color/colorBackground"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btnBack"
-                style="@style/ButtonBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/ic_arrow_back_30dp" />
+                <TextView
+                    style="@style/ButtonBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="start"
+                    android:drawableStart="@drawable/ic_arrow_back_30dp"
+                    android:text="Absensi"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center|end">
+
+                    <!--<Button-->
+                    <!--android:id="@+id/btnSearch"-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:background="@drawable/ic_search_30dp"-->
+                    <!-- />-->
+
+                    <Button
+                        android:id="@+id/btnMore"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/ic_more_vert_30dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llSearchBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackground"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btnSearchBack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_close_30dp"
+                    android:backgroundTint="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_textlines_blue_bold"
+                    android:hint="Cari...."
+                    android:imeOptions="actionDone"
+                    android:singleLine="true" />
+            </LinearLayout>
         </RelativeLayout>
-
-        <ProgressBar
-            android:id="@+id/pbLoading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <ScrollView
             android:id="@+id/svContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="12dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_check_circle_24dp"
-                        android:drawablePadding="12dp"
-                        android:text="Hadir :" />
-
-                    <TextView
-                        android:id="@+id/tvH"
-                        style="@style/AttendanceText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hadir" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_local_hospital_24dp"
-                        android:drawablePadding="12dp"
-                        android:text="Sakit :" />
-
-                    <TextView
-                        android:id="@+id/tvS"
-                        style="@style/AttendanceText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sakit" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_mail_24dp"
-                        android:drawablePadding="12dp"
-                        android:text="Izin  : " />
-
-                    <TextView
-                        android:id="@+id/tvI"
-                        style="@style/AttendanceText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Izin" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_help_24dp"
-                        android:drawablePadding="12dp"
-                        android:text="Alpha (Tanpa Keterangan) :" />
-
-                    <TextView
-                        android:id="@+id/tvA"
-                        style="@style/AttendanceText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Alpha" />
-                </RelativeLayout>
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -151,11 +106,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_graph_24dp"
-                        android:drawablePadding="12dp"
+                        android:drawablePadding="6dp"
                         android:text="Persentase Kehadiran : " />
 
                     <TextView
-                        android:id="@+id/tvPercentage"
+                        android:id="@+id/tvAttendancePercentage"
                         style="@style/AttendanceText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -169,7 +124,7 @@
                         android:orientation="horizontal">
 
                         <ProgressBar
-                            android:id="@+id/pbPercentage"
+                            android:id="@+id/pbAttendancePercentage"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -178,7 +133,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvPercentageDesc"
+                            android:id="@+id/tvAttendancePercentageDesc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -189,8 +144,191 @@
                     </LinearLayout>
 
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_check_circle_24dp"
+                        android:drawablePadding="6dp"
+                        android:text="Hadir :" />
+
+                    <TextView
+                        android:id="@+id/tvAttendanceH"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hadir" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlAttendanceS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_local_hospital_24dp"
+                        android:drawablePadding="6dp"
+                        android:text="Sakit :" />
+
+                    <TextView
+                        android:id="@+id/tvAttendanceS"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_expand_24dp"
+                        android:drawablePadding="12dp"
+                        android:text="Sakit" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true">
+
+                    <LinearLayout
+                        android:id="@+id/llAttendanceSDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start">
+
+                        <TextView
+                            android:id="@+id/tvAttendanceSDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:lineSpacingExtra="6dp"
+                            android:padding="6dp"
+                            android:text="12 December 2019\n12December 2019"
+                            android:textColor="@color/colorDark"
+                            android:textSize="12sp"
+                            android:textStyle="bold|italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlAttendanceI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_mail_24dp"
+                        android:drawablePadding="6dp"
+                        android:text="Izin  : " />
+
+                    <TextView
+                        android:id="@+id/tvAttendanceI"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_expand_24dp"
+                        android:drawablePadding="12dp"
+                        android:text="Izin" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true">
+
+                    <LinearLayout
+                        android:id="@+id/llAttendanceIDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start">
+
+                        <TextView
+                            android:id="@+id/tvAttendanceIDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:lineSpacingExtra="6dp"
+                            android:padding="6dp"
+                            android:text="12 December 2019\n12December 2019"
+                            android:textColor="@color/colorDark"
+                            android:textSize="12sp"
+                            android:textStyle="bold|italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlAttendanceA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_textlines"
+                    android:gravity="center"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_help_24dp"
+                        android:drawablePadding="6dp"
+                        android:text="Alpha (Tanpa Keterangan) :" />
+
+                    <TextView
+                        android:id="@+id/tvAttendanceA"
+                        style="@style/AttendanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_expand_24dp"
+                        android:drawablePadding="12dp"
+                        android:text="Alpha" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true">
+
+                    <LinearLayout
+                        android:id="@+id/llAttendanceADate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start">
+
+                        <TextView
+                            android:id="@+id/tvAttendanceADate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:lineSpacingExtra="6dp"
+                            android:padding="6dp"
+                            android:text="12 December 2019\n12December 2019"
+                            android:textColor="@color/colorDark"
+                            android:textSize="12sp"
+                            android:textStyle="bold|italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>
     </LinearLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/skvLoading"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        app:SpinKit_Color="@color/colorPrimaryLighter" />
 </RelativeLayout>

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ListAssignmentSubject {
+public class ListAssignment {
     @SerializedName("id_mapel")
     String id_mapel;
     @SerializedName("nama_mapel")
@@ -12,10 +12,10 @@ public class ListAssignmentSubject {
     @SerializedName("jumlah_tugas_mapel")
     String jumlah_tugas_mapel;
     @SerializedName("data_tugas")
-    List<ListAssignmentTask> data_tugas;
+    List<ListAssignmentDetail> data_tugas;
 
 
-    public ListAssignmentSubject(String id_mapel, String nama_mapel, String jumlah_tugas_mapel, List<ListAssignmentTask> data_tugas) {
+    public ListAssignment(String id_mapel, String nama_mapel, String jumlah_tugas_mapel, List<ListAssignmentDetail> data_tugas) {
         this.id_mapel = id_mapel;
         this.nama_mapel = nama_mapel;
         this.jumlah_tugas_mapel = jumlah_tugas_mapel;
@@ -34,7 +34,7 @@ public class ListAssignmentSubject {
         return jumlah_tugas_mapel;
     }
 
-    public List<ListAssignmentTask> getData_tugas() {
+    public List<ListAssignmentDetail> getData_tugas() {
         return data_tugas;
     }
 }

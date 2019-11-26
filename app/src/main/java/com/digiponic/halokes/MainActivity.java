@@ -8,12 +8,15 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.digiponic.halokes.Fragments.AccountEditFragment;
 import com.digiponic.halokes.Fragments.AssignmentFragment;
 import com.digiponic.halokes.Fragments.AttendanceFragment;
 import com.digiponic.halokes.Fragments.BehaviorFragment;
@@ -30,13 +33,14 @@ import com.digiponic.halokes.Fragments.SubjectFragment;
 import com.digiponic.halokes.Fragments.SummaryFragment;
 
 public class MainActivity extends AppCompatActivity {
-    BottomSheetDialog dialog;
-    View dialogView;
+    private BottomSheetDialog dialog;
+    private View dialogView;
     private Context context;
     private int flContent;
     private BottomNavigationView bnvMainNav;
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener;
     private BottomNavigationView.OnNavigationItemReselectedListener onNavigationItemReselectedListener;
+    private HomeFragment homeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
         context = MainActivity.this;
         bnvMainNav = findViewById(R.id.bnvMainNav);
         flContent = R.id.framelayout_content;
-
+        homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(flContent,
-                new HomeFragment()).commit();
+                homeFragment).commit();
 
         bottomMenuNavigation();
 
@@ -130,71 +134,14 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
-    public void menuNavigation(View view) {
-        bnvMainNav.setVisibility(View.INVISIBLE);
-        //BottomSheetDialog, for "more menu"
-        ScheduleFragment scheduleF = new ScheduleFragment();
-        boolean close = true;
-//        Toast.makeText(context, view.getId()+"", Toast.LENGTH_SHORT).show();
-        dialog.setCancelable(true);
+    public void menuNavigation(View view){
+        try{
+            homeFragment.menuNavigation(view,bnvMainNav, getSupportFragmentManager().beginTransaction());
 
-        //set animation on click
-        Animation anim = AnimationUtils.loadAnimation(context, R.anim.scale);
-        view.findViewWithTag("imgMenu").startAnimation(anim);
-
-        switch (view.getId()) {
-            case R.id.llMenuGrade:
-                //Grade
-                getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new GradeFragment()).addToBackStack("1").commit();
-                break;
-            case R.id.llMenuBehavior:
-                //Behavior
-                getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new BlankFragment()).addToBackStack("1").commit();
-                break;
-            case R.id.llMenuAssignment:
-                //Assignment
-                getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new AssignmentFragment()).addToBackStack("1").commit();
-                break;
-            case R.id.llMenuSchedule:
-                //Schedule
-                getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new BlankFragment()).addToBackStack("1").commit();
-//                //dialog fragment
-//                scheduleF.show(getSupportFragmentManager().beginTransaction().addToBackStack("1"), "Dialog Fragment");
-                break;
-            case R.id.llMenuClass:
-                //Class
-                getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new BlankFragment()).addToBackStack("1").commit();
-                break;
-            case R.id.llMenuSubject:
-                //Subject
-                getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new BlankFragment()).addToBackStack("1").commit();
-                break;
-            case R.id.llMenuExtra:
-                //Announcement
-                getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new BlankFragment()).addToBackStack("1").commit();
-                break;
-            case R.id.llMenuAttendance:
-                //Attendance
-                getSupportFragmentManager().beginTransaction().replace(flContent,
-                        new AttendanceFragment()).addToBackStack("1").commit();
-                break;
-            case R.id.llMenuMore:
-                //Attendance
-                close = false;
-                dialog.show();
-                bnvMainNav.setVisibility(View.VISIBLE);
-                break;
+        }catch (Exception e){
+//            Toast.makeText(context, e.getMessage()+"", Toast.LENGTH_SHORT).show();
+            Log.w("menuNav", e.getMessage());
         }
-
-        if (close) dialog.dismiss();
-
     }
 
     @Override

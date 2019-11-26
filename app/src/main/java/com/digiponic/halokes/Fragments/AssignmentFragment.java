@@ -20,12 +20,13 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.digiponic.halokes.Models.ListAssignmentSubject;
-import com.digiponic.halokes.Models.ModelAssignmentSubject;
+import com.digiponic.halokes.Models.ListAssignment;
+import com.digiponic.halokes.Models.ModelAssignment;
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
 import com.digiponic.halokes.Storage.Session;
 import com.digiponic.halokes.UI.AssignmentPagerAdapter;
+import com.github.ybq.android.spinkit.SpinKitView;
 
 import java.util.List;
 
@@ -39,14 +40,12 @@ public class AssignmentFragment extends Fragment {
     int flContent;
     Context context;
     Session session;
-    LinearLayout llAssignmentContainer;
-    ProgressBar pbLoading;
+    SpinKitView skvLoading;
+
     //PageAdapter
     AssignmentPagerAdapter paCategory;
     ViewPager viewPager;
     TabLayout tlCategory;
-
-    List<ListAssignmentSubject> lasAssignmentData;
 
     Button btnSearch, btnSearchBack, btnFilter;
     EditText etSearch;
@@ -63,19 +62,23 @@ public class AssignmentFragment extends Fragment {
         context = getActivity();
         session = Session.getInstance(context);
 
-        llAssignmentContainer = view.findViewById(R.id.llAssignmentContainer);
-        pbLoading = view.findViewById(R.id.pbLoading);
+        skvLoading = view.findViewById(R.id.skvLoading);
+
+        configTitleBar();
+
+        showAssignment();
+
+        return view;
+    }
+
+    public void configTitleBar() {
         btnSearch = view.findViewById(R.id.btnSearch);
         llSearchBar = view.findViewById(R.id.llSearchBar);
         btnSearchBack = view.findViewById(R.id.btnSearchBack);
         etSearch = view.findViewById(R.id.etSearch);
-        btnFilter = view.findViewById(R.id.btnFilter);
-
+        btnFilter = view.findViewById(R.id.btnSort);
         configSearchBar();
-        configBtnFilter();
-        showAssignment();
-
-        return view;
+        configBtnSort();
     }
 
     public void configSearchBar() {
@@ -111,18 +114,7 @@ public class AssignmentFragment extends Fragment {
         }
     }
 
-    private void showAssignmentCategory(int tabCount, List<ListAssignmentSubject> lasData) {
-        paCategory = new AssignmentPagerAdapter(getChildFragmentManager());
-        paCategory.setTabCount(tabCount);//setting the tab
-        paCategory.setLasData(lasData);
-
-        tlCategory = view.findViewById(R.id.tlCategory);
-        viewPager = view.findViewById(R.id.pager);
-
-        viewPager.setAdapter(paCategory);
-    }
-
-    public void configBtnFilter() {
+    public void configBtnSort() {
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,7 +134,7 @@ public class AssignmentFragment extends Fragment {
                             Toast.makeText(context, "Adding Contact", Toast.LENGTH_SHORT).show();
                         } else if (item.getOrder() == 2) {
                             Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             return false;
                         }
                         return false;
@@ -153,118 +145,46 @@ public class AssignmentFragment extends Fragment {
         });
     }
 
-    private void showAssignment() {
-        pbLoading.setVisibility(View.VISIBLE);
+    private void showAssignmentCategory(int tabCount, List<ListAssignment> lData) {
+        paCategory = new AssignmentPagerAdapter(getChildFragmentManager());
+        paCategory.setTabCount(tabCount);//setting the tab
+        paCategory.setlData(lData);
 
-        Call<ModelAssignmentSubject> call = RetrofitClient.getInstance()
+        tlCategory = view.findViewById(R.id.tlCategory);
+        viewPager = view.findViewById(R.id.pager);
+
+        viewPager.setAdapter(paCategory);
+    }
+
+    private void showAssignment() {
+        skvLoading.setVisibility(View.VISIBLE);
+
+        Call<ModelAssignment> call = RetrofitClient.getInstance()
                 .getApi()
                 .showAssignment(session.getUser().getId_user());
-        call.enqueue(new Callback<ModelAssignmentSubject>() {
+        call.enqueue(new Callback<ModelAssignment>() {
             //init
-            ModelAssignmentSubject las;
+            ModelAssignment las;
 
             @Override
-            public void onResponse(Call<ModelAssignmentSubject> call, Response<ModelAssignmentSubject> response) {
+            public void onResponse(Call<ModelAssignment> call, Response<ModelAssignment> response) {
                 //removing loading spinning bar
-                llAssignmentContainer.removeAllViews();
 
                 las = response.body();
                 if (response.isSuccessful() && isAdded()) {
                     //category
 
                     showAssignmentCategory(las.getData().size(), las.getData());
-// LOOK DOWN THIS======================================================
-//                    for (ListAssignmentSubject lasData : las.getData()) {// mengambil data mapel
-//
-//                        LinearLayout rowSubject = (LinearLayout) getLayoutInflater()
-//                                .inflate(R.layout.template_assignment_subject, null);
-//                        TextView tvAssignmentSubject, tvAssignmentCountBadge;
-//                        final ScrollView hsvAssignmentSubjectContainer;
-//                        LinearLayout llAssignmentSubjectContainer;
-//
-//                        //initializing elemen dari view yang di loop
-//                        tvAssignmentSubject = rowSubject.findViewById(R.id.tvAssignmentSubject);
-//                        tvAssignmentCountBadge = rowSubject.findViewById(R.id.tvAssignmentCountBadge);
-//                        hsvAssignmentSubjectContainer = rowSubject.findViewById(R.id.svAssignmentSubjectContainer);
-//                        llAssignmentSubjectContainer = rowSubject.findViewById(R.id.llAssignmentSubjectContainer);
-//                        llAssignmentSubjectContainer.removeAllViews();
-//
-//                        //printing data
-//                        tvAssignmentSubject.setText(lasData.getNama_mapel());
-//                        tvAssignmentCountBadge.setText(lasData.getJumlah_tugas_mapel());
-//                        tvAssignmentCountBadge.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                hsvAssignmentSubjectContainer.setSmoothScrollingEnabled(true);
-//                                hsvAssignmentSubjectContainer.fullScroll(View.FOCUS_RIGHT);
-//                            }
-//                        });
-//
-//
-//                        for (ListAssignmentTask latData : lasData.getData_tugas()) {
-//                            LinearLayout rowTask = (LinearLayout) getLayoutInflater()
-//                                    .inflate(R.layout.template_assignment_task, null);
-//                            //initializing elemen dari view yang di loop
-//                            TextView tvAssignmentTitle = rowTask.findViewById(R.id.tvAssignmentTitle);
-//                            TextView tvAssignmentDeadline = rowTask.findViewById(R.id.tvAssignmentDeadline);
-//                            TextView tvAssignmentTimeLeft = rowTask.findViewById(R.id.tvAssignmentTimeLeft);
-//                            TextView tvAssignmentDesc = rowTask.findViewById(R.id.tvAssignmentDesc);
-//                            //Date Formatter
-//                            SimpleDateFormat dateFormat =
-//                                    new SimpleDateFormat("dd-MMM-yyy", Locale.ENGLISH);
-//
-//                            try {
-//                                Date dateDeadline = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(latData.getDeadline());
-//                                tvAssignmentDeadline.setText(dateFormat.format(dateDeadline) + "");
-//                                tvAssignmentTimeLeft.setText("");
-//                            } catch (ParseException e) {
-//                                e.printStackTrace();
-//                            }
-//
-//                            //printing data
-//                            tvAssignmentTitle.setText(latData.getJudul_tugas());
-//                            tvAssignmentDesc.setText(latData.getDeskripsi());
-//
-//                            int hoursLeft = latData.getSisa_waktu();
-//                            int daysLeft = Math.round(latData.getSisa_waktu() / 24);
-//                            String timeLeftMessage = "";
-//                            if (hoursLeft < 0) {
-//                                if (hoursLeft < -24) {
-//                                    timeLeftMessage = "Lewat " + daysLeft * (-1) + " hari ";
-//                                } else {
-//                                    timeLeftMessage = "Lewat " + hoursLeft * (-1) + " jam";
-//                                }
-//                            } else if (hoursLeft < 24) {
-//                                if (hoursLeft < 1) {
-//                                    timeLeftMessage = ">1 jam lagi";
-//                                } else {
-//                                    timeLeftMessage = hoursLeft + " jam lagi";
-//                                }
-//                            } else {
-//                                timeLeftMessage = daysLeft + " hari lagi";
-//                            }
-//                            tvAssignmentTimeLeft.setText(timeLeftMessage);
-//                            if (daysLeft < 0) {
-//                                tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_danger));
-//                            } else if (daysLeft <= 3) {
-//                                tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_warning));
-//                            } else {
-//                                tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_success));
-//                            }
-//                            llAssignmentSubjectContainer.addView(rowTask);
-//                        }
-//                        llAssignmentContainer.addView(rowSubject);
-//                    }
                 } else {
                     Toast.makeText(context, response.message() + "", Toast.LENGTH_SHORT).show();
                 }
-                pbLoading.setVisibility(View.GONE);
+                skvLoading.setVisibility(View.GONE);
             }
 
             @Override
-            public void onFailure(Call<ModelAssignmentSubject> call, Throwable t) {
+            public void onFailure(Call<ModelAssignment> call, Throwable t) {
                 Toast.makeText(context, t.getMessage() + "", Toast.LENGTH_SHORT).show();
-                pbLoading.setVisibility(View.GONE);
+                skvLoading.setVisibility(View.GONE);
             }
         });
 
