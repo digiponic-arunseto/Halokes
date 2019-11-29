@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +20,16 @@ import com.digiponic.halokes.Models.ModelGrade;
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
 import com.digiponic.halokes.Storage.Session;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.ybq.android.spinkit.SpinKitView;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.StaticLabelsFormatter;
-import com.jjoe64.graphview.series.BarGraphSeries;
-import com.jjoe64.graphview.series.DataPoint;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,11 +99,21 @@ public class GradeSubFragment extends Fragment {
                                 View vGrade = getLayoutInflater().inflate(R.layout.template_grade_detail, null);
                                 TextView tvGradeDetailType = vGrade.findViewById(R.id.tvGradeDetailType);
                                 TextView tvGradeDetailGrade = vGrade.findViewById(R.id.tvGradeDetailGrade);
-                                GraphView gvGradeDetailGraph = vGrade.findViewById(R.id.gvGradeDetailGraph);
+                                TextView tvGradeDetailFail = vGrade.findViewById(R.id.tvGradeDetailFail);
+                                BarChart bcGrade = vGrade.findViewById(R.id.bcGrade);
 
                                 tvGradeDetailType.setText(lgdData.getTopik());
-                                tvGradeDetailGrade.setText(lgdData.getNilai()[0]+"");
-                                populateGraph(gvGradeDetailGraph);
+                                int[] grade = lgdData.getNilai();
+                                tvGradeDetailGrade.setText(calculateAvgGrade(grade) + "");
+                                if (grade.length != 1) {
+                                    showGraph(bcGrade, grade);
+                                    tvGradeDetailFail.setText(calculateFailedGrade(grade)+"");
+                                }else{
+                                    bcGrade.setVisibility(View.GONE);
+                                    View failParent = (View) tvGradeDetailFail.getParent();
+                                    failParent.setVisibility(View.GONE);
+                                }
+
 
                                 llGradeDetailContainer.addView(vGrade);
                             }
@@ -120,47 +134,6 @@ public class GradeSubFragment extends Fragment {
 
             }
         });
-    }
-
-    public void populateGraph(GraphView graph1) {
-
-        DataPoint[] dp = new DataPoint[7];
-        for (int i = 0; i < dp.length; i++) {
-            dp[i] = new DataPoint(i, (i+1) * 10);
-        }
-        graph1.getViewport().setYAxisBoundsManual(true);
-        graph1.getViewport().setXAxisBoundsManual(true);
-        graph1.getViewport().setMaxY(110);
-        graph1.getViewport().setMaxX(dp.length+1);
-        graph1.getViewport().setScrollable(true);
-        graph1.getViewport().setScalable(true);
-
-
-
-        //data set for bar graph
-        BarGraphSeries<DataPoint> series1 = new BarGraphSeries<>(
-                dp
-        );
-
-        //spacing
-        series1.setDataWidth(0.6);
-
-        // draw values on top
-        series1.setDrawValuesOnTop(true);
-        series1.setValuesOnTopColor(getResources().getColor(R.color.colorAccent));
-        series1.setAnimated(true);
-
-        // static LABEL
-        StaticLabelsFormatter staticLabelsFormatter1 = new StaticLabelsFormatter(graph1);
-        String[] labelX1 = new String[dp.length];
-        for (int i = 0; i < labelX1.length; i++) {
-            labelX1[i] = (i + 1) + "";
-        }
-        staticLabelsFormatter1.setHorizontalLabels(labelX1);
-
-        graph1.addSeries(series1);
-
-
     }
 
     public void configTabDotsIndicator(int tabCount) {
@@ -196,6 +169,65 @@ public class GradeSubFragment extends Fragment {
 
             }
         });
+    }
+
+    public double calculateAvgGrade(int[] grade) {
+        double total = 0;
+        for (int val : grade) {
+            total += val;
+        }
+        return total / grade.length;
+    }
+
+    public int calculateFailedGrade(int[] grade){
+        int count =0;
+        for (int val : grade) {
+            if (val<75){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void showGraph(BarChart bcGraph, int[] grade) {
+
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        int count = 1;
+        for (float val : grade) {
+            entries.add(new BarEntry(count, val));
+            count++;
+        }
+        bcGraph.setDrawValueAboveBar(true);
+        BarDataSet dataset = new BarDataSet(entries, "Tugas");
+        dataset.setColors(ColorTemplate.LIBERTY_COLORS);
+
+        //set data
+        BarData data = new BarData(dataset);
+        bcGraph.setData(data);
+        data.setHighlightEnabled(true);
+
+        //config y axis
+        XAxis xAxis = bcGraph.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM.BOTTOM);
+        xAxis.setGridColor(getResources().getColor(R.color.colorBackground));
+        xAxis.setGranularityEnabled(true);
+
+        //config x axis
+        YAxis yAxis = bcGraph.getAxisLeft();
+        yAxis.setAxisMaximum(100);
+        yAxis.setAxisMinimum(0);
+        yAxis.setGridColor(getResources().getColor(R.color.colorBackground));
+
+
+        //Styling
+//        dataset.setColor(getResources().getColor(R.color.colorPrimary));
+        bcGraph.setFitBars(true);
+        bcGraph.animateY(1200);
+        bcGraph.getDescription().setEnabled(false);
+        // remove right label
+        bcGraph.getAxisRight().setEnabled(false);
+
+
     }
 
 }

@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--<item name="android:fontFamily">sans-serif</item>-->
+        <item name="android:fontFamily">@font/segoe_ui</item>
         <!--<item name="android:windowIsTranslucent">true</item>-->
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <!--<item name="android:windowTranslucentNavigation">true</item>-->
@@ -147,15 +147,18 @@
 
     <style name="CardHeader">
         <item name="android:textAlignment">textStart</item>
-        <item name="android:drawablePadding">6dp</item>
-        <item name="android:gravity">end</item>
         <item name="android:maxLength">30</item>
         <item name="android:maxLines">2</item>
         <item name="android:padding">6dp</item>
-        <item name="android:paddingStart">12dp</item>
-        <item name="android:textColor">@color/colorBackground</item>
-        <item name="android:background">@color/colorPrimaryLight</item>
+        <item name="android:textColor">@color/colorDark</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="CardFooter">
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="CardText">
@@ -178,10 +181,9 @@
     </style>
 
     <style name="RowText">
-        <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:layout_gravity">end</item>
         <item name="android:textColor">@color/colorDark</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="ChatBadge">
@@ -191,6 +193,12 @@
         <item name="android:singleLine">true</item>
         <item name="android:background">@drawable/bg_badge_light</item>
         <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TabText" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>

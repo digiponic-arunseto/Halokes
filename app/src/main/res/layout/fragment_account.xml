@@ -71,8 +71,7 @@
                         android:layout_height="wrap_content"
                         android:text="NISN: 12345"
                         android:textColor="@color/colorDark"
-                        android:textSize="14sp"
-                        android:textStyle="italic" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout

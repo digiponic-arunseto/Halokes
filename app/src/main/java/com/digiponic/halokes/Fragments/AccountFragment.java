@@ -29,7 +29,7 @@ public class AccountFragment extends Fragment {
     View view;
     Context context;
     Session session;
-    TextView tvGreeting;
+    TextView tvAccountName, tvAccountNo;
     Button btnLogout,btnEditProfile;
     int flContent;
 
@@ -42,8 +42,10 @@ public class AccountFragment extends Fragment {
         session = Session.getInstance(context);
         flContent = R.id.framelayout_content;
 
-        tvGreeting = view.findViewById(R.id.tvAccountName);
-        tvGreeting.setText(session.getUser().getNama_siswa());
+        tvAccountName = view.findViewById(R.id.tvAccountName);
+        tvAccountName.setText(session.getUser().getNama_siswa());
+        tvAccountNo = view.findViewById(R.id.tvAccountNo);
+        tvAccountNo.setText("NISN : "+"3819382");
 
 
         btnLogout = view.findViewById(R.id.btnLogout);

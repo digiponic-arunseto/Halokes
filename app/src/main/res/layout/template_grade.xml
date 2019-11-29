@@ -37,23 +37,21 @@
         <!--android:textColor="@color/colorBackground"-->
         <!--android:textStyle="bold" />-->
         <!--</RelativeLayout>-->
-
         <HorizontalScrollView
             android:id="@+id/hsvGradeDetailContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/llGradeDetailContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:animateLayoutChanges="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingEnd="12dp">
 
                 <include layout="@layout/template_grade_detail" />
-
-
             </LinearLayout>
         </HorizontalScrollView>
 

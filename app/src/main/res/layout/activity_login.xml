@@ -61,7 +61,7 @@
                                 android:drawableStart="@drawable/ic_username_24dp"
                                 android:drawablePadding="12dp"
                                 android:hint="Email/NISN"
-                                android:inputType="text"
+                                android:inputType="textEmailAddress"
                                 android:padding="12dp"
                                 android:textSize="12sp"
                                 android:textStyle="italic" />

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,6 +52,9 @@ public class AssignmentFragment extends Fragment {
     EditText etSearch;
     LinearLayout llSearchBar;
     InputMethodManager immSoftKeyboard;
+    AssignmentSubFragment asFragment;
+
+    ModelAssignment las;
 
 
     @Nullable
@@ -63,6 +67,7 @@ public class AssignmentFragment extends Fragment {
         session = Session.getInstance(context);
 
         skvLoading = view.findViewById(R.id.skvLoading);
+        asFragment = new AssignmentSubFragment();
 
         configTitleBar();
 
@@ -131,9 +136,9 @@ public class AssignmentFragment extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getOrder() == 1) {
-                            Toast.makeText(context, "Adding Contact", Toast.LENGTH_SHORT).show();
+                            showAssignmentCategory(las.getData().size(), las.getData());
                         } else if (item.getOrder() == 2) {
-                            Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show();
+
                         } else {
                             return false;
                         }
@@ -164,7 +169,6 @@ public class AssignmentFragment extends Fragment {
                 .showAssignment(session.getUser().getId_user());
         call.enqueue(new Callback<ModelAssignment>() {
             //init
-            ModelAssignment las;
 
             @Override
             public void onResponse(Call<ModelAssignment> call, Response<ModelAssignment> response) {

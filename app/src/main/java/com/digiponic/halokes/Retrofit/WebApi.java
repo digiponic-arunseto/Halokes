@@ -4,6 +4,7 @@ import com.digiponic.halokes.Models.ModelAssignment;
 import com.digiponic.halokes.Models.ModelAttendance;
 import com.digiponic.halokes.Models.ModelClass;
 import com.digiponic.halokes.Models.ModelCounseling;
+import com.digiponic.halokes.Models.ModelExtra;
 import com.digiponic.halokes.Models.ModelGrade;
 import com.digiponic.halokes.Models.ModelSchedule;
 import com.digiponic.halokes.Models.ModelScheduleDetail;
@@ -72,4 +73,15 @@ public interface WebApi {
 
     @GET("konseling/catatan/{id_user}")
     Call<ModelCounseling> showCounseling(@Path("id_user") String id_user);
+
+    @GET("ekskul/siswa/{id_user}")
+    Call<ModelExtra> showExtra(@Path("id_user") String id_user);
+
+    @FormUrlEncoded
+    @POST("tugas/validasi/")
+    Call<StructureDefault> actAssignmentSubmit(
+            @Field("siswa") String id_user,
+            @Field("id_tugas") String tugas,
+            @Field("status") int status
+    );
 }

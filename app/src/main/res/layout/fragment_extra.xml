@@ -70,7 +70,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvClassStudentName"
+                        android:id="@+id/tvExtraStudentName"
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -80,11 +80,11 @@
 
 
                     <TextView
-                        android:id="@+id/tvClassStudentInfo"
+                        android:id="@+id/tvExtraStudentInfo"
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7A / "
+                        android:text="Kelas 7A"
                         android:textStyle="normal" />
                 </LinearLayout>
 
@@ -100,93 +100,37 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_teacher_24dp"
+                        android:drawableStart="@drawable/ic_extra_24dp"
                         android:drawablePadding="6dp"
                         android:gravity="center"
-                        android:text="Guru Wali :" />
+                        android:text="Daftar Ekskul :" />
 
                     <TextView
                         android:id="@+id/tvClassTeacher"
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="Supriyadi, S.Pd" />
+                        android:layout_alignParentEnd="true" />
                 </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_students_24dp"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="Daftar Siswa :" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/llClassStudentRow"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:orientation="horizontal"
-                    android:padding="6dp"
-                    android:weightSum="12">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="#"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:gravity="center"
-                        android:text="NIS"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:gravity="center"
-                        android:text="NAMA"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:id="@+id/llClassStudentContainer"
+                        android:id="@+id/llExtraContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
                         android:orientation="vertical">
 
-                        <include layout="@layout/template_class_student" />
+                        <include layout="@layout/template_extra" />
 
-                        <include layout="@layout/template_class_student" />
+                        <include layout="@layout/template_extra" />
 
-                        <include layout="@layout/template_class_student" />
+                        <include layout="@layout/template_extra" />
 
-                        <include layout="@layout/template_class_student" />
+                        <include layout="@layout/template_extra" />
 
                     </LinearLayout>
 

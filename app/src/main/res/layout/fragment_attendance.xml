@@ -95,7 +95,32 @@
                 android:orientation="vertical"
                 android:padding="12dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvAttendanceStudentName"
+                        style="@style/RowText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:text="Supriyatno"
+                        android:textSize="30sp" />
+
+
+                    <TextView
+                        android:id="@+id/tvAttendanceStudentInfo"
+                        style="@style/RowText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kelas 7A"
+                        android:textStyle="normal" />
+                </LinearLayout>
+
                 <RelativeLayout
+                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_textlines"
@@ -114,6 +139,7 @@
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:text="X %" />
 
                     <LinearLayout
@@ -157,6 +183,7 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_check_circle_24dp"
                         android:drawablePadding="6dp"
+                        android:gravity="center"
                         android:text="Hadir :" />
 
                     <TextView
@@ -164,6 +191,7 @@
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:text="Hadir" />
                 </RelativeLayout>
 
@@ -180,6 +208,7 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_local_hospital_24dp"
                         android:drawablePadding="6dp"
+                        android:gravity="center"
                         android:text="Sakit :" />
 
                     <TextView
@@ -187,6 +216,7 @@
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:drawableEnd="@drawable/ic_expand_24dp"
                         android:drawablePadding="12dp"
                         android:text="Sakit" />
@@ -231,6 +261,7 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_mail_24dp"
                         android:drawablePadding="6dp"
+                        android:gravity="center"
                         android:text="Izin  : " />
 
                     <TextView
@@ -238,6 +269,7 @@
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:drawableEnd="@drawable/ic_expand_24dp"
                         android:drawablePadding="12dp"
                         android:text="Izin" />
@@ -281,6 +313,7 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_help_24dp"
                         android:drawablePadding="6dp"
+                        android:gravity="center"
                         android:text="Alpha (Tanpa Keterangan) :" />
 
                     <TextView
@@ -288,6 +321,7 @@
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:drawableEnd="@drawable/ic_expand_24dp"
                         android:drawablePadding="12dp"
                         android:text="Alpha" />

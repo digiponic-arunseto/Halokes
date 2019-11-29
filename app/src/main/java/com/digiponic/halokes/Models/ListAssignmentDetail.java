@@ -15,14 +15,17 @@ public class ListAssignmentDetail {
     String deadline;
     @SerializedName("sisa_waktu")
     int sisa_waktu;
+    @SerializedName("status")
+    int status;
 
-    public ListAssignmentDetail(String id_tugas, String judul_tugas, String deskripsi, String tgl_buat, String deadline, int sisa_waktu) {
+    public ListAssignmentDetail(String id_tugas, String judul_tugas, String deskripsi, String tgl_buat, String deadline, int sisa_waktu, int status) {
         this.id_tugas = id_tugas;
         this.judul_tugas = judul_tugas;
         this.deskripsi = deskripsi;
         this.tgl_buat = tgl_buat;
         this.deadline = deadline;
         this.sisa_waktu = sisa_waktu;
+        this.status = status;
     }
 
     public String getId_tugas() {
@@ -47,5 +50,9 @@ public class ListAssignmentDetail {
 
     public int getSisa_waktu() {
         return sisa_waktu;
+    }
+
+    public int getStatus() {
+        return status;
     }
 }

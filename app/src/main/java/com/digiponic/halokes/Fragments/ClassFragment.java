@@ -32,7 +32,7 @@ public class ClassFragment extends Fragment {
     Session session;
 
     ScrollView svContent;
-    TextView tvClassStudentID, tvClassStudentName, tvClassName, tvClassTeacher;
+    TextView tvClassStudentName,tvClassStudentInfo, tvClassTeacher;
     LinearLayout llClassStudentContainer;
     SpinKitView skvLoading, skvLoading1;
 
@@ -47,9 +47,8 @@ public class ClassFragment extends Fragment {
         session = Session.getInstance(context);
 
         svContent = view.findViewById(R.id.svContent);
-        tvClassStudentID = view.findViewById(R.id.tvClassStudentID);
         tvClassStudentName = view.findViewById(R.id.tvClassStudentName);
-        tvClassName = view.findViewById(R.id.tvClassName);
+        tvClassStudentInfo = view.findViewById(R.id.tvClassStudentInfo);
         tvClassTeacher = view.findViewById(R.id.tvClassTeacher);
         llClassStudentContainer = view.findViewById(R.id.llClassStudentContainer);
         skvLoading = view.findViewById(R.id.skvLoading);
@@ -76,9 +75,8 @@ public class ClassFragment extends Fragment {
                 ModelClass mc = response.body();
                 if (isAdded() && response.isSuccessful()) {
                     ListClass lcData = mc.getData();
-                    tvClassStudentID.setText(lcData.getNis());
                     tvClassStudentName.setText(lcData.getNama());
-                    tvClassName.setText(lcData.getKelas());
+                    tvClassStudentInfo.setText("NIS : "+ lcData.getNis() + " / Kelas "+lcData.getKelas());
                     tvClassTeacher.setText(lcData.getWali_kelas());
 
                     int counter = 1;

@@ -25,33 +25,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvViolationName"
-                    style="@style/CardHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorDanger"
-                    android:text="Pelanggaran XY" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
                 android:paddingBottom="6dp">
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
+                    <TextView
+                        android:id="@+id/tvViolationName"
+                        style="@style/CardHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pelanggaran XY" />
                     <TextView
                         android:id="@+id/tvViolationDate"
                         style="@style/CardText"
@@ -71,20 +60,41 @@
                         android:textStyle="bold|italic" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvViolationPoint"
-                    style="@style/CardText"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
                     android:layout_weight="3"
+                    android:paddingTop="6dp"
+                    android:gravity="center"
+                    android:paddingBottom="6dp"
                     android:background="@drawable/bg_round_corner_border_danger"
-                    android:maxLines="2"
-                    android:text="-90"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorDanger"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/CardText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Poin"
+                        android:padding="0dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorDanger"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvViolationPoint"
+                        style="@style/CardText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:text="90"
+                        android:padding="0dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorDanger"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
 
             </LinearLayout>

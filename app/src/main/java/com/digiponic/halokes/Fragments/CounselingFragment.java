@@ -16,7 +16,6 @@ import android.widget.ViewFlipper;
 
 import com.digiponic.halokes.Models.ListAchievement;
 import com.digiponic.halokes.Models.ListCounseling;
-import com.digiponic.halokes.Models.ListViolation;
 import com.digiponic.halokes.Models.ListViolationDetail;
 import com.digiponic.halokes.Models.ModelCounseling;
 import com.digiponic.halokes.R;
@@ -36,7 +35,7 @@ public class CounselingFragment extends Fragment {
     Session session;
 
     ScrollView svContent;
-    TextView tvCounselingStudentName, tvCounselingClassName, tvCounselingStudentStatus, tvCounselingViolationPoint;
+    TextView tvCounselingStudentName, tvCounselingStudentInfo, tvCounselingViolationPoint;
     LinearLayout llCounselingAchievementContainer, llCounselingViolationContainer;
     SpinKitView skvLoading, skvLoading1;
     TabLayout tlCategory;
@@ -54,8 +53,7 @@ public class CounselingFragment extends Fragment {
 
         svContent = view.findViewById(R.id.svContent);
         tvCounselingStudentName = view.findViewById(R.id.tvCounselingStudentName);
-        tvCounselingClassName = view.findViewById(R.id.tvCounselingClassName);
-        tvCounselingStudentStatus = view.findViewById(R.id.tvCounselingStudentStatus);
+        tvCounselingStudentInfo = view.findViewById(R.id.tvCounselingStudentInfo);
         tvCounselingViolationPoint = view.findViewById(R.id.tvCounselingViolationPoint);
 
         skvLoading = view.findViewById(R.id.skvLoading);
@@ -115,8 +113,7 @@ public class CounselingFragment extends Fragment {
                 if (isAdded() && response.isSuccessful()) {
                     ListCounseling lcData = mc.getData();
                     tvCounselingStudentName.setText(lcData.getNama_siswa());
-                    tvCounselingClassName.setText(lcData.getKelas());
-                    tvCounselingStudentStatus.setText(lcData.getStatus_siswa());
+                    tvCounselingStudentInfo.setText("Kelas " + lcData.getKelas() + " / "+lcData.getStatus_siswa());
                     tvCounselingViolationPoint.setText(lcData.getData_pelanggaran().getPoin_pelanggaran()+"");
                     for (ListAchievement laData :
                             lcData.getData_prestasi()) {

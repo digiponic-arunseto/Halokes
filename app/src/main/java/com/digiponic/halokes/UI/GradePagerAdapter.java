@@ -42,7 +42,10 @@ public class GradePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return lData.get(position).getMapel();
+        String def = lData.get(position).getMapel();
+        String tabTitle = def.substring(0,1).toUpperCase() + def.substring(1);
+
+        return tabTitle;
     }
 
 }

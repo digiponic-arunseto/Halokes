@@ -155,7 +155,6 @@ public class HomeFragment extends Fragment {
         Animation anim = AnimationUtils.loadAnimation(context, R.anim.scale);
 //        view = view.findViewWithTag("imgMenu");
         view.findViewWithTag("imgMenu").startAnimation(anim);
-        GradeFragment gf = new GradeFragment();
         switch (view.getId()) {
             case R.id.llMenuGrade:
                 //Grade
@@ -163,7 +162,7 @@ public class HomeFragment extends Fragment {
                         new GradeFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuCounseling:
-                //Behavior
+                //Counseling
                 fragmentTransaction.replace(flContent,
                         new CounselingFragment()).addToBackStack("1").commit();
                 break;
@@ -176,8 +175,6 @@ public class HomeFragment extends Fragment {
                 //Schedule
                 fragmentTransaction.replace(flContent,
                         new ScheduleFragment()).addToBackStack("1").commit();
-//                //dialogMoreMenu fragment
-//                scheduleF.show(fm.addToBackStack("1"), "Dialog Fragment");
                 break;
             case R.id.llMenuClass:
                 //Class
@@ -185,9 +182,9 @@ public class HomeFragment extends Fragment {
                         new ClassFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuExtra:
-                //Announcement
+                //Extra
                 fragmentTransaction.replace(flContent,
-                        new BlankFragment()).addToBackStack("1").commit();
+                        new ExtraFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuAttendance:
                 //Attendance
@@ -195,7 +192,7 @@ public class HomeFragment extends Fragment {
                         new AttendanceFragment()).addToBackStack("1").commit();
                 break;
             case R.id.llMenuMore:
-                //Attendance
+                //More
                 close = false;
                 dialogMoreMenu.show();
                 bnvMainNav.setVisibility(View.VISIBLE);

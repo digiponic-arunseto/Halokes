@@ -33,7 +33,7 @@ public class AttendanceFragment extends Fragment {
     int flContent;
     Context context;
     Session session;
-    TextView tvH, tvS, tvI, tvA, tvPercentage, tvPercentageDesc, tvAttendanceSDate, tvAttendanceIDate, tvAttendanceADate;
+    TextView tvH, tvS, tvI, tvA, tvPercentage, tvPercentageDesc, tvAttendanceSDate, tvAttendanceIDate, tvAttendanceADate, tvAttendanceStudentName, tvAttendanceStudentInfo;
     SpinKitView skvLoading;
     ProgressBar pbPercentage;
     ScrollView svContent;
@@ -51,6 +51,10 @@ public class AttendanceFragment extends Fragment {
 
         svContent = view.findViewById(R.id.svContent);
         skvLoading = view.findViewById(R.id.skvLoading);
+
+        tvAttendanceStudentName = view.findViewById(R.id.tvAttendanceStudentName);
+        tvAttendanceStudentInfo = view.findViewById(R.id.tvAttendanceStudentInfo);
+
 
         tvH = view.findViewById(R.id.tvAttendanceH);
         tvS = view.findViewById(R.id.tvAttendanceS);
@@ -89,6 +93,10 @@ public class AttendanceFragment extends Fragment {
             public void onResponse(Call<ModelAttendance> call, Response<ModelAttendance> response) {
                 ModelAttendance ma = response.body();
                 if (response.isSuccessful() && isAdded()) {
+
+                    tvAttendanceStudentName.setText(session.getUser().getNama_siswa());
+                    tvAttendanceStudentInfo.setText("Kelas 7A");
+
 //                    Toast.makeText(context, res.getMessage() + "", Toast.LENGTH_SHORT).show();
                     ListAttendance laData = ma.getData();
                     // ? is true
@@ -133,24 +141,24 @@ public class AttendanceFragment extends Fragment {
                     pbPercentage.setProgressTintList(ColorStateList
                             .valueOf(persenHadirColor));
 
-                    if (laData.getTgl_sakit().length!=0) {
+                    if (laData.getTgl_sakit().length != 0) {
                         for (String date : laData.getTgl_sakit()) {
-                            tvAttendanceSDate.append(date+"\n");
+                            tvAttendanceSDate.append(date + "\n");
                         }
                     } else {
                         tvAttendanceSDate.setVisibility(View.GONE);
                     }
 
-                    if (laData.getTgl_izin().length!=0) {
+                    if (laData.getTgl_izin().length != 0) {
                         for (String date : laData.getTgl_izin()) {
-                            tvAttendanceIDate.append(date+"\n");
+                            tvAttendanceIDate.append(date + "\n");
                         }
                     } else {
                         tvAttendanceIDate.setVisibility(View.GONE);
                     }
-                    if (laData.getTgl_alpha().length!=0) {
+                    if (laData.getTgl_alpha().length != 0) {
                         for (String date : laData.getTgl_alpha()) {
-                            tvAttendanceADate.append(date+"\n");
+                            tvAttendanceADate.append(date + "\n");
                         }
                     } else {
                         tvAttendanceADate.setVisibility(View.GONE);

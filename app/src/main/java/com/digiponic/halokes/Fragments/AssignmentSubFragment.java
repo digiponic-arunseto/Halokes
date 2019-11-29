@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.digiponic.halokes.Models.ListAssignment;
 import com.digiponic.halokes.Models.ListAssignmentDetail;
 import com.digiponic.halokes.Models.ModelAssignment;
+import com.digiponic.halokes.Models.StructureDefault;
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
 import com.digiponic.halokes.Storage.Session;
@@ -42,10 +43,12 @@ public class AssignmentSubFragment extends Fragment {
     TextView tvAssignmentSubject, tvAssignmentCount;
     SpinKitView skvLoading;
     private ListAssignment lData;
+    private ModelAssignment madData;
 
     public void setlData(ListAssignment lData) {
         this.lData = lData;
     }
+
 
     @Nullable
     @Override
@@ -84,9 +87,9 @@ public class AssignmentSubFragment extends Fragment {
             @Override
             public void onResponse(Call<ModelAssignment> call, Response<ModelAssignment> response) {
                 if (isAdded() && response.isSuccessful()) {
-                    ModelAssignment madData = response.body();
+                    madData = response.body();
                     for (ListAssignment laData : madData.getData()) {
-                        for (ListAssignmentDetail lasData : laData.getData_tugas()) {
+                        for (final ListAssignmentDetail lasData : laData.getData_tugas()) {
                             View vAssignment = getLayoutInflater()
                                     .inflate(R.layout.template_assignment_detail, null);
                             //initializing elemen dari view yang di loop
@@ -94,30 +97,41 @@ public class AssignmentSubFragment extends Fragment {
                             TextView tvAssignmentDeadline = vAssignment.findViewById(R.id.tvAssignmentDeadline);
                             final TextView tvAssignmentTimeLeft = vAssignment.findViewById(R.id.tvAssignmentTimeLeft);
                             TextView tvAssignmentDesc = vAssignment.findViewById(R.id.tvAssignmentDesc);
+                            final TextView tvAssignmentStatus = vAssignment.findViewById(R.id.tvAssignmentStatus);
+                            final TextView tvAssignmentStatusIndicator = vAssignment.findViewById(R.id.tvAssignmentStatusIndicator);
                             //Date Formatter
                             SimpleDateFormat dateFormat =
                                     new SimpleDateFormat("dd-MMM-yyy", Locale.ENGLISH);
 
-                            try {
-                                Date dateDeadline = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(lasData.getDeadline());
-                                tvAssignmentDeadline.setText(dateFormat.format(dateDeadline) + "");
-                                tvAssignmentTimeLeft.setText("");
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
+//                            try {
+//                                Date dateDeadline = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(lasData.getDeadline());
+//                                tvAssignmentDeadline.setText("Batas Pengumpulan : " + dateFormat.format(dateDeadline) + "");
+//                            } catch (ParseException e) {
+//                                e.printStackTrace();
+//                            }
+                            tvAssignmentDeadline.setText(lasData.getDeadline() + "");
 
                             //printing data
                             tvAssignmentTitle.setText(lasData.getJudul_tugas());
                             tvAssignmentDesc.setText(lasData.getDeskripsi());
-                            AssignmentDetailTimeIndicator(tvAssignmentTimeLeft, lasData.getSisa_waktu(), false);
+                            int status = lasData.getStatus();
+                            assignmentDetailTimeIndicator(tvAssignmentTimeLeft, tvAssignmentStatusIndicator, lasData.getSisa_waktu(), status);
 
+                            assignmentDetailStatus(tvAssignmentStatus, status, null, null);
                             //click assignment
-                            vAssignment.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    AssignmentDetailOnClick(tvAssignmentTimeLeft);
-                                }
-                            });
+                            if (status != 2) {
+                                vAssignment.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        assignmentDetailOnClick(
+                                                tvAssignmentStatus,
+                                                tvAssignmentTimeLeft,
+                                                tvAssignmentStatusIndicator,
+                                                lasData.getId_tugas(),
+                                                lasData.getSisa_waktu());
+                                    }
+                                });
+                            }
 
                             llAssignmentSubjectContainer.addView(vAssignment);
                         }
@@ -134,18 +148,19 @@ public class AssignmentSubFragment extends Fragment {
         });
     }
 
-    public void AssignmentDetailTimeIndicator(TextView tvAssignmentTimeLeft, int timeLeft, boolean done) {
-
-        if (done) {
-            tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_border_primary));
-            tvAssignmentTimeLeft.setTextColor(getResources().getColor(R.color.colorPrimary));
-            tvAssignmentTimeLeft.setText("Dikonfirmasi...");
-            return;
-        }
+    public void assignmentDetailTimeIndicator(
+            TextView tvAssignmentTimeLeft,
+            TextView tvAssignmentStatusIndicator,
+            int timeLeft,
+            int status) {
 
         int hoursLeft = timeLeft;
         int daysLeft = Math.round(timeLeft / 24);
-        String timeLeftMessage = "";
+        int bg;
+        int bgIndicator;
+        int tc;
+        String timeLeftMessage;
+
         if (hoursLeft < 0) {
             if (hoursLeft < -24) {
                 timeLeftMessage = "Lewat " + daysLeft * (-1) + " hari ";
@@ -161,18 +176,98 @@ public class AssignmentSubFragment extends Fragment {
         } else {
             timeLeftMessage = daysLeft + " hari lagi";
         }
-        tvAssignmentTimeLeft.setText(timeLeftMessage);
-        if (daysLeft < 0) {
-            tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_danger));
-        } else if (daysLeft <= 3) {
-            tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner_warning));
+
+        if (status == 0) {
+            bgIndicator = R.drawable.bg_round_corner_warning;
+            bg = R.drawable.bg_round_corner_border_warning;
+            tc = R.color.colorWarning;
+        } else if (status == 1) {
+            bgIndicator = R.drawable.bg_round_corner;
+            timeLeftMessage = "Proses...";
+            bg = R.drawable.bg_round_corner_border_primary;
+            tc = R.color.colorPrimary;
+        } else if (status == 2) {
+            bgIndicator = R.drawable.bg_round_corner_success;
+            timeLeftMessage = "Selesai";
+            bg = R.drawable.bg_round_corner_border_success;
+            tc = R.color.colorSuccess;
         } else {
-            tvAssignmentTimeLeft.setBackground(getResources().getDrawable(R.drawable.bg_round_corner));
+            bgIndicator = R.drawable.bg_round_corner_danger;
+            bg = R.drawable.bg_round_corner_border_danger;
+            tc = R.color.colorDanger;
         }
+
+
+        tvAssignmentStatusIndicator.setBackground(getResources().getDrawable(bgIndicator));
+        tvAssignmentTimeLeft.setText(timeLeftMessage);
+        tvAssignmentTimeLeft.setTextColor(getResources().getColor(tc));
+        tvAssignmentTimeLeft.setBackground(getResources().getDrawable(bg));
     }
 
-    public void AssignmentDetailOnClick(final TextView tvAssignmentTimeLeft) {
+    public void assignmentDetailStatus(
+            final TextView tvAssignmentStatus,
+            int status,
+            @Nullable String id_tugas,
+            @Nullable final AlertDialog dialog) {
+        if (id_tugas != null && dialog != null) {
+            Call<StructureDefault> call = RetrofitClient.getInstance().getApi()
+                    .actAssignmentSubmit(
+                            session.getUser().getId_user(),
+                            id_tugas,
+                            status
+                    );
+            call.enqueue(new Callback<StructureDefault>() {
+                @Override
+                public void onResponse(Call<StructureDefault> call, Response<StructureDefault> response) {
+                    if (isAdded() && response.isSuccessful()) {
+                        dialog.dismiss();
+                    }
+                }
 
+                @Override
+                public void onFailure(Call<StructureDefault> call, Throwable t) {
+                    Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        String desc;
+        int icon;
+        int textColor = 0;
+        if (status == 0) {
+            desc = "Belum Mengerjakan";
+            icon = 0;
+            textColor = getResources().getColor(R.color.colorWarning);
+        } else if (status == 1) {
+            desc = "Sedang Dinilai...";
+            icon = R.drawable.ic_waiting_24dp;
+            textColor = getResources().getColor(R.color.colorPrimary);
+        } else if (status == 2) {
+            desc = "Sudah Dikerjakan";
+            icon = R.drawable.ic_check_success_24dp;
+            textColor = getResources().getColor(R.color.colorSuccess);
+        } else {
+            desc = "Kadaluwarsa";
+            icon = R.drawable.ic_check_success_24dp;
+            textColor = getResources().getColor(R.color.colorSuccess);
+        }
+        tvAssignmentStatus.setText(desc);
+        tvAssignmentStatus.setCompoundDrawablesWithIntrinsicBounds(
+                0,
+                0,
+                icon,
+                0);
+        tvAssignmentStatus.setTextColor(textColor);
+    }
+
+    public void assignmentDetailOnClick(
+            final TextView tvAssignmentStatus,
+            final TextView tvAssignmentTimeLeft,
+            final TextView tvAssignmentStatusIndicator,
+            final String id_tugas,
+            final int sisaWaktu) {
+
+        //Building Dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View layoutLogout = getLayoutInflater().inflate(R.layout.layout_dialog_confirmation, null);
         Button btnYes = layoutLogout.findViewById(R.id.btnYes);
@@ -191,15 +286,17 @@ public class AssignmentSubFragment extends Fragment {
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AssignmentDetailTimeIndicator(tvAssignmentTimeLeft, 0, true);
-                dialog.dismiss();
+                assignmentDetailStatus(tvAssignmentStatus, 1, id_tugas, dialog);
+                assignmentDetailTimeIndicator(tvAssignmentTimeLeft, tvAssignmentStatusIndicator, sisaWaktu, 1);
+
             }
         });
 
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
+                assignmentDetailTimeIndicator(tvAssignmentTimeLeft, tvAssignmentStatusIndicator, sisaWaktu, 0);
+                assignmentDetailStatus(tvAssignmentStatus, 0, id_tugas, dialog);
             }
         });
     }
