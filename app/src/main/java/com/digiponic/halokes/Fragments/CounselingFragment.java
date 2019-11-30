@@ -61,6 +61,7 @@ public class CounselingFragment extends Fragment {
 
         tlCategory = view.findViewById(R.id.tlCategory);
         vfCategory = view.findViewById(R.id.vfCategory);
+
         llCounselingAchievementContainer = view.findViewById(R.id.llCounselingAchievementContainer);
         llCounselingViolationContainer = view.findViewById(R.id.llCounselingViolationContainer);
 

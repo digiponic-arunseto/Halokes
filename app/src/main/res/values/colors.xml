@@ -9,11 +9,15 @@
     <color name="colorAccentDark">#A56700</color>
     <color name="colorBackground">#fafafa</color>
     <color name="colorDarkBackground">#aaaaaa</color>
-    <color name="colorDark">#383838</color>
+    <color name="colorSemiDark">#383838</color>
+    <color name="colorDark">#000000</color>
     <color name="colorDarkTransparent">#00383838</color>
     <color name="colorDanger">#d75072</color>
+    <color name="colorDangerLighter">#E6C4CC</color>
     <color name="colorWarning">#FCA424</color>
+    <color name="colorWarningLighter">#FADDB7</color>
     <color name="colorSuccess">#30c44f</color>
+    <color name="colorSuccessLighter">#C5F0CD</color>
     <color name="colorSuccessDark">#00AC23</color>
     <color name="transparent">#00000000</color>
     <color name="colorGray">#aaaaaa</color>

@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    >
     <!--REMOVE androidL:LayoutAnimation above to see the layout-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,11 +28,10 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:layout_gravity="start"
-                    android:drawableStart="@drawable/ic_arrow_back_30dp"
+                    android:drawableStart="@drawable/ic_arrow_back_24dp"
                     android:text="Absensi"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -86,19 +87,25 @@
         <ScrollView
             android:id="@+id/svContent"
             android:layout_width="match_parent"
+            android:animateLayoutChanges="true"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
+                android:animateLayoutChanges="true"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:paddingStart="24dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tvAttendanceStudentName"
@@ -119,44 +126,37 @@
                         android:textStyle="normal" />
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_marginTop="12dp"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
                     android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_graph_24dp"
-                        android:drawablePadding="6dp"
-                        android:text="Persentase Kehadiran : " />
-
-                    <TextView
-                        android:id="@+id/tvAttendancePercentage"
-                        style="@style/RowText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="X %" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="24dp"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <ProgressBar
-                            android:id="@+id/pbAttendancePercentage"
-                            style="?android:attr/progressBarStyleHorizontal"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="9"
-                            android:progress="20" />
+                            android:drawablePadding="6dp"
+                            android:text="Persentase\nKehadiran Siswa: "
+                            android:textColor="@color/colorDark"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:id="@+id/tvAttendancePercentage"
+                            style="@style/RowText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="24dp"
+                            android:text="X %"
+                            android:textSize="33sp" />
 
                         <TextView
                             android:id="@+id/tvAttendancePercentageDesc"
@@ -166,194 +166,371 @@
                             android:gravity="center|end"
                             android:text="B/C/K"
                             android:textColor="@color/colorDark"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_check_circle_24dp"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="Hadir :" />
-
-                    <TextView
-                        android:id="@+id/tvAttendanceH"
-                        style="@style/RowText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="Hadir" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rlAttendanceS"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_local_hospital_24dp"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="Sakit :" />
-
-                    <TextView
-                        android:id="@+id/tvAttendanceS"
-                        style="@style/RowText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:drawableEnd="@drawable/ic_expand_24dp"
-                        android:drawablePadding="12dp"
-                        android:text="Sakit" />
-                </RelativeLayout>
+                        <ProgressBar
+                            android:id="@+id/pbAttendancePercentage"
+                            style="?android:progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:progress="80"
+                            android:progressDrawable="@drawable/des_progress_circle" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true">
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_textlines_top"
+                    android:orientation="vertical"
+                    android:paddingTop="24dp">
 
                     <LinearLayout
-                        android:id="@+id/llAttendanceSDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tvAttendanceSDate"
-                            android:layout_width="wrap_content"
+                        <android.support.design.card.MaterialCardView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:lineSpacingExtra="6dp"
-                            android:padding="6dp"
-                            android:text="12 December 2019\n12December 2019"
-                            android:textColor="@color/colorDark"
-                            android:textSize="12sp"
-                            android:textStyle="bold|italic" />
+                            android:layout_weight="1"
+                            app:cardCornerRadius="12dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:id="@+id/llAttendanceH"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:padding="12dp"
+                                android:background="@drawable/effect_ripple_square"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:weightSum="5">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/ic_attendance_h" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Hadir"
+                                        android:textColor="@color/colorDark"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/tvAttendanceH"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="10"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="25sp" />
+
+                                        <TextView
+                                            android:id="@+id/tvAttendanceHDay"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="6dp"
+                                            android:text="Hari"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="9sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text=" "
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="7sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </android.support.design.card.MaterialCardView>
+
+                        <android.support.design.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="12dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:id="@+id/llAttendanceI"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:padding="12dp"
+                                android:background="@drawable/effect_ripple_square"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:weightSum="5">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/ic_attendance_i" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Ijin"
+                                        android:textColor="@color/colorDark"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/tvAttendanceI"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="10"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="25sp" />
+
+                                        <TextView
+                                            android:id="@+id/tvAttendanceIDay"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="6dp"
+                                            android:text="Hari"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="9sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Lihat Detail"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="7sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </android.support.design.card.MaterialCardView>
                     </LinearLayout>
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rlAttendanceI"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_mail_24dp"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="Izin  : " />
-
-                    <TextView
-                        android:id="@+id/tvAttendanceI"
-                        style="@style/RowText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:drawableEnd="@drawable/ic_expand_24dp"
-                        android:drawablePadding="12dp"
-                        android:text="Izin" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true">
 
                     <LinearLayout
-                        android:id="@+id/llAttendanceIDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="start">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tvAttendanceIDate"
-                            android:layout_width="wrap_content"
+                        <android.support.design.card.MaterialCardView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:lineSpacingExtra="6dp"
-                            android:padding="6dp"
-                            android:text="12 December 2019\n12December 2019"
-                            android:textColor="@color/colorDark"
-                            android:textSize="12sp"
-                            android:textStyle="bold|italic" />
+                            android:layout_weight="1"
+                            app:cardCornerRadius="12dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:id="@+id/llAttendanceS"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:padding="12dp"
+                                android:background="@drawable/effect_ripple_square"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:weightSum="5">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/ic_attendance_s" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Sakit"
+                                        android:textColor="@color/colorDark"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/tvAttendanceS"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="10"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="25sp" />
+
+                                        <TextView
+                                            android:id="@+id/tvAttendanceSDay"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="6dp"
+                                            android:text="Hari"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="9sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Lihat Detail"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="7sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </android.support.design.card.MaterialCardView>
+
+                        <android.support.design.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="12dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:id="@+id/llAttendanceA"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:padding="12dp"
+                                android:background="@drawable/effect_ripple_square"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:weightSum="5">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/ic_attendance_a" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Alpha"
+                                        android:textColor="@color/colorDark"
+                                        android:textSize="13sp"
+                                        android:textStyle="bold" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/tvAttendanceA"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="10"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="25sp" />
+
+                                        <TextView
+                                            android:id="@+id/tvAttendanceADay"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="6dp"
+                                            android:text="Hari"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="9sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Lihat Detail"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="7sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </android.support.design.card.MaterialCardView>
                     </LinearLayout>
                 </LinearLayout>
+                <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:animateLayoutChanges="true">-->
 
-                <RelativeLayout
-                    android:id="@+id/rlAttendanceA"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
+                <!--<LinearLayout-->
+                <!--android:id="@+id/llAttendanceIDate"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="start">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_help_24dp"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="Alpha (Tanpa Keterangan) :" />
-
-                    <TextView
-                        android:id="@+id/tvAttendanceA"
-                        style="@style/RowText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:drawableEnd="@drawable/ic_expand_24dp"
-                        android:drawablePadding="12dp"
-                        android:text="Alpha" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true">
-
-                    <LinearLayout
-                        android:id="@+id/llAttendanceADate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="start">
-
-                        <TextView
-                            android:id="@+id/tvAttendanceADate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:lineSpacingExtra="6dp"
-                            android:padding="6dp"
-                            android:text="12 December 2019\n12December 2019"
-                            android:textColor="@color/colorDark"
-                            android:textSize="12sp"
-                            android:textStyle="bold|italic" />
-                    </LinearLayout>
-                </LinearLayout>
-
+                <!--<TextView-->
+                <!--android:id="@+id/tvAttendanceIDate"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="30dp"-->
+                <!--android:lineSpacingExtra="6dp"-->
+                <!--android:padding="6dp"-->
+                <!--android:text="12 December 2019\n12December 2019"-->
+                <!--android:textColor="@color/colorDark"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textStyle="bold|italic" />-->
+                <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
             </LinearLayout>
-
         </ScrollView>
     </LinearLayout>
 

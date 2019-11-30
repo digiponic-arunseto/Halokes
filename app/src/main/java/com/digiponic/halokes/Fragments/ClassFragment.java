@@ -32,7 +32,7 @@ public class ClassFragment extends Fragment {
     Session session;
 
     ScrollView svContent;
-    TextView tvClassStudentName,tvClassStudentInfo, tvClassTeacher;
+    TextView tvClassStudentName, tvClassStudentInfo;
     LinearLayout llClassStudentContainer;
     SpinKitView skvLoading, skvLoading1;
 
@@ -49,7 +49,6 @@ public class ClassFragment extends Fragment {
         svContent = view.findViewById(R.id.svContent);
         tvClassStudentName = view.findViewById(R.id.tvClassStudentName);
         tvClassStudentInfo = view.findViewById(R.id.tvClassStudentInfo);
-        tvClassTeacher = view.findViewById(R.id.tvClassTeacher);
         llClassStudentContainer = view.findViewById(R.id.llClassStudentContainer);
         skvLoading = view.findViewById(R.id.skvLoading);
         skvLoading1 = view.findViewById(R.id.skvLoading1);
@@ -76,8 +75,10 @@ public class ClassFragment extends Fragment {
                 if (isAdded() && response.isSuccessful()) {
                     ListClass lcData = mc.getData();
                     tvClassStudentName.setText(lcData.getNama());
-                    tvClassStudentInfo.setText("NIS : "+ lcData.getNis() + " / Kelas "+lcData.getKelas());
-                    tvClassTeacher.setText(lcData.getWali_kelas());
+                    tvClassStudentInfo.setText(
+                            "NIS : " + lcData.getNis()
+                                    + "\nKelas " + lcData.getKelas()
+                                    + "\nGuru Wali : " + lcData.getWali_kelas());
 
                     int counter = 1;
                     skvLoading1.setVisibility(View.VISIBLE);
@@ -87,7 +88,7 @@ public class ClassFragment extends Fragment {
                         TextView tvStudentID = rowStudent.findViewById(R.id.tvStudentID);
                         TextView tvStudentName = rowStudent.findViewById(R.id.tvStudentName);
 
-                        tvStudentCounter.setText(counter+"");
+                        tvStudentCounter.setText(counter + "");
                         tvStudentID.setText(lsData.getNis());
                         tvStudentName.setText(lsData.getNama());
 

@@ -28,7 +28,7 @@
                 style="@style/ButtonBack"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@drawable/ic_arrow_back_30dp" />
+                android:background="@drawable/ic_arrow_back_24dp" />
 
             <android.support.design.card.MaterialCardView
                 android:layout_width="wrap_content"

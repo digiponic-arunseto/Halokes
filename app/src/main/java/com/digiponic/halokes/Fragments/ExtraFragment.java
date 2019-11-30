@@ -3,6 +3,7 @@ package com.digiponic.halokes.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.digiponic.halokes.Models.ListExtra;
+import com.digiponic.halokes.Models.ListExtraDetail;
 import com.digiponic.halokes.Models.ListStudent;
 import com.digiponic.halokes.Models.ModelExtra;
 import com.digiponic.halokes.R;
@@ -31,9 +35,10 @@ public class ExtraFragment extends Fragment {
     Session session;
 
     ScrollView svContent;
-    TextView tvExtraStudentName,tvExtraStudentInfo;
-    LinearLayout llExtraContainer;
-    SpinKitView skvLoading, skvLoading1;
+    TextView tvExtraStudentName, tvExtraStudentInfo;
+    SpinKitView skvLoading;
+    TabLayout tlCategory;
+    ViewFlipper vfCategory;
 
 
     @Nullable
@@ -48,10 +53,10 @@ public class ExtraFragment extends Fragment {
         svContent = view.findViewById(R.id.svContent);
         tvExtraStudentName = view.findViewById(R.id.tvExtraStudentName);
         tvExtraStudentInfo = view.findViewById(R.id.tvExtraStudentInfo);
-        llExtraContainer = view.findViewById(R.id.llExtraContainer);
         skvLoading = view.findViewById(R.id.skvLoading);
-        skvLoading1 = view.findViewById(R.id.skvLoading1);
 
+        tlCategory = view.findViewById(R.id.tlCategory);
+        vfCategory = view.findViewById(R.id.vfCategory);
 
         showExtra();
 
@@ -61,9 +66,9 @@ public class ExtraFragment extends Fragment {
     public void showExtra() {
 
         //hiding content first, to show the loading view
+        vfCategory.removeAllViews();
         svContent.setVisibility(View.GONE);
         skvLoading.setVisibility(View.VISIBLE);
-        llExtraContainer.removeAllViews();
 
         Call<ModelExtra> call = RetrofitClient.getInstance().getApi()
                 .showExtra(session.getUser().getId_user());
@@ -76,34 +81,81 @@ public class ExtraFragment extends Fragment {
                     tvExtraStudentName.setText(session.getUser().getNama_siswa());
                     tvExtraStudentInfo.setText("Kelas 7A");
 
-                    int counter = 1;
-                    skvLoading1.setVisibility(View.VISIBLE);
-                    for (ListExtra leData : me.getData()) {
-                        View rowStudent = getLayoutInflater().inflate(R.layout.template_extra, null);
-                        TextView tvExtraName = rowStudent.findViewById(R.id.tvExtraName);
-                        TextView tvExtraSchedule = rowStudent.findViewById(R.id.tvExtraSchedule);
-
-
-                        tvExtraName.setText(leData.getNama());
-                        tvExtraSchedule.setText(leData.getJadwal());
-
-                        if (counter % 2 == 0) {
-                            rowStudent.setBackgroundColor(getResources().getColor(R.color.colorGrayLight));
-                        }
-                        counter++;
-                        llExtraContainer.addView(rowStudent);
+                    for (final ListExtra leData : me.getData()) {
+                        View rowExtra = getLayoutInflater().inflate(R.layout.template_extra, null);
+                        tlCategory.addTab(tlCategory.newTab().setText(leData.getNama()));
+                        showExtraDetail(leData, rowExtra);
+                        vfCategory.addView(rowExtra);
                     }
+
+                    tlCategory.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                        @Override
+                        public void onTabSelected(TabLayout.Tab tab) {
+                            vfCategory.setDisplayedChild(tab.getPosition());
+                        }
+
+                        @Override
+                        public void onTabUnselected(TabLayout.Tab tab) {
+
+                        }
+
+                        @Override
+                        public void onTabReselected(TabLayout.Tab tab) {
+
+                        }
+                    });
                     svContent.setVisibility(View.VISIBLE);
                     skvLoading.setVisibility(View.GONE);
-                    skvLoading1.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<ModelExtra> call, Throwable t) {
-
+                Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    public void showExtraDetail(ListExtra leData, View rowExtra) {
+        //showing extra detail
+        final SpinKitView skvLoading1 = rowExtra.findViewById(R.id.skvLoading);
+        final LinearLayout llExtraDetailContainer = rowExtra.findViewById(R.id.llExtraDetailContainer);
+        llExtraDetailContainer.removeAllViews();
+
+        Call<ModelExtra> callDetail = RetrofitClient.getInstance().getApi()
+                .showExtraDetail(
+                        session.getUser().getId_user(),
+                        leData.getEkskulurl());
+        callDetail.enqueue(new Callback<ModelExtra>() {
+            @Override
+            public void onResponse(Call<ModelExtra> call, Response<ModelExtra> response) {
+                ModelExtra meDetail = response.body();
+                if (isAdded() && response.isSuccessful()) {
+                    for (ListExtra leData : meDetail.getData()) {
+                        for (ListExtraDetail ledData : leData.getData_kegiatan()) {
+                            View rowExtraDetail = getLayoutInflater().inflate(R.layout.template_extra_detail, null);
+                            TextView tvExtraActivityName = rowExtraDetail.findViewById(R.id.tvExtraActivityName);
+                            TextView tvExtraActivityDesc = rowExtraDetail.findViewById(R.id.tvExtraActivityDesc);
+                            TextView tvExtraActivityDate = rowExtraDetail.findViewById(R.id.tvExtraActivityDate);
+
+                            tvExtraActivityName.setText(ledData.getJudul());
+                            tvExtraActivityDesc.setText(ledData.getDeskripsi());
+                            tvExtraActivityDate.setText(ledData.getTanggal());
+
+                            llExtraDetailContainer.addView(rowExtraDetail);
+                        }
+                    }
+                    skvLoading1.setVisibility(View.GONE);
+                } else {
+                    Toast.makeText(context, meDetail.getMessage() + "", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModelExtra> call, Throwable t) {
+                Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

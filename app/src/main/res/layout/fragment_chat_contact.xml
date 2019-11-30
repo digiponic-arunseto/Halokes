@@ -20,7 +20,8 @@
             android:text="Pesan"
             android:textAlignment="textStart"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
+            android:textSize="14sp"
+            android:paddingStart="12dp"
             android:textStyle="bold" />
 
         <LinearLayout

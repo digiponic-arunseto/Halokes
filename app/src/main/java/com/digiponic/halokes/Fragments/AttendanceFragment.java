@@ -8,10 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +31,18 @@ public class AttendanceFragment extends Fragment {
     int flContent;
     Context context;
     Session session;
-    TextView tvH, tvS, tvI, tvA, tvPercentage, tvPercentageDesc, tvAttendanceSDate, tvAttendanceIDate, tvAttendanceADate, tvAttendanceStudentName, tvAttendanceStudentInfo;
+    TextView tvPercentage, tvPercentageDesc, tvAttendanceStudentName, tvAttendanceStudentInfo;
+    //day count
+    TextView tvAttendanceH, tvAttendanceS, tvAttendanceI, tvAttendanceA;
+    //day label
+    TextView tvAttendanceHDay, tvAttendanceSDay, tvAttendanceIDay, tvAttendanceADay;
     SpinKitView skvLoading;
     ProgressBar pbPercentage;
     ScrollView svContent;
-    RelativeLayout rlAttendanceS, rlAttendanceI, rlAttendanceA;
-    LinearLayout llAttendanceSDate, llAttendanceIDate, llAttendanceADate;
+    // TextView  tvAttendanceSDate, tvAttendanceIDate, tvAttendanceADate;
+//    RelativeLayout rlAttendanceS, rlAttendanceI, rlAttendanceA;
+    // cardview attendance
+    LinearLayout llAttendanceH, llAttendanceS, llAttendanceI, llAttendanceA;
 
     @Nullable
     @Override
@@ -55,28 +59,27 @@ public class AttendanceFragment extends Fragment {
         tvAttendanceStudentName = view.findViewById(R.id.tvAttendanceStudentName);
         tvAttendanceStudentInfo = view.findViewById(R.id.tvAttendanceStudentInfo);
 
-
-        tvH = view.findViewById(R.id.tvAttendanceH);
-        tvS = view.findViewById(R.id.tvAttendanceS);
-        tvI = view.findViewById(R.id.tvAttendanceI);
-        tvA = view.findViewById(R.id.tvAttendanceA);
         tvPercentage = view.findViewById(R.id.tvAttendancePercentage);
         pbPercentage = view.findViewById(R.id.pbAttendancePercentage);
         tvPercentageDesc = view.findViewById(R.id.tvAttendancePercentageDesc);
 
-        rlAttendanceS = view.findViewById(R.id.rlAttendanceS);
-        rlAttendanceI = view.findViewById(R.id.rlAttendanceI);
-        rlAttendanceA = view.findViewById(R.id.rlAttendanceA);
+        tvAttendanceHDay = view.findViewById(R.id.tvAttendanceHDay);
+        tvAttendanceSDay = view.findViewById(R.id.tvAttendanceSDay);
+        tvAttendanceIDay = view.findViewById(R.id.tvAttendanceIDay);
+        tvAttendanceADay = view.findViewById(R.id.tvAttendanceADay);
 
-        llAttendanceSDate = view.findViewById(R.id.llAttendanceSDate);
-        llAttendanceIDate = view.findViewById(R.id.llAttendanceIDate);
-        llAttendanceADate = view.findViewById(R.id.llAttendanceADate);
+        tvAttendanceH = view.findViewById(R.id.tvAttendanceH);
+        tvAttendanceS = view.findViewById(R.id.tvAttendanceS);
+        tvAttendanceI = view.findViewById(R.id.tvAttendanceI);
+        tvAttendanceA = view.findViewById(R.id.tvAttendanceA);
 
-        tvAttendanceSDate = view.findViewById(R.id.tvAttendanceSDate);
-        tvAttendanceIDate = view.findViewById(R.id.tvAttendanceIDate);
-        tvAttendanceADate = view.findViewById(R.id.tvAttendanceADate);
+        llAttendanceH = view.findViewById(R.id.llAttendanceH);
+        llAttendanceS = view.findViewById(R.id.llAttendanceS);
+        llAttendanceI = view.findViewById(R.id.llAttendanceI);
+        llAttendanceA = view.findViewById(R.id.llAttendanceA);
 
-        configExpandCollapse();
+
+//        configExpandCollapse();
         showAttendanceData();
 
         return view;
@@ -99,38 +102,24 @@ public class AttendanceFragment extends Fragment {
 
 //                    Toast.makeText(context, res.getMessage() + "", Toast.LENGTH_SHORT).show();
                     ListAttendance laData = ma.getData();
-                    // ? is true
-                    // : is false
-                    tvH.setText(
-                            (laData.getHadir().equals("0")
-                                    ? "-"
-                                    : laData.getHadir() + " Hari"));
-                    tvS.setText(
-                            (laData.getSakit().equals("0")
-                                    ? "-"
-                                    : laData.getSakit() + " Hari"));
-                    tvI.setText(
-                            (laData.getIzin().equals("0")
-                                    ? "-"
-                                    : laData.getIzin() + " Hari"));
-                    tvA.setText(
-                            (laData.getAlpha().equals("0")
-                                    ? "-"
-                                    : laData.getAlpha() + " Hari"));
 
                     float persenHadir = Float.parseFloat(laData.getPersen_hadir());
                     String persenHadirDesc;
                     int persenHadirColor;
+                    int progressBg;
 
                     if (persenHadir < 50) {
                         persenHadirDesc = "Kurang";
                         persenHadirColor = getResources().getColor(R.color.colorDanger);
+                        progressBg = getResources().getColor(R.color.colorDangerLighter);
                     } else if (persenHadir < 75) {
                         persenHadirDesc = "Cukup";
                         persenHadirColor = getResources().getColor(R.color.colorWarning);
+                        progressBg = getResources().getColor(R.color.colorWarningLighter);
                     } else {
                         persenHadirDesc = "Baik";
-                        persenHadirColor = getResources().getColor(R.color.colorSuccess);
+                        persenHadirColor = getResources().getColor(R.color.colorPrimary);
+                        progressBg = getResources().getColor(R.color.colorPrimaryLighter);
                     }
 
                     tvPercentage.setText(persenHadir + " %");
@@ -140,29 +129,17 @@ public class AttendanceFragment extends Fragment {
                     pbPercentage.setProgress(Math.round(persenHadir));
                     pbPercentage.setProgressTintList(ColorStateList
                             .valueOf(persenHadirColor));
+                    pbPercentage.setProgressBackgroundTintList(ColorStateList
+                            .valueOf(progressBg));
 
-                    if (laData.getTgl_sakit().length != 0) {
-                        for (String date : laData.getTgl_sakit()) {
-                            tvAttendanceSDate.append(date + "\n");
-                        }
-                    } else {
-                        tvAttendanceSDate.setVisibility(View.GONE);
-                    }
+                    calculateAttendance(tvAttendanceH, tvAttendanceHDay, laData.getHadir());
+                    calculateAttendance(tvAttendanceS, tvAttendanceSDay, laData.getSakit());
+                    calculateAttendance(tvAttendanceI, tvAttendanceIDay, laData.getIzin());
+                    calculateAttendance(tvAttendanceA, tvAttendanceADay, laData.getAlpha());
 
-                    if (laData.getTgl_izin().length != 0) {
-                        for (String date : laData.getTgl_izin()) {
-                            tvAttendanceIDate.append(date + "\n");
-                        }
-                    } else {
-                        tvAttendanceIDate.setVisibility(View.GONE);
-                    }
-                    if (laData.getTgl_alpha().length != 0) {
-                        for (String date : laData.getTgl_alpha()) {
-                            tvAttendanceADate.append(date + "\n");
-                        }
-                    } else {
-                        tvAttendanceADate.setVisibility(View.GONE);
-                    }
+                    clickAttendanceDetail(llAttendanceS, "Detail Sakit Siswa", laData.getTgl_sakit());
+                    clickAttendanceDetail(llAttendanceI, "Detail Ijin Siswa", laData.getTgl_izin());
+                    clickAttendanceDetail(llAttendanceA, "Detail Alpha Siswa", laData.getTgl_alpha());
 
                     //showing Content while hiding loading bar
                     svContent.setVisibility(View.VISIBLE);
@@ -181,82 +158,31 @@ public class AttendanceFragment extends Fragment {
 
     }
 
-    public void configExpandCollapse() {
-
-        tvAttendanceSDate.setText("");
-        tvAttendanceIDate.setText("");
-        tvAttendanceADate.setText("");
-
-        llAttendanceSDate.setVisibility(View.GONE);
-        llAttendanceIDate.setVisibility(View.GONE);
-        llAttendanceADate.setVisibility(View.GONE);
-
-
-        rlAttendanceS.setOnClickListener(new View.OnClickListener() {
-            boolean hide = false;
-
-            @Override
-            public void onClick(View view) {
-                if (hide) {
-                    llAttendanceSDate.setVisibility(View.GONE);
-                    hide = false;
-                } else {
-                    llAttendanceSDate.setVisibility(View.VISIBLE);
-                    hide = true;
-                }
-                configIconExpandCollapse(tvS, hide);
-
-            }
-        });
-
-
-        rlAttendanceI.setOnClickListener(new View.OnClickListener() {
-            boolean hide = false;
-
-            @Override
-            public void onClick(View view) {
-                if (hide) {
-                    llAttendanceIDate.setVisibility(View.GONE);
-                    hide = false;
-                } else {
-                    llAttendanceIDate.setVisibility(View.VISIBLE);
-                    hide = true;
-                }
-                configIconExpandCollapse(tvI, hide);
-
-            }
-        });
-
-        rlAttendanceA.setOnClickListener(new View.OnClickListener() {
-            boolean hide = false;
-
-            @Override
-            public void onClick(View view) {
-                if (hide) {
-                    llAttendanceADate.setVisibility(View.GONE);
-                    hide = false;
-                } else {
-                    llAttendanceADate.setVisibility(View.VISIBLE);
-                    hide = true;
-                }
-                configIconExpandCollapse(tvA, hide);
-            }
-        });
+    public void calculateAttendance(TextView tvDay, TextView tvDayLabel, String day) {
+        if (day.equals("0")) {
+            tvDay.setText("-");
+            tvDayLabel.setText("");
+        } else {
+            tvDay.setText(day);
+            tvDayLabel.setText("Hari");
+        }
     }
 
-    public void configIconExpandCollapse(TextView tv, boolean hide) {
-        if (hide) {
-            tv.setCompoundDrawablesWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_collapse_24dp,
-                    0);
-        } else {
-            tv.setCompoundDrawablesWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.ic_expand_24dp,
-                    0);
+    public void clickAttendanceDetail(LinearLayout ll, String detailName, String[] detailDate){
+        if (detailDate.length==0){
+            return;
         }
+        final AttendanceSubFragment attendanceDetail = new AttendanceSubFragment();
+        attendanceDetail.setName(detailName);
+        attendanceDetail.setDate(detailDate);
+
+        
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attendanceDetail.show(getFragmentManager(),"1");
+                
+            }
+        });
     }
 }

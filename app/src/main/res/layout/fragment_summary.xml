@@ -8,9 +8,9 @@
 
 
     <RelativeLayout
+        style="@style/TitleBarMain"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        style="@style/TitleBarMain">
+        android:layout_height="60dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -18,10 +18,11 @@
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
             android:layout_gravity="start"
+            android:paddingStart="12dp"
             android:text="Rekap Nilai"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <!--<Button-->
@@ -64,8 +65,8 @@
                     <TextView
                         style="@style/GraphToolTipY"
                         android:layout_width="20dp"
-                        android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:textColor="@color/colorDark" />
 
 
@@ -131,6 +132,7 @@
                         android:text="T u g a s" />
                 </android.support.v7.widget.CardView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -180,6 +182,7 @@
                         android:text="T u g a s" />
                 </android.support.v7.widget.CardView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

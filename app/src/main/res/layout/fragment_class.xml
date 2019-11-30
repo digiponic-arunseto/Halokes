@@ -26,11 +26,10 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:layout_gravity="start"
-                    android:drawableStart="@drawable/ic_arrow_back_30dp"
+                    android:drawableStart="@drawable/ic_arrow_back_24dp"
                     android:text="Kelas"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -76,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="bottom"
                         android:text="Supriyatno"
-                        android:textSize="30sp" />
+                        android:textSize="20sp" />
 
 
                     <TextView
@@ -84,52 +83,14 @@
                         style="@style/RowText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
                         android:text="7A / "
+                        android:textSize="12sp"
                         android:textStyle="normal" />
                 </LinearLayout>
 
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_textlines"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_teacher_24dp"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="Guru Wali :" />
-
-                    <TextView
-                        android:id="@+id/tvClassTeacher"
-                        style="@style/RowText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="Supriyadi, S.Pd" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:padding="6dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_students_24dp"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="Daftar Siswa :" />
-                </RelativeLayout>
-
                 <LinearLayout
+                    android:layout_marginTop="12dp"
                     android:id="@+id/llClassStudentRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,9 +102,9 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
+                        android:layout_weight="2"
                         android:text="#"
+                        android:paddingStart="12dp"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -152,7 +113,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:gravity="center"
                         android:text="NIS"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
@@ -161,9 +121,8 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="8"
-                        android:gravity="center"
-                        android:text="NAMA"
+                        android:layout_weight="7"
+                        android:text="Nama"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold" />

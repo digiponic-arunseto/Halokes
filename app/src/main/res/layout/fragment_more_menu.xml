@@ -24,7 +24,8 @@
             <View
                 android:layout_width="120dp"
                 android:layout_height="6dp"
-                android:background="@drawable/bg_round_side" />
+                android:background="@drawable/bg_round_side"
+                android:backgroundTint="@color/colorDarkBackground"/>
         </LinearLayout>
 
         <LinearLayout

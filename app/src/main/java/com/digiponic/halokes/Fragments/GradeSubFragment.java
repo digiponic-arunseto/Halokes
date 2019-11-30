@@ -97,18 +97,20 @@ public class GradeSubFragment extends Fragment {
 
                             for (ListGradeDetail lgdData : lgData.getData_nilai()) {
                                 View vGrade = getLayoutInflater().inflate(R.layout.template_grade_detail, null);
+                                TextView tvGradeDetailSubject = vGrade.findViewById(R.id.tvGradeDetailSubject);
                                 TextView tvGradeDetailType = vGrade.findViewById(R.id.tvGradeDetailType);
                                 TextView tvGradeDetailGrade = vGrade.findViewById(R.id.tvGradeDetailGrade);
                                 TextView tvGradeDetailFail = vGrade.findViewById(R.id.tvGradeDetailFail);
                                 BarChart bcGrade = vGrade.findViewById(R.id.bcGrade);
 
+                                tvGradeDetailSubject.setText(lgData.getMapel());
                                 tvGradeDetailType.setText(lgdData.getTopik());
                                 int[] grade = lgdData.getNilai();
                                 tvGradeDetailGrade.setText(calculateAvgGrade(grade) + "");
                                 if (grade.length != 1) {
                                     showGraph(bcGrade, grade);
-                                    tvGradeDetailFail.setText(calculateFailedGrade(grade)+"");
-                                }else{
+                                    tvGradeDetailFail.setText(calculateFailedGrade(grade) + "");
+                                } else {
                                     bcGrade.setVisibility(View.GONE);
                                     View failParent = (View) tvGradeDetailFail.getParent();
                                     failParent.setVisibility(View.GONE);
@@ -179,10 +181,10 @@ public class GradeSubFragment extends Fragment {
         return total / grade.length;
     }
 
-    public int calculateFailedGrade(int[] grade){
-        int count =0;
+    public int calculateFailedGrade(int[] grade) {
+        int count = 0;
         for (int val : grade) {
-            if (val<75){
+            if (val < 75) {
                 count++;
             }
         }
@@ -193,38 +195,52 @@ public class GradeSubFragment extends Fragment {
 
         ArrayList<BarEntry> entries = new ArrayList<>();
         int count = 1;
-        for (float val : grade) {
+        for (int val : grade) {
             entries.add(new BarEntry(count, val));
             count++;
         }
-        bcGraph.setDrawValueAboveBar(true);
         BarDataSet dataset = new BarDataSet(entries, "Tugas");
-        dataset.setColors(ColorTemplate.LIBERTY_COLORS);
+//        dataset.setColors(ColorTemplate.LIBERTY_COLORS);
 
         //set data
         BarData data = new BarData(dataset);
         bcGraph.setData(data);
         data.setHighlightEnabled(true);
+        data.setBarWidth(0.4f);
 
         //config y axis
         XAxis xAxis = bcGraph.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM.BOTTOM);
-        xAxis.setGridColor(getResources().getColor(R.color.colorBackground));
-        xAxis.setGranularityEnabled(true);
 
         //config x axis
         YAxis yAxis = bcGraph.getAxisLeft();
+
+        //Styling
+        //data set style
+        dataset.setColor(getResources().getColor(R.color.colorPrimary));
+        dataset.setValueTextColor(getResources().getColor(R.color.colorPrimary));
+        dataset.setValueTextSize(15f);
+
+        //x axis style
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM.BOTTOM);
+        xAxis.setGridColor(getResources().getColor(R.color.colorBackground));
+        xAxis.setGranularityEnabled(true);
+        xAxis.setTextColor(getResources().getColor(R.color.colorPrimary));
+        xAxis.setAxisLineColor(getResources().getColor(R.color.colorPrimary));
+
+        //y axis style
         yAxis.setAxisMaximum(100);
         yAxis.setAxisMinimum(0);
         yAxis.setGridColor(getResources().getColor(R.color.colorBackground));
+        yAxis.setTextColor(getResources().getColor(R.color.colorPrimary));
+        yAxis.setAxisLineColor(getResources().getColor(R.color.colorPrimary));
 
-
-        //Styling
-//        dataset.setColor(getResources().getColor(R.color.colorPrimary));
+        //graph style
+        bcGraph.setDrawValueAboveBar(true);
+        //fitting bar
         bcGraph.setFitBars(true);
         bcGraph.animateY(1200);
         bcGraph.getDescription().setEnabled(false);
-        // remove right label
+        //remove right label
         bcGraph.getAxisRight().setEnabled(false);
 
 

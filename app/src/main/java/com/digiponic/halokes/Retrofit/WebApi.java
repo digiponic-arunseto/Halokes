@@ -77,6 +77,11 @@ public interface WebApi {
     @GET("ekskul/siswa/{id_user}")
     Call<ModelExtra> showExtra(@Path("id_user") String id_user);
 
+    @GET("ekskul/siswa/{id_user}/{ekskulurl}")
+    Call<ModelExtra> showExtraDetail(
+            @Path("id_user") String id_user,
+            @Path("ekskulurl") String ekskulurl);
+
     @FormUrlEncoded
     @POST("tugas/validasi/")
     Call<StructureDefault> actAssignmentSubmit(
