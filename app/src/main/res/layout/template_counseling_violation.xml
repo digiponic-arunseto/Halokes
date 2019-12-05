@@ -27,12 +27,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:weightSum="5"
                 android:padding="12dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tvViolationName"
                         style="@style/CardHeader"
@@ -40,12 +43,13 @@
                         android:layout_height="wrap_content"
                         android:textSize="11sp"
                         android:text="Pelanggaran XY" />
+
                     <TextView
                         android:id="@+id/tvViolationDate"
                         style="@style/CardText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_date_30dp"
+                        android:drawableStart="@drawable/ic_date_9dp"
                         android:text="2019-11-04"
                         android:textSize="7sp"
                         android:textStyle="italic" />
@@ -64,8 +68,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
-                    android:layout_weight="3"
+                    android:layout_weight="4"
                     android:paddingTop="6dp"
                     android:gravity="center"
                     android:paddingBottom="6dp"

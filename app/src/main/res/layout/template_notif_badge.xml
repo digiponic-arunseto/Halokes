@@ -9,7 +9,6 @@
     <TextView
         android:id="@+id/notifications_badge"
         style="@style/MenuSubBadge"
-        android:layout_marginStart="30dp"
-        />
+        android:layout_marginStart="30dp" />
 
 </LinearLayout>

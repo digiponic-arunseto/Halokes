@@ -157,17 +157,17 @@ public class ScheduleFragment extends Fragment {
         viewPager.setAdapter(paDay);
     }
 
-    public void showSchedule(){
+    public void showSchedule() {
         skvLoading.setVisibility(View.VISIBLE);
 
         Call<ModelSchedule> call = RetrofitClient.getInstance().getApi().showSchedule(session.getUser().getId_user());
         call.enqueue(new Callback<ModelSchedule>() {
             @Override
             public void onResponse(Call<ModelSchedule> call, Response<ModelSchedule> response) {
-                if (isAdded()&&response.isSuccessful()){
+                if (isAdded() && response.isSuccessful()) {
                     ModelSchedule ms = response.body();
                     showScheduleDay(ms.getData().size(), ms.getData());
-                }else{
+                } else {
                     Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
                 }
                 skvLoading.setVisibility(View.GONE);
@@ -175,7 +175,7 @@ public class ScheduleFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ModelSchedule> call, Throwable t) {
-                Toast.makeText(context, t.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, t.getMessage() + "", Toast.LENGTH_SHORT).show();
 
             }
         });

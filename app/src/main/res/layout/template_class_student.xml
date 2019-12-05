@@ -18,6 +18,7 @@
         android:textColor="@color/colorDark"
         android:textSize="12sp"
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/tvStudentID"
         android:layout_width="0dp"

@@ -29,7 +29,7 @@ public class AnnouncementFragment extends DialogFragment {
     Context context;
     String id;
     ScrollView svContainer;
-    TextView tvAnnouncementContent,tvAnnouncementTitle;
+    TextView tvAnnouncementContent, tvAnnouncementTitle;
 
     public void setId(String id) {
         this.id = id;
@@ -64,7 +64,7 @@ public class AnnouncementFragment extends DialogFragment {
                 "Wakil Ketua,</p>\n" +
                 "<p>Kemahasiswaan, Alumni Dan Kerjasama</p>\n" +
                 "<p>Nur Khamim, S.Ag, M.Pd</p>\n" +
-                "</div>")+"";
+                "</div>") + "";
 
         tvAnnouncementContent.setText(htmlTxt);
         tvAnnouncementTitle.setText("Upacara Bendera Hari Santri Nasional 2019");

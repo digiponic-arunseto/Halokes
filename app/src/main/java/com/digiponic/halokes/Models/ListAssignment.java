@@ -8,7 +8,7 @@ public class ListAssignment {
     @SerializedName("id_mapel")
     String id_mapel;
     @SerializedName("nama_mapel")
-    String nama_mapel ;
+    String nama_mapel;
     @SerializedName("jumlah_tugas_mapel")
     String jumlah_tugas_mapel;
     @SerializedName("data_tugas")

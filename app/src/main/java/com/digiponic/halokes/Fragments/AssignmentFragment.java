@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digiponic.halokes.Models.ListAssignment;
@@ -29,6 +29,7 @@ import com.digiponic.halokes.Storage.Session;
 import com.digiponic.halokes.UI.AssignmentPagerAdapter;
 import com.github.ybq.android.spinkit.SpinKitView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -52,9 +53,8 @@ public class AssignmentFragment extends Fragment {
     EditText etSearch;
     LinearLayout llSearchBar;
     InputMethodManager immSoftKeyboard;
-    AssignmentSubFragment asFragment;
-
     ModelAssignment las;
+    String keyword = "", sortDate = "DESC", sortName = "ASC";
 
 
     @Nullable
@@ -67,7 +67,8 @@ public class AssignmentFragment extends Fragment {
         session = Session.getInstance(context);
 
         skvLoading = view.findViewById(R.id.skvLoading);
-        asFragment = new AssignmentSubFragment();
+        tlCategory = view.findViewById(R.id.tlCategory);
+        viewPager = view.findViewById(R.id.pager);
 
         configTitleBar();
 
@@ -99,7 +100,19 @@ public class AssignmentFragment extends Fragment {
         btnSearchBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                keyword = "";
                 showSearchBar(false);
+                showAssignment();
+            }
+        });
+
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView tv, int i, KeyEvent keyEvent) {
+                keyword = tv.getText() + "";
+                showAssignment();
+                tv.setText("");
+                return false;
             }
         });
     }
@@ -126,18 +139,28 @@ public class AssignmentFragment extends Fragment {
                 PopupMenu popupMenu = new PopupMenu(context, view);
                 //.add(groupId, itemId, order, title);
 
-                popupMenu.getMenu().add(1, 0, 0, "Urutkan dengan :")
-                        .setIcon(getResources().getDrawable(R.drawable.ic_sort_30dp));
-                popupMenu.getMenu().add(1, 1, 1, "* Tanggal");
-                popupMenu.getMenu().add(1, 2, 2, "* A-Z");
-
+                popupMenu.getMenu().add(1, 1, 1, "Tanggal");
+                popupMenu.getMenu().add(1, 2, 2, "A-Z");
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getOrder() == 1) {
-                            showAssignmentCategory(las.getData().size(), las.getData());
+                            if (sortDate.equals("DESC")) {
+                                sortDate = "ASC";
+                                showAssignment();
+                            } else {
+                                sortDate = "DESC";
+                                showAssignment();
+                            }
                         } else if (item.getOrder() == 2) {
+                            if (sortName.equals("DESC")) {
+                                sortName = "ASC";
+                                showAssignment();
+                            } else {
+                                sortName = "DESC";
+                                showAssignment();
+                            }
 
                         } else {
                             return false;
@@ -154,14 +177,22 @@ public class AssignmentFragment extends Fragment {
         paCategory = new AssignmentPagerAdapter(getChildFragmentManager());
         paCategory.setTabCount(tabCount);//setting the tab
         paCategory.setlData(lData);
+        List<String> lParams = new ArrayList<>();
+        lParams.add(keyword);
+        lParams.add(sortDate);
+        lParams.add(sortName);
+        paCategory.setlParams(lParams);
 
-        tlCategory = view.findViewById(R.id.tlCategory);
-        viewPager = view.findViewById(R.id.pager);
 
+//        viewPager.setOffscreenPageLimit(tabCount+2);
         viewPager.setAdapter(paCategory);
+//        //navigate tab, to avoid misfunction pada viewpager #1
+//        tlCategory.getTabAt(1).select();
+        viewPager.invalidate();
     }
 
     private void showAssignment() {
+        viewPager.setVisibility(View.INVISIBLE);
         skvLoading.setVisibility(View.VISIBLE);
 
         Call<ModelAssignment> call = RetrofitClient.getInstance()
@@ -179,6 +210,7 @@ public class AssignmentFragment extends Fragment {
                     //category
 
                     showAssignmentCategory(las.getData().size(), las.getData());
+                    viewPager.setVisibility(View.VISIBLE);
                 } else {
                     Toast.makeText(context, response.message() + "", Toast.LENGTH_SHORT).show();
                 }

@@ -31,6 +31,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="12dp">
+
                     <TextView
                         android:id="@+id/tvGradeDetailSubject"
                         android:layout_width="wrap_content"
@@ -41,6 +42,7 @@
                         android:textColor="@color/colorDark"
                         android:textSize="22sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tvGradeDetailType"
                         android:layout_width="wrap_content"

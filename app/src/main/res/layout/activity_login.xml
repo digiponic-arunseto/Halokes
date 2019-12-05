@@ -97,6 +97,7 @@
                     android:textSize="14dp"
                     android:textStyle="bold|italic" />
             </LinearLayout>
+
             <Button
                 android:id="@+id/btnLogin"
                 style="@style/MainButton"

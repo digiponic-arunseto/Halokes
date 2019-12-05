@@ -12,21 +12,21 @@ public class RetrofitClient {
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
 
-    private RetrofitClient(){
+    private RetrofitClient() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
-    public static synchronized RetrofitClient getInstance(){
-        if(mInstance == null){
+    public static synchronized RetrofitClient getInstance() {
+        if (mInstance == null) {
             mInstance = new RetrofitClient();
         }
         return mInstance;
     }
 
-    public WebApi getApi(){
+    public WebApi getApi() {
         return retrofit.create(WebApi.class);
     }
 }

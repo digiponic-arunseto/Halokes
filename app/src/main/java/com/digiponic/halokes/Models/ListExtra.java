@@ -9,16 +9,22 @@ public class ListExtra {
     String nama;
     @SerializedName("jadwal")
     String jadwal;
-    @SerializedName("ekskulurl")
-    String ekskulurl;
+    @SerializedName("ekskul_url")
+    String ekskul_url;
+    @SerializedName("tempat")
+    String tempat;
+    @SerializedName("jam")
+    String jam;
     @SerializedName("data_kegiatan")
     List<ListExtraDetail> data_kegiatan;
 
 
-    public ListExtra(String nama, String jadwal, String ekskulurl, List<ListExtraDetail> data_kegiatan) {
+    public ListExtra(String nama, String jadwal, String ekskul_url, String tempat, String jam, List<ListExtraDetail> data_kegiatan) {
         this.nama = nama;
         this.jadwal = jadwal;
-        this.ekskulurl = ekskulurl;
+        this.ekskul_url = ekskul_url;
+        this.tempat = tempat;
+        this.jam = jam;
         this.data_kegiatan = data_kegiatan;
     }
 
@@ -30,8 +36,16 @@ public class ListExtra {
         return jadwal;
     }
 
-    public String getEkskulurl() {
-        return ekskulurl;
+    public String getEkskul_url() {
+        return ekskul_url;
+    }
+
+    public String getTempat() {
+        return tempat;
+    }
+
+    public String getJam() {
+        return jam;
     }
 
     public List<ListExtraDetail> getData_kegiatan() {

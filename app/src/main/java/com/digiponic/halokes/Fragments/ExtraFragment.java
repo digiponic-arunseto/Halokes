@@ -16,7 +16,6 @@ import android.widget.ViewFlipper;
 
 import com.digiponic.halokes.Models.ListExtra;
 import com.digiponic.halokes.Models.ListExtraDetail;
-import com.digiponic.halokes.Models.ListStudent;
 import com.digiponic.halokes.Models.ModelExtra;
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
@@ -36,6 +35,7 @@ public class ExtraFragment extends Fragment {
 
     ScrollView svContent;
     TextView tvExtraStudentName, tvExtraStudentInfo;
+    TextView tvExtraDay, tvExtraHours, tvExtraPlace;
     SpinKitView skvLoading;
     TabLayout tlCategory;
     ViewFlipper vfCategory;
@@ -53,6 +53,9 @@ public class ExtraFragment extends Fragment {
         svContent = view.findViewById(R.id.svContent);
         tvExtraStudentName = view.findViewById(R.id.tvExtraStudentName);
         tvExtraStudentInfo = view.findViewById(R.id.tvExtraStudentInfo);
+        tvExtraDay = view.findViewById(R.id.tvExtraDay);
+        tvExtraHours = view.findViewById(R.id.tvExtraHours);
+        tvExtraPlace = view.findViewById(R.id.tvExtraPlace);
         skvLoading = view.findViewById(R.id.skvLoading);
 
         tlCategory = view.findViewById(R.id.tlCategory);
@@ -79,11 +82,14 @@ public class ExtraFragment extends Fragment {
                 if (isAdded() && response.isSuccessful()) {
 
                     tvExtraStudentName.setText(session.getUser().getNama_siswa());
-                    tvExtraStudentInfo.setText("Kelas 7A");
+                    tvExtraStudentInfo.setText(session.getUser().getNis() + " / " + session.getUser().getKelas());
 
                     for (final ListExtra leData : me.getData()) {
                         View rowExtra = getLayoutInflater().inflate(R.layout.template_extra, null);
                         tlCategory.addTab(tlCategory.newTab().setText(leData.getNama()));
+                        tvExtraDay.setText(leData.getJadwal());
+                        tvExtraHours.setText(leData.getJam());
+                        tvExtraPlace.setText(leData.getTempat());
                         showExtraDetail(leData, rowExtra);
                         vfCategory.addView(rowExtra);
                     }
@@ -125,7 +131,7 @@ public class ExtraFragment extends Fragment {
         Call<ModelExtra> callDetail = RetrofitClient.getInstance().getApi()
                 .showExtraDetail(
                         session.getUser().getId_user(),
-                        leData.getEkskulurl());
+                        leData.getEkskul_url());
         callDetail.enqueue(new Callback<ModelExtra>() {
             @Override
             public void onResponse(Call<ModelExtra> call, Response<ModelExtra> response) {
@@ -137,10 +143,12 @@ public class ExtraFragment extends Fragment {
                             TextView tvExtraActivityName = rowExtraDetail.findViewById(R.id.tvExtraActivityName);
                             TextView tvExtraActivityDesc = rowExtraDetail.findViewById(R.id.tvExtraActivityDesc);
                             TextView tvExtraActivityDate = rowExtraDetail.findViewById(R.id.tvExtraActivityDate);
+                            TextView tvExtraActivityPlace = rowExtraDetail.findViewById(R.id.tvExtraActivityPlace);
 
                             tvExtraActivityName.setText(ledData.getJudul());
                             tvExtraActivityDesc.setText(ledData.getDeskripsi());
                             tvExtraActivityDate.setText(ledData.getTanggal());
+                            tvExtraActivityPlace.setText(ledData.getTempat());
 
                             llExtraDetailContainer.addView(rowExtraDetail);
                         }
@@ -154,7 +162,7 @@ public class ExtraFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ModelExtra> call, Throwable t) {
-                Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, t.getMessage() + "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
             }
         });
     }

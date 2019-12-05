@@ -11,19 +11,25 @@ public class ListUser {
     @SerializedName("id_user")
     private String id_user;
     @SerializedName("username")
-    private String username = "";
-    @SerializedName("nama_siswa")
-    private String nama_siswa = "";
+    private String username;
     @SerializedName("password")
-    private String password = "";
+    private String password;
+    @SerializedName("nis")
+    private String nis;
+    @SerializedName("nama_siswa")
+    private String nama_siswa;
+    @SerializedName("kelas")
+    private String kelas;
     @SerializedName("role")
-    private String role = "";
+    private String role;
 
-    public ListUser(String id_user, String username, String nama_siswa, String password, String role) {
+    public ListUser(String id_user, String username, String password, String nis, String nama_siswa, String kelas, String role) {
         this.id_user = id_user;
         this.username = username;
-        this.nama_siswa = nama_siswa;
         this.password = password;
+        this.nis = nis;
+        this.nama_siswa = nama_siswa;
+        this.kelas = kelas;
         this.role = role;
     }
 
@@ -35,12 +41,20 @@ public class ListUser {
         return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getNis() {
+        return nis;
+    }
+
     public String getNama_siswa() {
         return nama_siswa;
     }
 
-    public String getPassword() {
-        return password;
+    public String getKelas() {
+        return kelas;
     }
 
     public String getRole() {

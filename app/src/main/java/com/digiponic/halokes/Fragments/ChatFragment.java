@@ -62,7 +62,7 @@ public class ChatFragment extends DialogFragment {
             @Override
             public void onScrollChanged() {
 //                Toast.makeText(context, svContainer.getScrollX()+"", Toast.LENGTH_SHORT).show();
-                if (svContainer.getScrollY() < llChatContainer.getHeight()/2) {
+                if (svContainer.getScrollY() < llChatContainer.getHeight() / 2) {
                     btnScrollBottom.setVisibility(View.VISIBLE);
                 } else {
                     btnScrollBottom.setVisibility(View.INVISIBLE);

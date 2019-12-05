@@ -16,7 +16,7 @@
         <RelativeLayout
             style="@style/TitleBarMain"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="48dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -43,18 +43,16 @@
 
                     <Button
                         android:id="@+id/btnSearch"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/ic_search_30dp"
-                        />
+                        android:layout_width="24dp"
+                    android:layout_height="24dp"
+                        android:background="@drawable/ic_search_30dp" />
 
                     <Button
                         android:layout_marginStart="12dp"
                         android:id="@+id/btnMore"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/ic_more_vert_30dp"
-                        />
+                        android:layout_width="24dp"
+                    android:layout_height="24dp"
+                        android:background="@drawable/ic_more_vert_30dp" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -68,8 +66,8 @@
 
                 <Button
                     android:id="@+id/btnSearchBack"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:background="@drawable/ic_close_30dp"
                     android:backgroundTint="@color/colorPrimary" />
 
@@ -126,10 +124,6 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="vertical">
-                <!--<ProgressBar-->
-                    <!--android:id="@+id/skvLoading"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent" />-->
                 <include layout="@layout/template_schedule" />
 
                 <include layout="@layout/template_schedule" />

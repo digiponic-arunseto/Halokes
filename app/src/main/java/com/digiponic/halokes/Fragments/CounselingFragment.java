@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.digiponic.halokes.Models.ListAchievement;
+import com.digiponic.halokes.Models.ListAchievementDetail;
 import com.digiponic.halokes.Models.ListCounseling;
 import com.digiponic.halokes.Models.ListViolationDetail;
 import com.digiponic.halokes.Models.ModelCounseling;
@@ -35,7 +35,7 @@ public class CounselingFragment extends Fragment {
     Session session;
 
     ScrollView svContent;
-    TextView tvCounselingStudentName, tvCounselingStudentInfo, tvCounselingViolationPoint;
+    TextView tvCounselingStudentName, tvCounselingStudentInfo, tvCounselingAchievementPoint, tvCounselingViolationPoint;
     LinearLayout llCounselingAchievementContainer, llCounselingViolationContainer;
     SpinKitView skvLoading, skvLoading1;
     TabLayout tlCategory;
@@ -54,6 +54,7 @@ public class CounselingFragment extends Fragment {
         svContent = view.findViewById(R.id.svContent);
         tvCounselingStudentName = view.findViewById(R.id.tvCounselingStudentName);
         tvCounselingStudentInfo = view.findViewById(R.id.tvCounselingStudentInfo);
+        tvCounselingAchievementPoint = view.findViewById(R.id.tvCounselingAchievementPoint);
         tvCounselingViolationPoint = view.findViewById(R.id.tvCounselingViolationPoint);
 
         skvLoading = view.findViewById(R.id.skvLoading);
@@ -114,20 +115,21 @@ public class CounselingFragment extends Fragment {
                 if (isAdded() && response.isSuccessful()) {
                     ListCounseling lcData = mc.getData();
                     tvCounselingStudentName.setText(lcData.getNama_siswa());
-                    tvCounselingStudentInfo.setText("Kelas " + lcData.getKelas() + " / "+lcData.getStatus_siswa());
-                    tvCounselingViolationPoint.setText(lcData.getData_pelanggaran().getPoin_pelanggaran()+"");
-                    for (ListAchievement laData :
-                            lcData.getData_prestasi()) {
+                    tvCounselingStudentInfo.setText("Kelas " + lcData.getKelas() + " / " + lcData.getStatus_siswa());
+                    tvCounselingAchievementPoint.setText(lcData.getData_prestasi().getPoin_prestasi() + "");
+                    tvCounselingViolationPoint.setText(lcData.getData_pelanggaran().getPoin_pelanggaran() + "");
+                    for (ListAchievementDetail ladData :
+                            lcData.getData_prestasi().getData_prestasi_detail()) {
                         View rowAchievement = getLayoutInflater().inflate(R.layout.template_counseling_achievement, null);
                         TextView tvAchievementName = rowAchievement.findViewById(R.id.tvAchievementName);
-                        TextView tvAchievementDesc = rowAchievement.findViewById(R.id.tvAchievementDesc);
                         TextView tvAchievementDate = rowAchievement.findViewById(R.id.tvAchievementDate);
                         TextView tvAchievementLevel = rowAchievement.findViewById(R.id.tvAchievementLevel);
+                        TextView tvAchievementDesc = rowAchievement.findViewById(R.id.tvAchievementDesc);
 
-                        tvAchievementName.setText(laData.getNama_lomba());
-                        tvAchievementDesc.setText(laData.getPrestasi_keterangan());
-                        tvAchievementDate.setText(laData.getTanggal());
-                        tvAchievementLevel.setText("Tingkat "+laData.getTingkat());
+                        tvAchievementName.setText(ladData.getNama_lomba());
+                        tvAchievementDesc.setText(ladData.getPrestasi_keterangan());
+                        tvAchievementDate.setText(ladData.getTanggal());
+                        tvAchievementLevel.setText("Tingkat " + ladData.getTingkat());
 
                         llCounselingAchievementContainer.addView(rowAchievement);
                     }

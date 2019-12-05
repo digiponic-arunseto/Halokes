@@ -9,11 +9,14 @@ public class ListExtraDetail {
     String deskripsi;
     @SerializedName("tanggal")
     String tanggal;
+    @SerializedName("tempat")
+    String tempat;
 
-    public ListExtraDetail(String judul, String deskripsi, String tanggal) {
+    public ListExtraDetail(String judul, String deskripsi, String tanggal, String tempat) {
         this.judul = judul;
         this.deskripsi = deskripsi;
         this.tanggal = tanggal;
+        this.tempat = tempat;
     }
 
     public String getJudul() {
@@ -26,5 +29,9 @@ public class ListExtraDetail {
 
     public String getTanggal() {
         return tanggal;
+    }
+
+    public String getTempat() {
+        return tempat;
     }
 }

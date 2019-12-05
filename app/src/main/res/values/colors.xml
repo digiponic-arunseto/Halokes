@@ -11,7 +11,7 @@
     <color name="colorDarkBackground">#aaaaaa</color>
     <color name="colorSemiDark">#383838</color>
     <color name="colorDark">#000000</color>
-    <color name="colorDarkTransparent">#00383838</color>
+    <color name="colorDarkTransparent">#99000000</color>
     <color name="colorDanger">#d75072</color>
     <color name="colorDangerLighter">#E6C4CC</color>
     <color name="colorWarning">#FCA424</color>

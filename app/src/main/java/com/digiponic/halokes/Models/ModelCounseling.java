@@ -2,7 +2,7 @@ package com.digiponic.halokes.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ModelCounseling extends StructureDefault{
+public class ModelCounseling extends StructureDefault {
     @SerializedName("data")
     private ListCounseling data;
 

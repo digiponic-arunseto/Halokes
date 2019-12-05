@@ -32,13 +32,14 @@ public class Session {
 
         editor.putString("id_user", user.getId_user());
         editor.putString("username", user.getUsername());
-        editor.putString("nama_siswa", user.getNama_siswa());
         editor.putString("password", user.getPassword());
+        editor.putString("nis", user.getNis());
+        editor.putString("nama_siswa", user.getNama_siswa());
+        editor.putString("kelas", user.getKelas());
         editor.putString("role", user.getRole());
 
         editor.apply();
     }
-
 
     //logging check
     public boolean isLoggedIn() {
@@ -52,8 +53,10 @@ public class Session {
         return new ListUser(
                 session.getString("id_user", null),
                 session.getString("username", null),
-                session.getString("nama_siswa", null),
                 session.getString("password", null),
+                session.getString("nis", null),
+                session.getString("nama_siswa", null),
+                session.getString("kelas", null),
                 session.getString("role", null)
         );
     }

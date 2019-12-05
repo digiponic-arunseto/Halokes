@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Storage.Session;
+import com.github.ybq.android.spinkit.SpinKitView;
 
 public class FeedFragment extends Fragment {
 
@@ -31,7 +32,7 @@ public class FeedFragment extends Fragment {
     Context context;
     Session session;
     LinearLayout llFeedContainer;
-    ProgressBar skvLoading;
+    SpinKitView skvLoading;
     Button btnSearch, btnSearchBack, btnMore;
     EditText etSearch;
     LinearLayout llSearchBar;

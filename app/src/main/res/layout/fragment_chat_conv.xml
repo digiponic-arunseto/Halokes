@@ -15,7 +15,7 @@
         <LinearLayout
             style="@style/TitleBarMain"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="48dp"
             android:weightSum="10"
             android:gravity="start|center_vertical"
             android:orientation="horizontal"
@@ -26,8 +26,8 @@
                 android:layout_weight="1"
                 android:id="@+id/btnBack"
                 style="@style/ButtonBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                    android:layout_height="24dp"
                 android:background="@drawable/ic_arrow_back_24dp" />
 
             <android.support.design.card.MaterialCardView
@@ -73,9 +73,8 @@
             <Button
                 android:layout_weight="1"
                 android:id="@+id/btnMore"
-                android:layout_width="30dp"
-
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                    android:layout_height="24dp"
                 android:background="@drawable/ic_more_vert_30dp" />
 
         </LinearLayout>
@@ -110,8 +109,8 @@
 
         <Button
             android:id="@+id/btnScrollBottom"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="24dp"
+                    android:layout_height="24dp"
             android:layout_gravity="end"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="6dp"

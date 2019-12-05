@@ -7,10 +7,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +29,9 @@ import com.github.ybq.android.spinkit.SpinKitView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +48,11 @@ public class AssignmentSubFragment extends Fragment {
     SpinKitView skvLoading;
     private ListAssignment lData;
     private ModelAssignment madData;
+    private List<String> lParams;
+
+    public void setlParams(List<String> lParams) {
+        this.lParams = lParams;
+    }
 
     public void setlData(ListAssignment lData) {
         this.lData = lData;
@@ -63,45 +72,55 @@ public class AssignmentSubFragment extends Fragment {
 //        tvAssignmentSubject = view.findViewById(R.id.tvAssignmentSubject);
 //        tvAssignmentCount = view.findViewById(R.id.tvAssignmentCount);
         skvLoading = view.findViewById(R.id.skvLoading);
+//        Toast.makeText(context, lParams.get(0)+"", Toast.LENGTH_SHORT).show();
+        setRetainInstance(true);
+        showAssignment(
+                session.getUser().getId_user() + "",
+                lData.getId_mapel() + "",
+                lParams.get(0) + "",
+                lParams.get(1) + "",
+                lParams.get(2) + "");
 
-
-        try {
-            showAssignment();
-
-        } catch (Exception e) {
-            Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
-        }
         return view;
     }
 
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser && isAdded()) {
+//            getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+//        }
+//    }
 
-    public void showAssignment() {
-        skvLoading.setVisibility(View.VISIBLE);
-        llAssignmentSubjectContainer.removeAllViews();
-        // ganti ke ModelAssignment
-        Call<ModelAssignment> call = RetrofitClient.getInstance()
-                .getApi()
-                .showAssignmentDetail(session.getUser().getId_user(), lData.getId_mapel());
 
-        call.enqueue(new Callback<ModelAssignment>() {
-            @Override
-            public void onResponse(Call<ModelAssignment> call, Response<ModelAssignment> response) {
-                if (isAdded() && response.isSuccessful()) {
-                    madData = response.body();
-                    for (ListAssignment laData : madData.getData()) {
-                        for (final ListAssignmentDetail lasData : laData.getData_tugas()) {
-                            View vAssignment = getLayoutInflater()
-                                    .inflate(R.layout.template_assignment_detail, null);
-                            //initializing elemen dari view yang di loop
-                            TextView tvAssignmentTitle = vAssignment.findViewById(R.id.tvAssignmentTitle);
-                            TextView tvAssignmentDeadline = vAssignment.findViewById(R.id.tvAssignmentDeadline);
-                            final TextView tvAssignmentTimeLeft = vAssignment.findViewById(R.id.tvAssignmentTimeLeft);
-                            TextView tvAssignmentDesc = vAssignment.findViewById(R.id.tvAssignmentDesc);
-                            final TextView tvAssignmentStatus = vAssignment.findViewById(R.id.tvAssignmentStatus);
-                            final TextView tvAssignmentStatusIndicator = vAssignment.findViewById(R.id.tvAssignmentStatusIndicator);
-                            //Date Formatter
-                            SimpleDateFormat dateFormat =
-                                    new SimpleDateFormat("dd-MMM-yyy", Locale.ENGLISH);
+    public void showAssignment(String id_user, String id_mapel, String keyword, String sort_date, String sort_nama_tugas) {
+        try {
+            skvLoading.setVisibility(View.VISIBLE);
+            llAssignmentSubjectContainer.removeAllViews();
+            // ganti ke ModelAssignment
+            Call<ModelAssignment> call = RetrofitClient.getInstance()
+                    .getApi()
+                    .showAssignmentDetail(id_user, id_mapel, keyword, sort_date, sort_nama_tugas);
+
+            call.enqueue(new Callback<ModelAssignment>() {
+                @Override
+                public void onResponse(Call<ModelAssignment> call, Response<ModelAssignment> response) {
+                    if (isAdded() && response.isSuccessful()) {
+                        madData = response.body();
+                        for (ListAssignment laData : madData.getData()) {
+                            for (final ListAssignmentDetail lasData : laData.getData_tugas()) {
+                                View vAssignment = getLayoutInflater()
+                                        .inflate(R.layout.template_assignment_detail, null);
+                                //initializing elemen dari view yang di loop
+                                TextView tvAssignmentTitle = vAssignment.findViewById(R.id.tvAssignmentTitle);
+                                TextView tvAssignmentDeadline = vAssignment.findViewById(R.id.tvAssignmentDeadline);
+                                final TextView tvAssignmentTimeLeft = vAssignment.findViewById(R.id.tvAssignmentTimeLeft);
+                                TextView tvAssignmentDesc = vAssignment.findViewById(R.id.tvAssignmentDesc);
+                                final TextView tvAssignmentStatus = vAssignment.findViewById(R.id.tvAssignmentStatus);
+                                final TextView tvAssignmentStatusIndicator = vAssignment.findViewById(R.id.tvAssignmentStatusIndicator);
+                                //Date Formatter
+                                SimpleDateFormat dateFormat =
+                                        new SimpleDateFormat("dd-MMM-yyy", Locale.ENGLISH);
 
 //                            try {
 //                                Date dateDeadline = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(lasData.getDeadline());
@@ -109,43 +128,46 @@ public class AssignmentSubFragment extends Fragment {
 //                            } catch (ParseException e) {
 //                                e.printStackTrace();
 //                            }
-                            tvAssignmentDeadline.setText(lasData.getDeadline() + "");
+                                tvAssignmentDeadline.setText(lasData.getDeadline() + "");
 
-                            //printing data
-                            tvAssignmentTitle.setText(lasData.getJudul_tugas());
-                            tvAssignmentDesc.setText(lasData.getDeskripsi());
-                            int status = lasData.getStatus();
-                            assignmentDetailTimeIndicator(tvAssignmentTimeLeft, tvAssignmentStatusIndicator, lasData.getSisa_waktu(), status);
+                                //printing data
+                                tvAssignmentTitle.setText(lasData.getJudul_tugas());
+                                tvAssignmentDesc.setText(lasData.getDeskripsi());
+                                int status = lasData.getStatus();
+                                assignmentDetailTimeIndicator(tvAssignmentTimeLeft, tvAssignmentStatusIndicator, lasData.getSisa_waktu(), status);
 
-                            assignmentDetailStatus(tvAssignmentStatus, status, null, null);
-                            //click assignment
-                            if (status != 2) {
-                                vAssignment.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        assignmentDetailOnClick(
-                                                tvAssignmentStatus,
-                                                tvAssignmentTimeLeft,
-                                                tvAssignmentStatusIndicator,
-                                                lasData.getId_tugas(),
-                                                lasData.getSisa_waktu());
-                                    }
-                                });
+                                assignmentDetailStatus(tvAssignmentStatus, status, null, null);
+                                //click assignment
+                                if (status != 2) {
+                                    vAssignment.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            assignmentDetailOnClick(
+                                                    tvAssignmentStatus,
+                                                    tvAssignmentTimeLeft,
+                                                    tvAssignmentStatusIndicator,
+                                                    lasData.getId_tugas(),
+                                                    lasData.getSisa_waktu());
+                                        }
+                                    });
+                                }
+
+                                llAssignmentSubjectContainer.addView(vAssignment);
                             }
-
-                            llAssignmentSubjectContainer.addView(vAssignment);
                         }
+
                     }
+                    skvLoading.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onFailure(Call<ModelAssignment> call, Throwable t) {
 
                 }
-                skvLoading.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onFailure(Call<ModelAssignment> call, Throwable t) {
-
-            }
-        });
+            });
+        } catch (Exception e) {
+            Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void assignmentDetailTimeIndicator(

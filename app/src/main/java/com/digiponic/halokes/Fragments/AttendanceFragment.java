@@ -168,20 +168,20 @@ public class AttendanceFragment extends Fragment {
         }
     }
 
-    public void clickAttendanceDetail(LinearLayout ll, String detailName, String[] detailDate){
-        if (detailDate.length==0){
+    public void clickAttendanceDetail(LinearLayout ll, String detailName, String[] detailDate) {
+        if (detailDate.length == 0) {
             return;
         }
         final AttendanceSubFragment attendanceDetail = new AttendanceSubFragment();
         attendanceDetail.setName(detailName);
         attendanceDetail.setDate(detailDate);
 
-        
+
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attendanceDetail.show(getFragmentManager(),"1");
-                
+                attendanceDetail.show(getFragmentManager(), "1");
+
             }
         });
     }

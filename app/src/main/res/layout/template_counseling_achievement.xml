@@ -48,7 +48,7 @@
                         style="@style/CardText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_date_30dp"
+                        android:drawableStart="@drawable/ic_date_9dp"
                         android:text="2019-11-04"
                         android:textSize="7sp"
                         android:textStyle="italic" />

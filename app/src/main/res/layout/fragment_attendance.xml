@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    >
+    android:animateLayoutChanges="true">
     <!--REMOVE androidL:LayoutAnimation above to see the layout-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +14,7 @@
         <RelativeLayout
             style="@style/TitleBarMain"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="48dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -50,8 +49,8 @@
 
                     <Button
                         android:id="@+id/btnMore"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                    android:layout_height="24dp"
                         android:layout_marginStart="12dp"
                         android:background="@drawable/ic_more_vert_30dp" />
                 </LinearLayout>
@@ -67,8 +66,8 @@
 
                 <Button
                     android:id="@+id/btnSearchBack"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:background="@drawable/ic_close_30dp"
                     android:backgroundTint="@color/colorPrimary" />
 

@@ -8,15 +8,19 @@ import com.digiponic.halokes.Models.ModelExtra;
 import com.digiponic.halokes.Models.ModelGrade;
 import com.digiponic.halokes.Models.ModelSchedule;
 import com.digiponic.halokes.Models.ModelScheduleDetail;
+import com.digiponic.halokes.Models.ModelStudent;
 import com.digiponic.halokes.Models.ModelUser;
 import com.digiponic.halokes.Models.StructureDefault;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 /**
@@ -39,10 +43,15 @@ public interface WebApi {
     @GET("tugas/{id_user}/")
     Call<ModelAssignment> showAssignment(@Path("id_user") String id_user);
 
-    @GET("tugas/{id_user}/{id_mapel}")
-        Call<ModelAssignment> showAssignmentDetail(
-                @Path("id_user") String id_user,
-                @Path("id_mapel") String id_mapel);
+    @FormUrlEncoded
+    @POST("tugas/search/{id_user}")
+    Call<ModelAssignment> showAssignmentDetail(
+            @Path("id_user") String id_user,
+            @Field("id_mapel") String id_mapel,
+            @Field("keyword") String keyword,
+            @Field("sort_date") String sort_date,
+            @Field("sort_nama_tugas") String sort_nama_tugas
+    );
 
     @GET("nilai/siswa/{id_user}")
     Call<ModelGrade> showGrade(@Path("id_user") String id_user);
@@ -53,7 +62,7 @@ public interface WebApi {
             @Path("id_mapel") String id_mapel);
 
     @FormUrlEncoded
-    @POST("siswa/aktif/{id_user}/edit")
+    @PUT("siswa/{id_user}/edit/emailpass")
     Call<StructureDefault> actInitialize(
             @Path("id_user") String id_user,
             @Field("email") String email,
@@ -77,10 +86,14 @@ public interface WebApi {
     @GET("ekskul/siswa/{id_user}")
     Call<ModelExtra> showExtra(@Path("id_user") String id_user);
 
-    @GET("ekskul/siswa/{id_user}/{ekskulurl}")
+    @GET("ekskul/siswa/{id_user}/{ekskul_url}")
     Call<ModelExtra> showExtraDetail(
             @Path("id_user") String id_user,
-            @Path("ekskulurl") String ekskulurl);
+            @Path("ekskul_url") String ekskul_url);
+
+    @GET("ringkasan/siswa/{id_user}")
+    Call<ModelStudent> showStudentBio(
+            @Path("id_user") String id_user);
 
     @FormUrlEncoded
     @POST("tugas/validasi/")
@@ -88,5 +101,12 @@ public interface WebApi {
             @Field("siswa") String id_user,
             @Field("id_tugas") String tugas,
             @Field("status") int status
+    );
+
+    @Multipart
+    @POST("bio/siswa/{id_user}")
+    Call<StructureDefault> actUpdatePic(
+            @Path("id_user") String id_user,
+            @Part("image\"; filename=\"myfile.jpg\"") RequestBody file
     );
 }

@@ -1,93 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipToPadding="false"
-    android:orientation="vertical"
     android:paddingBottom="55dp">
 
-    <RelativeLayout
-        style="@style/TitleBarMain"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
+        <RelativeLayout
+            style="@style/TitleBarMain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
-            android:layout_gravity="start"
-            android:text="Inbox"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_height="48dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:gravity="center|end">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="start"
+                android:paddingStart="12sp"
+                android:text="Inbox"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btnSearch"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_search_30dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="center|end">
 
-            <Button
-                android:id="@+id/btnMore"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/ic_more_vert_30dp" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btnSearch"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_search_30dp" />
 
-        <LinearLayout
-            android:id="@+id/llSearchBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorBackground"
-            android:orientation="horizontal"
-            android:visibility="gone">
+                <Button
+                    android:id="@+id/btnMore"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/ic_more_vert_30dp" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/btnSearchBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_close_30dp"
-                android:backgroundTint="@color/colorPrimary" />
-
-            <EditText
-                android:id="@+id/etSearch"
+            <LinearLayout
+                android:id="@+id/llSearchBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/bg_textlines_blue_bold"
-                android:hint="Cari...."
-                android:imeOptions="actionDone"
-                android:singleLine="true" />
-        </LinearLayout>
-    </RelativeLayout>
+                android:background="@color/colorBackground"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
-    <ProgressBar
-        android:id="@+id/skvLoading"
-        android:layout_width="match_parent"
-        android:layout_height="120dp" />
+                <Button
+                    android:id="@+id/btnSearchBack"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_close_30dp"
+                    android:backgroundTint="@color/colorPrimary" />
 
-    <ScrollView
-        android:id="@+id/svContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_textlines_blue_bold"
+                    android:hint="Cari...."
+                    android:imeOptions="actionDone"
+                    android:singleLine="true" />
+            </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/llFeedContainer"
+        <ScrollView
+            android:id="@+id/svContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-        </LinearLayout>
-    </ScrollView>
+            <LinearLayout
+                android:id="@+id/llFeedContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-</LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/skvLoading"
+        style="@style/SpinKitView.Large.Circle"
+        app:SpinKit_Color="@color/colorPrimaryLighter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" />
+</RelativeLayout>
