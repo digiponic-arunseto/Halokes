@@ -16,18 +16,18 @@
             style="@style/TitleBarMain"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:weightSum="10"
             android:gravity="start|center_vertical"
             android:orientation="horizontal"
             android:paddingTop="6dp"
-            android:paddingBottom="6dp">
+            android:paddingBottom="6dp"
+            android:weightSum="10">
 
             <Button
-                android:layout_weight="1"
                 android:id="@+id/btnBack"
                 style="@style/ButtonBack"
                 android:layout_width="24dp"
-                    android:layout_height="24dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
                 android:background="@drawable/ic_arrow_back_24dp" />
 
             <android.support.design.card.MaterialCardView
@@ -44,10 +44,10 @@
             </android.support.design.card.MaterialCardView>
 
             <LinearLayout
-                android:layout_weight="8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
+                android:layout_weight="8"
                 android:orientation="vertical">
 
                 <TextView
@@ -57,7 +57,7 @@
                     android:singleLine="true"
                     android:text="Supriyadi Al-Sinbadi Excelsoir SP.d"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -67,14 +67,14 @@
                     android:singleLine="true"
                     android:text="Online"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <Button
-                android:layout_weight="1"
                 android:id="@+id/btnMore"
                 android:layout_width="24dp"
-                    android:layout_height="24dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
                 android:background="@drawable/ic_more_vert_30dp" />
 
         </LinearLayout>
@@ -109,8 +109,8 @@
 
         <Button
             android:id="@+id/btnScrollBottom"
-            android:layout_width="24dp"
-                    android:layout_height="24dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="end"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="6dp"

@@ -37,6 +37,7 @@ public class Session {
         editor.putString("nama_siswa", user.getNama_siswa());
         editor.putString("kelas", user.getKelas());
         editor.putString("role", user.getRole());
+        editor.putString("foto", user.getFoto());
 
         editor.apply();
     }
@@ -57,7 +58,8 @@ public class Session {
                 session.getString("nis", null),
                 session.getString("nama_siswa", null),
                 session.getString("kelas", null),
-                session.getString("role", null)
+                session.getString("role", null),
+                session.getString("foto", null)
         );
     }
 

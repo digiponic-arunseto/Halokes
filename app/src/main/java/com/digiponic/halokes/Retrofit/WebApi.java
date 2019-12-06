@@ -61,13 +61,13 @@ public interface WebApi {
             @Path("id_user") String id_user,
             @Path("id_mapel") String id_mapel);
 
-    @FormUrlEncoded
-    @PUT("siswa/{id_user}/edit/emailpass")
-    Call<StructureDefault> actInitialize(
-            @Path("id_user") String id_user,
-            @Field("email") String email,
-            @Field("password") String password
-    );
+//    @FormUrlEncoded
+//    @PUT("siswa/{id_user}/edit/emailpass")
+//    Call<StructureDefault> NavEditProfile(
+//            @Path("id_user") String id_user,
+//            @Field("email") String email,
+//            @Field("password") String password
+//    );
 
     @GET("jadwal/siswa/{id_user}")
     Call<ModelSchedule> showSchedule(@Path("id_user") String id_user);
@@ -108,5 +108,14 @@ public interface WebApi {
     Call<StructureDefault> actUpdatePic(
             @Path("id_user") String id_user,
             @Part("image\"; filename=\"myfile.jpg\"") RequestBody file
+    );
+
+    @Multipart
+    @POST("siswa/{id_user}/edit/emailpass")
+    Call<ModelUser> actEditProfile(
+            @Path("id_user") String id_user,
+            @Part("email") RequestBody email,
+            @Part("password") RequestBody password,
+            @Part("image\"; filename=\"myfile.jpg\"") RequestBody foto
     );
 }

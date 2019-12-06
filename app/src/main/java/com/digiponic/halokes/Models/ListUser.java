@@ -22,8 +22,10 @@ public class ListUser {
     private String kelas;
     @SerializedName("role")
     private String role;
+    @SerializedName("foto")
+    private String foto;
 
-    public ListUser(String id_user, String username, String password, String nis, String nama_siswa, String kelas, String role) {
+    public ListUser(String id_user, String username, String password, String nis, String nama_siswa, String kelas, String role, String foto) {
         this.id_user = id_user;
         this.username = username;
         this.password = password;
@@ -31,6 +33,7 @@ public class ListUser {
         this.nama_siswa = nama_siswa;
         this.kelas = kelas;
         this.role = role;
+        this.foto = foto;
     }
 
     public String getId_user() {
@@ -59,5 +62,9 @@ public class ListUser {
 
     public String getRole() {
         return role;
+    }
+
+    public String getFoto() {
+        return foto;
     }
 }

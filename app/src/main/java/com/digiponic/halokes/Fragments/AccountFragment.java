@@ -3,16 +3,11 @@ package com.digiponic.halokes.Fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.CursorLoader;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,18 +21,11 @@ import android.widget.Toast;
 import com.digiponic.halokes.LoginActivity;
 import com.digiponic.halokes.Models.ListStudent;
 import com.digiponic.halokes.Models.ModelStudent;
-import com.digiponic.halokes.Models.StructureDefault;
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
 import com.digiponic.halokes.Storage.Session;
+import com.squareup.picasso.Picasso;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,17 +63,23 @@ public class AccountFragment extends Fragment {
         tvAccountGrade = view.findViewById(R.id.tvAccountGrade);
         tvAccountAchievement = view.findViewById(R.id.tvAccountAchievement);
 
-        tvAccountName.setText(session.getUser().getNama_siswa());
-        tvAccountNo.setText("NISN : " + session.getUser().getNis());
-
         btnBio = view.findViewById(R.id.btnBio);
         bnvMainNav = getActivity().findViewById(R.id.bnvMainNav);
 
 
         configBtnMore();
+        showAccount();
         showBio();
 
         return view;
+    }
+
+    public void showAccount() {
+        tvAccountName.setText(session.getUser().getNama_siswa());
+        tvAccountNo.setText("NISN : " + session.getUser().getNis());
+        if (!session.getUser().getFoto().isEmpty()) {
+            Picasso.with(context).load(session.getUser().getFoto()).into(ivAccountPic);
+        }
     }
 
     public void navAccountBio() {
@@ -142,7 +136,7 @@ public class AccountFragment extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if (item.getOrder() == 1) {
-                            commitEditProfile();
+                            NavEditProfile();
                         } else if (item.getOrder() == 2) {
                             commitLogout();
                         }
@@ -154,7 +148,7 @@ public class AccountFragment extends Fragment {
         });
     }
 
-    public void commitEditProfile() {
+    public void NavEditProfile() {
         bnvMainNav.setVisibility(View.INVISIBLE);
 
         getFragmentManager().beginTransaction().replace(flContent,

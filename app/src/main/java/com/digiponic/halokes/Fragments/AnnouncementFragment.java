@@ -3,7 +3,9 @@ package com.digiponic.halokes.Fragments;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -22,6 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digiponic.halokes.R;
+import com.github.ybq.android.spinkit.SpinKitView;
+
+import java.util.Locale;
 
 public class AnnouncementFragment extends DialogFragment {
     View view;
@@ -29,7 +34,11 @@ public class AnnouncementFragment extends DialogFragment {
     Context context;
     String id;
     ScrollView svContainer;
-    TextView tvAnnouncementContent, tvAnnouncementTitle;
+    TextView tvAnnouncementContent, tvAnnouncementTitle, tvAnnouncementInfo;
+    Button btnTTS;
+    TextToSpeech tts;
+    SpinKitView skvLoading1;
+    String htmlTxt;
 
     public void setId(String id) {
         this.id = id;
@@ -46,8 +55,12 @@ public class AnnouncementFragment extends DialogFragment {
         svContainer = view.findViewById(R.id.svContainer);
         tvAnnouncementContent = view.findViewById(R.id.tvAnnouncementContent);
         tvAnnouncementTitle = view.findViewById(R.id.tvAnnouncementTitle);
+        tvAnnouncementInfo = view.findViewById(R.id.tvAnnouncementInfo);
+        skvLoading1 = view.findViewById(R.id.skvLoading1);
+        skvLoading1.setVisibility(View.GONE);
+        btnTTS = view.findViewById(R.id.btnTTS);
 
-        String htmlTxt = Html.fromHtml("<div >\n" +
+        htmlTxt = Html.fromHtml("<div >\n" +
                 "\t<p>Nomor: 001/D.2.043/Staida/X/2018</p>\n" +
                 "<p>Assalami’alaikum Warahmatullahi Wabarakaatuh</p>\n" +
                 "<p>Dalam rangka memperingati hari santri nasional tahun 2018, maka diwajibkan bagi semua mahasiswa prodi PAI, PGMI, Piaud dan Es Semester I-VII Staida Gresik untuk hadir pada:</p>\n" +
@@ -65,11 +78,41 @@ public class AnnouncementFragment extends DialogFragment {
                 "<p>Kemahasiswaan, Alumni Dan Kerjasama</p>\n" +
                 "<p>Nur Khamim, S.Ag, M.Pd</p>\n" +
                 "</div>") + "";
+        configTTS();
+        showAnnouncement();
 
-        tvAnnouncementContent.setText(htmlTxt);
-        tvAnnouncementTitle.setText("Upacara Bendera Hari Santri Nasional 2019");
+        btnTTS.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        configBtnTTS();
+                    }
+                }
+        );
 
         return view;
+    }
+
+    public void configTTS() {
+        tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    tts.setLanguage(new Locale("id", "ID"));
+                }
+            }
+        });
+    }
+
+    public void configBtnTTS() {
+        String announcement = tvAnnouncementContent.getText().toString().trim();
+        Toast.makeText(context, "Memutar Pengumuman...", Toast.LENGTH_SHORT).show();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(announcement, TextToSpeech.QUEUE_FLUSH, null, null);
+        } else {
+            tts.speak(announcement, TextToSpeech.QUEUE_FLUSH, null);
+        }
+
     }
 
     @Override
@@ -83,4 +126,18 @@ public class AnnouncementFragment extends DialogFragment {
 
     }
 
+    @Override
+    public void onPause() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onPause();
+    }
+
+    public void showAnnouncement() {
+        tvAnnouncementTitle.setText("Upacara Bendera Hari Santri Nasional 2019");
+        tvAnnouncementInfo.setText("Ditulis Oleh : Suriyadee" + ", pada 20-Desember-2019");
+        tvAnnouncementContent.setText(htmlTxt);
+    }
 }
