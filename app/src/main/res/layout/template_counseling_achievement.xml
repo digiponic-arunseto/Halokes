@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
-        app:cardElevation="6dp"
+        app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -40,8 +40,18 @@
                         style="@style/CardHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="11sp"
-                        android:text="Olympiade XY 2020" />
+                        android:text="Olympiade XY 2020"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tvAchievementDesc"
+                        style="@style/CardText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:padding="0dp"
+                        android:text="desc"
+                        android:textSize="11sp" />
 
                     <TextView
                         android:id="@+id/tvAchievementDate"
@@ -49,38 +59,56 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_date_9dp"
+                        android:padding="0dp"
                         android:text="2019-11-04"
-                        android:textSize="7sp"
-                        android:textStyle="italic" />
+                        android:textSize="11sp" />
 
                     <TextView
                         android:id="@+id/tvAchievementLevel"
                         style="@style/CardText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="0dp"
                         android:text="Tingkat Nasional"
                         android:textAllCaps="true"
-                        android:textSize="9sp"
-                        android:textStyle="bold|italic" />
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvAchievementDesc"
-                    style="@style/CardText"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:layout_weight="3"
+                    android:layout_weight="6"
                     android:background="@drawable/bg_round_corner_border_primary"
-                    android:ellipsize="marquee"
                     android:gravity="center"
-                    android:minWidth="180dp"
-                    android:padding="12dp"
-                    android:text="Deskripsi\nDeskripsi"
-                    android:textAlignment="center"
-                    android:textSize="9sp"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        style="@style/CardText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="0dp"
+                        android:text="Poin"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAchievementPoint"
+                        style="@style/CardText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:padding="0dp"
+                        android:text="90"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="19dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </LinearLayout>
 

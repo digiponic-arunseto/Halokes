@@ -124,10 +124,12 @@ public class CounselingFragment extends Fragment {
                         TextView tvAchievementName = rowAchievement.findViewById(R.id.tvAchievementName);
                         TextView tvAchievementDate = rowAchievement.findViewById(R.id.tvAchievementDate);
                         TextView tvAchievementLevel = rowAchievement.findViewById(R.id.tvAchievementLevel);
+                        TextView tvAchievementPoint = rowAchievement.findViewById(R.id.tvAchievementPoint);
                         TextView tvAchievementDesc = rowAchievement.findViewById(R.id.tvAchievementDesc);
 
                         tvAchievementName.setText(ladData.getNama_lomba());
-                        tvAchievementDesc.setText(ladData.getPrestasi_keterangan());
+                        tvAchievementDesc.setText(ladData.getPrestasi_keterangan()+"");
+                        tvAchievementPoint.setText(ladData.getPoin()+"");
                         tvAchievementDate.setText(ladData.getTanggal());
                         tvAchievementLevel.setText("Tingkat " + ladData.getTingkat());
 

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
-        app:cardElevation="6dp"
+        app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="6dp"
                         android:text="TUGAS ALJABAR 1"
-                        android:textSize="11sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/tvExtraActivityDesc"
@@ -53,13 +53,12 @@
                         android:layout_height="wrap_content"
                         android:maxLines="2"
                         android:padding="0dp"
-                        android:paddingBottom="6dp"
+                        android:layout_marginTop="6dp"
                         android:text="Deskripsi\nDeskripsi"
-                        android:textSize="9sp" />
+                        android:textSize="1sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -80,7 +79,7 @@
                             android:gravity="center"
                             android:text="20 Desember 2019"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="9sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -99,7 +98,7 @@
                             android:gravity="center"
                             android:text="Where"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="9sp" />
+                            android:textSize="10sp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

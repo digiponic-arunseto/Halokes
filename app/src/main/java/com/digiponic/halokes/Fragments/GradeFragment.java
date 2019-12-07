@@ -133,34 +133,34 @@ public class GradeFragment extends Fragment {
     }
 
     public void configBtnMore() {
-        btnMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu popupMenu = new PopupMenu(context, view);
-                //.add(groupId, itemId, order, title);
-
-                popupMenu.getMenu().add(1, 0, 0, "Urutkan dengan :")
-                        .setIcon(getResources().getDrawable(R.drawable.ic_sort_30dp));
-                popupMenu.getMenu().add(1, 1, 1, "* Tanggal");
-                popupMenu.getMenu().add(1, 2, 2, "* A-Z");
-
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-
-                        if (item.getOrder() == 1) {
-                            Toast.makeText(context, "Adding Contact", Toast.LENGTH_SHORT).show();
-                        } else if (item.getOrder() == 2) {
-                            Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show();
-                        } else {
-                            return false;
-                        }
-                        return false;
-                    }
-                });
-                popupMenu.show();
-            }
-        });
+//        btnMore.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                PopupMenu popupMenu = new PopupMenu(context, view);
+//                //.add(groupId, itemId, order, title);
+//
+//                popupMenu.getMenu().add(1, 0, 0, "Urutkan dengan :")
+//                        .setIcon(getResources().getDrawable(R.drawable.ic_sort_30dp));
+//                popupMenu.getMenu().add(1, 1, 1, "* Tanggal");
+//                popupMenu.getMenu().add(1, 2, 2, "* A-Z");
+//
+//                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//
+//                        if (item.getOrder() == 1) {
+//                            Toast.makeText(context, "Adding Contact", Toast.LENGTH_SHORT).show();
+//                        } else if (item.getOrder() == 2) {
+//                            Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            return false;
+//                        }
+//                        return false;
+//                    }
+//                });
+//                popupMenu.show();
+//            }
+//        });
     }
 
     public void showGrade() {

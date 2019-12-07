@@ -74,7 +74,7 @@
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             app:cardCornerRadius="75dp"
-                            app:cardElevation="6dp"
+                            app:cardElevation="5dp"
                             app:strokeColor="@color/colorPrimary">
 
                             <LinearLayout
@@ -97,7 +97,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
                             android:gravity="center"
-                            android:padding="6dp"
                             android:text="Username"
                             android:textColor="@color/colorDark"
                             android:textSize="18sp"
@@ -107,7 +106,6 @@
                             android:id="@+id/tvAccountNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
                             android:text="NISN: 12345"
                             android:textColor="@color/colorDark"
                             android:textSize="10sp" />
@@ -116,7 +114,7 @@
                             android:id="@+id/btnBio"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="12dp"
                             android:background="@drawable/bg_round_side"
                             android:gravity="center"
                             android:paddingStart="24dp"

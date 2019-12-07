@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
-        app:cardElevation="6dp"
+        app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -54,7 +54,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TUGAS ALJABAR 1"
-                        android:textSize="11sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/tvAssignmentDesc"
@@ -66,7 +66,7 @@
                         android:paddingStart="6dp"
                         android:paddingBottom="6dp"
                         android:text="Deskripsi\nDeskripsi"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <TextView
@@ -77,12 +77,12 @@
                     android:layout_marginStart="12dp"
                     android:layout_weight="2"
                     android:padding="3dp"
-                    android:background="@drawable/bg_round_corner_border_primary"
+                    android:background="@drawable/bg_round_side_border_primary"
                     android:minWidth="60dp"
                     android:text="3 Hari lagi"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="9sp"
+                    android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -104,7 +104,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="Pengumpulan : 2019-11-04"
-                    android:textSize="9sp"
+                    android:textSize="10sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -116,7 +116,7 @@
                     android:layout_centerVertical="true"
                     android:drawableEnd="@drawable/ic_check_24dp"
                     android:text="Konfirmasi"
-                    android:textSize="9sp"
+                    android:textSize="10sp"
                     android:textColor="@color/colorPrimary" />
             </RelativeLayout>
         </LinearLayout>

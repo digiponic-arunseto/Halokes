@@ -105,7 +105,7 @@
                         android:layout_centerVertical="true"
                         app:cardBackgroundColor="@color/colorPrimaryLight"
                         app:cardCornerRadius="6dp"
-                        app:cardElevation="6dp">
+                        app:cardElevation="5dp">
 
                         <TextView
                             style="@style/GraphToolTipY"
@@ -123,7 +123,7 @@
                     android:layout_gravity="center_horizontal"
                     app:cardBackgroundColor="@color/colorPrimaryLight"
                     app:cardCornerRadius="6dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="5dp">
 
                     <TextView
                         style="@style/GraphToolTipX"
@@ -155,7 +155,7 @@
                         android:layout_centerVertical="true"
                         app:cardBackgroundColor="@color/colorPrimaryLight"
                         app:cardCornerRadius="6dp"
-                        app:cardElevation="6dp">
+                        app:cardElevation="5dp">
 
                         <TextView
                             style="@style/GraphToolTipY"
@@ -173,7 +173,7 @@
                     android:layout_gravity="center_horizontal"
                     app:cardBackgroundColor="@color/colorPrimaryLight"
                     app:cardCornerRadius="6dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="5dp">
 
                     <TextView
                         style="@style/GraphToolTipX"
@@ -205,7 +205,7 @@
                         android:layout_centerVertical="true"
                         app:cardBackgroundColor="@color/colorPrimaryLight"
                         app:cardCornerRadius="6dp"
-                        app:cardElevation="6dp">
+                        app:cardElevation="5dp">
 
                         <TextView
                             style="@style/GraphToolTipY"
@@ -223,7 +223,7 @@
                     android:layout_gravity="center_horizontal"
                     app:cardBackgroundColor="@color/colorPrimaryLight"
                     app:cardCornerRadius="6dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="5dp">
 
                     <TextView
                         style="@style/GraphToolTipX"

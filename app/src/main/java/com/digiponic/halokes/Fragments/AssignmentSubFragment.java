@@ -201,21 +201,21 @@ public class AssignmentSubFragment extends Fragment {
 
         if (status == 0) {
             bgIndicator = R.drawable.bg_round_corner_warning;
-            bg = R.drawable.bg_round_corner_border_warning;
+            bg = R.drawable.bg_round_side_border_warning;
             tc = R.color.colorWarning;
         } else if (status == 1) {
             bgIndicator = R.drawable.bg_round_corner;
             timeLeftMessage = "Proses...";
-            bg = R.drawable.bg_round_corner_border_primary;
+            bg = R.drawable.bg_round_side_border_primary;
             tc = R.color.colorPrimary;
         } else if (status == 2) {
             bgIndicator = R.drawable.bg_round_corner_success;
             timeLeftMessage = "Selesai";
-            bg = R.drawable.bg_round_corner_border_success;
+            bg = R.drawable.bg_round_side_border_success;
             tc = R.color.colorSuccess;
         } else {
             bgIndicator = R.drawable.bg_round_corner_danger;
-            bg = R.drawable.bg_round_corner_border_danger;
+            bg = R.drawable.bg_round_side_border_danger;
             tc = R.color.colorDanger;
         }
 

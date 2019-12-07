@@ -205,8 +205,7 @@ public class GradeSubFragment extends Fragment {
         //set data
         BarData data = new BarData(dataset);
         bcGraph.setData(data);
-        data.setHighlightEnabled(true);
-        data.setBarWidth(0.4f);
+
 
         //config y axis
         XAxis xAxis = bcGraph.getXAxis();
@@ -234,6 +233,9 @@ public class GradeSubFragment extends Fragment {
         yAxis.setTextColor(getResources().getColor(R.color.colorPrimary));
         yAxis.setAxisLineColor(getResources().getColor(R.color.colorPrimary));
 
+        //data  style
+        data.setHighlightEnabled(true);
+        data.setBarWidth(0.4f);
         //graph style
         bcGraph.setDrawValueAboveBar(true);
         //fitting bar

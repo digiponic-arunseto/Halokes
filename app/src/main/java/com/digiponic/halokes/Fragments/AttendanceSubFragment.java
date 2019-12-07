@@ -36,7 +36,7 @@ public class AttendanceSubFragment extends BottomSheetDialogFragment {
         tvAttendanceDetailName.setText(name);
         tvAttendanceDetailDate.setText("");
         for (String d : date) {
-            tvAttendanceDetailDate.append(d + "\n");
+            tvAttendanceDetailDate.append("- " + d + "\n");
         }
 
         return view;

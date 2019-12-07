@@ -70,7 +70,7 @@
                         android:layout_marginTop="12dp"
                         app:cardCornerRadius="18dp"
                         app:cardUseCompatPadding="true"
-                        app:cardElevation="6dp"
+                        app:cardElevation="5dp"
                         app:contentPadding="12dp">
 
                         <EditText
@@ -149,7 +149,7 @@
                         android:layout_marginTop="12dp"
                         app:cardCornerRadius="18dp"
                         app:cardUseCompatPadding="true"
-                        app:cardElevation="6dp"
+                        app:cardElevation="5dp"
                         app:contentPadding="12dp">
 
                         <LinearLayout

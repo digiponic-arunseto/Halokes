@@ -91,7 +91,7 @@ public class ScheduleSubFragment extends Fragment {
                             TextView tvScheduleSubject = vSchedule.findViewById(R.id.tvScheduleSubject);
                             TextView tvScheduleTeacher = vSchedule.findViewById(R.id.tvScheduleTeacher);
 
-                            tvScheduleHours.setText(lsdData.getJam().replaceAll("-", "  -  "));
+                            tvScheduleHours.setText(lsdData.getJam().replaceAll("-", "-"));
 //                        tvScheduleRoom.setText();
                             tvScheduleSubject.setText(lsdData.getMapel());
                             tvScheduleTeacher.setText(lsdData.getGuru());

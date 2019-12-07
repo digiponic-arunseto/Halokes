@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -37,6 +38,7 @@ import com.digiponic.halokes.Storage.Session;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -173,9 +175,11 @@ public class AccountEditFragment extends Fragment {
                 //get image
                 selectedImg = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), pathImg);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
-                selectedImg.compress(Bitmap.CompressFormat.JPEG, 60, out);
+                selectedImg.compress(Bitmap.CompressFormat.JPEG, 0, out);
+                Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
 
-                ivAccountPic.setImageBitmap(selectedImg);
+
+                ivAccountPic.setImageBitmap(decoded);
 
                 //get filename/path
                 File fileImg = new File(getRealPathFromURI(pathImg));

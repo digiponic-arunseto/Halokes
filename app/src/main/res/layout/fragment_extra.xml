@@ -42,9 +42,10 @@
                     <Button
                         android:id="@+id/btnMore"
                         android:layout_width="24dp"
-                    android:layout_height="24dp"
+                        android:layout_height="24dp"
                         android:layout_marginStart="12dp"
-                        android:background="@drawable/ic_more_vert_30dp" />
+                        android:background="@drawable/ic_more_vert_30dp"
+                        android:visibility="gone" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -122,7 +123,7 @@
                             android:drawableStart="@drawable/ic_date_9dp"
                             android:gravity="center"
                             android:text="Day"
-                            android:textSize="9sp" />
+                            android:textSize="11sp" />
 
                         <TextView
                             android:id="@+id/tvExtraHours"
@@ -134,7 +135,7 @@
                             android:drawableStart="@drawable/ic_time_9dp"
                             android:gravity="center"
                             android:text="18:00 - 19:00"
-                            android:textSize="9sp" />
+                            android:textSize="11sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -151,7 +152,7 @@
                             android:drawableStart="@drawable/ic_location_9dp"
                             android:gravity="center"
                             android:text="X Park"
-                            android:textSize="9sp" />
+                            android:textSize="11sp" />
                     </LinearLayout>
                 </LinearLayout>
 
