@@ -19,8 +19,12 @@ public class ListStudent {
     double total_kehadiran;
     @SerializedName("total_prestasi")
     int total_prestasi;
+    @SerializedName("total_pelanggaran")
+    int total_pelanggaran;
+    @SerializedName("total_tugas")
+    int total_tugas;
 
-    public ListStudent(String nis, String nama, String status_siswa, ListStudentIdentity data_diri, ListStudentParent data_ortu, int total_rr, double total_kehadiran, int total_prestasi) {
+    public ListStudent(String nis, String nama, String status_siswa, ListStudentIdentity data_diri, ListStudentParent data_ortu, int total_rr, double total_kehadiran, int total_prestasi, int total_pelanggaran, int total_tugas) {
         this.nis = nis;
         this.nama = nama;
         this.status_siswa = status_siswa;
@@ -29,6 +33,8 @@ public class ListStudent {
         this.total_rr = total_rr;
         this.total_kehadiran = total_kehadiran;
         this.total_prestasi = total_prestasi;
+        this.total_pelanggaran = total_pelanggaran;
+        this.total_tugas = total_tugas;
     }
 
     public String getNis() {
@@ -61,5 +67,13 @@ public class ListStudent {
 
     public int getTotal_prestasi() {
         return total_prestasi;
+    }
+
+    public int getTotal_pelanggaran() {
+        return total_pelanggaran;
+    }
+
+    public int getTotal_tugas() {
+        return total_tugas;
     }
 }

@@ -1,5 +1,6 @@
 package com.digiponic.halokes.Retrofit;
 
+import com.digiponic.halokes.Models.ModelAnnouncement;
 import com.digiponic.halokes.Models.ModelAssignment;
 import com.digiponic.halokes.Models.ModelAttendance;
 import com.digiponic.halokes.Models.ModelClass;
@@ -118,4 +119,7 @@ public interface WebApi {
             @Part("password") RequestBody password,
             @Part("image\"; filename=\"myfile.jpg\"") RequestBody foto
     );
+
+    @GET("berita/all")
+    Call<ModelAnnouncement> showAnnouncement();
 }

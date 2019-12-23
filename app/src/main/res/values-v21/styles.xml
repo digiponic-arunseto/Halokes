@@ -1,16 +1,3 @@
 <resources>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:fontWeight">2</item>
-
-    </style>
-
-    <style name="DialogTheme" parent="@style/Base.Theme.AppCompat.Light.Dialog">
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
-
-    </style>
 </resources>

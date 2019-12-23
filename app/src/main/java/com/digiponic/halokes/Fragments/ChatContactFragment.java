@@ -1,6 +1,7 @@
 package com.digiponic.halokes.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,9 +22,15 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digiponic.halokes.MainActivity;
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Storage.Session;
+import com.digiponic.halokes.ZendeskChatActivity;
 import com.github.ybq.android.spinkit.SpinKitView;
+import com.zopim.android.sdk.prechat.ZopimChatActivity;
+import com.zopim.android.sdk.prechat.ZopimChatFragment;
+
+import zendesk.support.request.RequestActivity;
 
 public class ChatContactFragment extends Fragment {
 
@@ -34,7 +41,7 @@ public class ChatContactFragment extends Fragment {
     SpinKitView skvLoading;
     LinearLayout llChatContactContainer;
     ScrollView svContent;
-    Button btnSearch, btnSearchBack, btnMore;
+    Button btnSearch, btnSearchBack, btnMore,btnZendesk;
     EditText etSearch;
     LinearLayout llSearchBar;
     InputMethodManager immSoftKeyboard;
@@ -56,13 +63,32 @@ public class ChatContactFragment extends Fragment {
         btnSearchBack = view.findViewById(R.id.btnSearchBack);
         etSearch = view.findViewById(R.id.etSearch);
         btnMore = view.findViewById(R.id.btnMore);
+        btnZendesk = view.findViewById(R.id.btnZendesk);
 
+        configBtnZendesk();
         configSearchBar();
         configBtnMore();
         showContact();
 
 
         return view;
+    }
+
+    public void configBtnZendesk(){
+        btnZendesk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //fragment
+//                ChatZopimFragment chatZF = new ChatZopimFragment();
+//                chatZF.show(getFragmentManager().beginTransaction().addToBackStack("1"), "Dialog Fragment");
+
+//                getFragmentManager().beginTransaction()
+//                        .replace(R.id.chat_fragment_container,new ZopimChatFragment(),ZopimChatFragment.class.getName()).addToBackStack("1").commit();
+                //activity
+                startActivity(new Intent(context, ZopimChatActivity.class));
+
+            }
+        });
     }
 
     public void configSearchBar() {

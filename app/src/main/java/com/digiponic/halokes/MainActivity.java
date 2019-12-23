@@ -21,6 +21,15 @@ import com.digiponic.halokes.Fragments.HomeFragment;
 import com.digiponic.halokes.Fragments.FeedFragment;
 import com.digiponic.halokes.Fragments.AccountFragment;
 import com.digiponic.halokes.Fragments.SummaryFragment;
+import com.digiponic.halokes.Models.ListUser;
+import com.digiponic.halokes.Storage.Session;
+import com.zopim.android.sdk.api.ZopimChat;
+import com.zopim.android.sdk.model.VisitorInfo;
+
+import zendesk.core.AnonymousIdentity;
+import zendesk.core.Identity;
+import zendesk.core.Zendesk;
+import zendesk.support.Support;
 
 public class MainActivity extends AppCompatActivity {
     private BottomSheetDialog dialog;
@@ -32,15 +41,19 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemReselectedListener onNavigationItemReselectedListener;
     private HomeFragment homeFragment;
     private int fragmentLvl = 1;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         context = MainActivity.this;
         bnvMainNav = findViewById(R.id.bnvMainNav);
         flContent = R.id.framelayout_content;
+        session = Session.getInstance(context);
+
         homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(flContent,
                 homeFragment).commit();
@@ -59,6 +72,20 @@ public class MainActivity extends AppCompatActivity {
             bottomMenuNavigationBadge(i, true);
         }
 
+        configZendesk();
+
+    }
+
+    public void configZendesk() {
+        ListUser lu = session.getUser();
+        VisitorInfo visitorInfo = new VisitorInfo.Builder()
+                .name(lu.getNama_siswa())
+                .email(lu.getUsername())
+                .phoneNumber(lu.getNis())
+                .note("Test Chat")
+                .build();
+        ZopimChat.setVisitorInfo(visitorInfo);
+        ZopimChat.init("lgryh8aMuFjZssg0I5W9BerUMqUWVMN1");
     }
 
     public void bottomMenuNavigationBadge(int menuIndex, boolean hasNotif) {

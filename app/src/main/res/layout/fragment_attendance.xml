@@ -192,18 +192,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:orientation="vertical">
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_marginStart="6dp"
                         android:layout_marginEnd="6dp"
-                        android:background="@drawable/bg_textlines_top"/>
+                        android:background="@drawable/bg_textlines_top" />
 
                     <LinearLayout
-                        android:paddingTop="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingTop="24dp">
 
                         <android.support.design.card.MaterialCardView
                             android:layout_width="match_parent"
@@ -536,6 +537,25 @@
                 <!--android:textStyle="bold|italic" />-->
                 <!--</LinearLayout>-->
                 <!--</LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--<com.applandeo.materialcalendarview.CalendarView-->
+                        <!--android:visibility="gone"-->
+                        <!--android:id="@+id/cv"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="370dp"-->
+                        <!--app:datePicker="true"-->
+                        <!--app:headerColor="@color/colorPrimary"-->
+                        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+                        <!--app:layout_constraintRight_toRightOf="parent"-->
+                        <!--app:layout_constraintTop_toTopOf="parent"-->
+                        <!--app:selectionColor="@color/colorAccent"-->
+                        <!--app:todayLabelColor="@color/colorPrimaryDark" />-->
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

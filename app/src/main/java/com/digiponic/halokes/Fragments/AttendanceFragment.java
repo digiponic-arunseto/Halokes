@@ -2,6 +2,8 @@ package com.digiponic.halokes.Fragments;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,12 +16,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.applandeo.materialcalendarview.CalendarView;
+import com.applandeo.materialcalendarview.EventDay;
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 import com.digiponic.halokes.Models.ListAttendance;
 import com.digiponic.halokes.Models.ModelAttendance;
 import com.digiponic.halokes.R;
 import com.digiponic.halokes.Retrofit.RetrofitClient;
 import com.digiponic.halokes.Storage.Session;
+import com.digiponic.halokes.UI.MyEventDay;
 import com.github.ybq.android.spinkit.SpinKitView;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,12 +88,19 @@ public class AttendanceFragment extends Fragment {
         llAttendanceI = view.findViewById(R.id.llAttendanceI);
         llAttendanceA = view.findViewById(R.id.llAttendanceA);
 
+        configDates();
 
 //        configExpandCollapse();
         showAttendanceData();
 
         return view;
     }
+
+    public void configDates() {
+
+
+    }
+
 
     public void showAttendanceData() {
         //hiding Content first, to show loading bar

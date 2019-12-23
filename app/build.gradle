@@ -47,4 +47,16 @@ dependencies {
 
     //loading bar
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    //zendesk chat
+    implementation group: 'com.zendesk', name: 'support', version: '3.0.2'
+    implementation group: 'com.zopim.android', name: 'sdk', version: '1.4.4'
+
+    //applandeo calendarview
+    implementation 'com.applandeo:material-calendar-view:1.0.1'
+
+
+
+
+
 }

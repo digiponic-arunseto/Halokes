@@ -83,6 +83,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/llChatContactContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,6 +95,18 @@
         </ScrollView>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnZendesk"
+        android:text="Chat Here"
+        android:background="@drawable/bg_round_side"
+        android:textColor="@color/colorBackground"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" />
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/skvLoading"

@@ -3,6 +3,7 @@ package com.digiponic.halokes.Fragments;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -18,13 +19,16 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digiponic.halokes.Models.ListAnnouncement;
 import com.digiponic.halokes.R;
 import com.github.ybq.android.spinkit.SpinKitView;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
@@ -32,16 +36,16 @@ public class AnnouncementFragment extends DialogFragment {
     View view;
     int flContent;
     Context context;
-    String id;
     ScrollView svContainer;
     TextView tvAnnouncementContent, tvAnnouncementTitle, tvAnnouncementInfo;
+    ImageView ivAnnouncementImg;
     Button btnTTS;
+    ListAnnouncement laData;
     TextToSpeech tts;
     SpinKitView skvLoading1;
-    String htmlTxt;
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLaData(ListAnnouncement laData) {
+        this.laData = laData;
     }
 
     @Nullable
@@ -56,28 +60,11 @@ public class AnnouncementFragment extends DialogFragment {
         tvAnnouncementContent = view.findViewById(R.id.tvAnnouncementContent);
         tvAnnouncementTitle = view.findViewById(R.id.tvAnnouncementTitle);
         tvAnnouncementInfo = view.findViewById(R.id.tvAnnouncementInfo);
+        ivAnnouncementImg = view.findViewById(R.id.ivAnnouncementImg);
         skvLoading1 = view.findViewById(R.id.skvLoading1);
         skvLoading1.setVisibility(View.GONE);
         btnTTS = view.findViewById(R.id.btnTTS);
 
-        htmlTxt = Html.fromHtml("<div >\n" +
-                "\t<p>Nomor: 001/D.2.043/Staida/X/2018</p>\n" +
-                "<p>Assalami’alaikum Warahmatullahi Wabarakaatuh</p>\n" +
-                "<p>Dalam rangka memperingati hari santri nasional tahun 2018, maka diwajibkan bagi semua mahasiswa prodi PAI, PGMI, Piaud dan Es Semester I-VII Staida Gresik untuk hadir pada:</p>\n" +
-                "<blockquote><p>Hari&nbsp;&nbsp;&nbsp;&nbsp; : Senin, 22 Oktober 2018</p>\n" +
-                "<p><b>Pukul &nbsp; : 15.30 Wib – Selesai</b></p>\n" +
-                "<p>Tempat : Halaman Kampus STAIDA Gresik</p>\n" +
-                "<p>Acara&nbsp;&nbsp; : Upacara Bendera Hari Santri Nasional 2018</p>\n" +
-                "<p>Busana: Pria: Baju Taqwa Putih, Sarung dan Songkok</p>\n" +
-                "<p>Wanita: Baju Putih, Rok Panjang/maxi, Jilbab Putih</p></blockquote>\n" +
-                "<p>Demikian pemberitahuan ini disampaikan. Harap maklum.</p>\n" +
-                "<p>Wassalamu’alaikum Warahmatullahi Wabarakaatuh</p>\n" +
-                "<p>Gresik, 17 Oktober 2018</p>\n" +
-                "<p>Ketua STAIDA<br>\n" +
-                "Wakil Ketua,</p>\n" +
-                "<p>Kemahasiswaan, Alumni Dan Kerjasama</p>\n" +
-                "<p>Nur Khamim, S.Ag, M.Pd</p>\n" +
-                "</div>") + "";
         configTTS();
         showAnnouncement();
 
@@ -105,7 +92,7 @@ public class AnnouncementFragment extends DialogFragment {
     }
 
     public void configBtnTTS() {
-        String announcement = tvAnnouncementContent.getText().toString().trim();
+        String announcement = Html.fromHtml(laData.getIsi_berita()).toString();
         Toast.makeText(context, "Memutar Pengumuman...", Toast.LENGTH_SHORT).show();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             tts.speak(announcement, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -136,8 +123,11 @@ public class AnnouncementFragment extends DialogFragment {
     }
 
     public void showAnnouncement() {
-        tvAnnouncementTitle.setText("Upacara Bendera Hari Santri Nasional 2019");
-        tvAnnouncementInfo.setText("Ditulis Oleh : Suriyadee" + ", pada 20-Desember-2019");
-        tvAnnouncementContent.setText(htmlTxt);
+        if (!laData.getGambar_berita().equals("")){
+            Picasso.with(context).load(laData.getGambar_berita()).into(ivAnnouncementImg);
+        }
+        tvAnnouncementTitle.setText(laData.getJudul_berita());
+        tvAnnouncementInfo.setText("Ditulis Oleh : " + laData.getPenulis() + ", pada : " +laData.getTanggal());
+        tvAnnouncementContent.setText(laData.getIsi_berita());
     }
 }

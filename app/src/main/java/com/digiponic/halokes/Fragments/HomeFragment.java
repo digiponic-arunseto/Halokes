@@ -1,6 +1,7 @@
 package com.digiponic.halokes.Fragments;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -17,12 +18,23 @@ import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digiponic.halokes.Models.ListAnnouncement;
+import com.digiponic.halokes.Models.ModelAnnouncement;
 import com.digiponic.halokes.R;
+import com.digiponic.halokes.Retrofit.RetrofitClient;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
     View view;
@@ -58,16 +70,13 @@ public class HomeFragment extends Fragment {
         dialogMoreMenu.setContentView(viewMoreMenu);
         dialogMoreMenu.setCancelable(true);
 
-        showAnnouncement();
-
-        //tab item margin
-        for (int i = 0; i < tabDots.getTabCount(); i++) {
-            View tab = ((ViewGroup) tabDots.getChildAt(0)).getChildAt(i);
-            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
-            p.setMargins(6, 0, 6, 0);
-            tab.requestLayout();
+        try {
+            showAnnouncement();
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage() + "", Toast.LENGTH_SHORT).show();
         }
 
+        //indicator changes as the announcement goes
         hsvAnnouncementContainer.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -101,48 +110,45 @@ public class HomeFragment extends Fragment {
     public void showAnnouncement() {
         llAnnouncementContainer.removeAllViews();
 
-        for (int i = 1; i <= 3; i++) {
-            //add tab
-            tabDots.addTab(tabDots.newTab());
+        Call<ModelAnnouncement> call = RetrofitClient.getInstance().getApi().showAnnouncement();
+        call.enqueue(new Callback<ModelAnnouncement>() {
+            @Override
+            public void onResponse(Call<ModelAnnouncement> call, Response<ModelAnnouncement> response) {
+                ModelAnnouncement ma = response.body();
+                if (isAdded() && response.isSuccessful()) {
+                    for (ListAnnouncement la : ma.getData()) {
+                        tabDots.addTab(tabDots.newTab());
 
-            View viewAnnouncement = getLayoutInflater().inflate(R.layout.template_announcement, null);
-            final int finalI = i;
-            RelativeLayout rlAnnouncement = viewAnnouncement.findViewById(R.id.rlAnnouncement);
-            TextView tvAnnouncementTitle = viewAnnouncement.findViewById(R.id.tvAnnouncementTitle);
-            TextView tvAnnouncementContent = viewAnnouncement.findViewById(R.id.tvAnnouncementContent);
-            tvAnnouncementTitle.setText("Upacara Bendera Hari Santri Nasional 2019");
-            String htmlTxt = Html.fromHtml("<div >\n" +
-                    "\t<p>Nomor: 001/D.2.043/Staida/X/2018</p>\n" +
-                    "<p>Assalami’alaikum Warahmatullahi Wabarakaatuh</p>\n" +
-                    "<p>Dalam rangka memperingati hari santri nasional tahun 2018, maka diwajibkan bagi semua mahasiswa prodi PAI, PGMI, Piaud dan Es Semester I-VII Staida Gresik untuk hadir pada:</p>\n" +
-                    "<blockquote><p>Hari&nbsp;&nbsp;&nbsp;&nbsp; : Senin, 22 Oktober 2018</p>\n" +
-                    "<p><b>Pukul &nbsp; : 15.30 Wib – Selesai</b></p>\n" +
-                    "<p>Tempat : Halaman Kampus STAIDA Gresik</p>\n" +
-                    "<p>Acara&nbsp;&nbsp; : Upacara Bendera Hari Santri Nasional 2018</p>\n" +
-                    "<p>Busana: Pria: Baju Taqwa Putih, Sarung dan Songkok</p>\n" +
-                    "<p>Wanita: Baju Putih, Rok Panjang/maxi, Jilbab Putih</p></blockquote>\n" +
-                    "<p>Demikian pemberitahuan ini disampaikan. Harap maklum.</p>\n" +
-                    "<p>Wassalamu’alaikum Warahmatullahi Wabarakaatuh</p>\n" +
-                    "<p>Gresik, 17 Oktober 2018</p>\n" +
-                    "<p>Ketua STAIDA<br>\n" +
-                    "Wakil Ketua,</p>\n" +
-                    "<p>Kemahasiswaan, Alumni Dan Kerjasama</p>\n" +
-                    "<p>Nur Khamim, S.Ag, M.Pd</p>\n" +
-                    "</div>").toString().trim();
-            tvAnnouncementContent.setText(htmlTxt);
-            rlAnnouncement.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//
-                    AnnouncementFragment announcementF = new AnnouncementFragment();
-                    announcementF.setId(finalI + "");
-                    announcementF.show(getFragmentManager().beginTransaction().addToBackStack("1"), "Dialog Fragment");
+                        View viewAnnouncement = getLayoutInflater().inflate(R.layout.template_announcement, null);
+                        RelativeLayout rlAnnouncement = viewAnnouncement.findViewById(R.id.rlAnnouncement);
+                        TextView tvAnnouncementTitle = viewAnnouncement.findViewById(R.id.tvAnnouncementTitle);
+                        TextView tvAnnouncementContent = viewAnnouncement.findViewById(R.id.tvAnnouncementContent);
+                        ImageView ivAnnouncementThumbnail = viewAnnouncement.findViewById(R.id.ivAnnouncementThumbnail);
 
+                        configAnnouncementDummy(
+                                tvAnnouncementTitle,
+                                tvAnnouncementContent,
+                                ivAnnouncementThumbnail,
+                                rlAnnouncement,
+                                la);
+
+                        llAnnouncementContainer.addView(viewAnnouncement);
+                    }
+                    //tab item margin
+                    for (int i = 0; i < ma.getData().size(); i++) {
+                        View tab = ((ViewGroup) tabDots.getChildAt(0)).getChildAt(i);
+                        ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
+                        p.setMargins(6, 0, 6, 0);
+                        tab.requestLayout();
+                    }
                 }
-            });
+            }
 
-            llAnnouncementContainer.addView(viewAnnouncement);
-        }
+            @Override
+            public void onFailure(Call<ModelAnnouncement> call, Throwable t) {
+                Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void menuNavigation(View view, BottomNavigationView bnvMainNav, FragmentTransaction fragmentTransaction) {
@@ -200,5 +206,30 @@ public class HomeFragment extends Fragment {
         }
 
         if (close) dialogMoreMenu.dismiss();
+    }
+
+    public void configAnnouncementDummy(
+            TextView tvAnnouncementTitle,
+            TextView tvAnnouncementContent,
+            ImageView ivAnnouncementThumbnail,
+            RelativeLayout rlAnnouncement,
+            final ListAnnouncement laData) {
+
+        tvAnnouncementTitle.setText(laData.getJudul_berita());
+        tvAnnouncementContent.setText(laData.getIsi_berita());
+        if (!laData.getGambar_berita().equals("")) {
+            Picasso.with(context).load(laData.getGambar_berita()).into(ivAnnouncementThumbnail);
+        }
+        rlAnnouncement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//
+                AnnouncementFragment announcementF = new AnnouncementFragment();
+                announcementF.setLaData(laData);
+
+                announcementF.show(getFragmentManager().beginTransaction().addToBackStack("1"), "Dialog Fragment");
+
+            }
+        });
     }
 }

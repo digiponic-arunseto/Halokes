@@ -36,7 +36,7 @@ public class AccountFragment extends Fragment {
     View view;
     Context context;
     Session session;
-    TextView tvAccountName, tvAccountNo, tvAccountAttendance, tvAccountGrade, tvAccountAchievement;
+    TextView tvAccountName, tvAccountNo, tvAccountAttendance, tvAccountAchievement,tvAccountViolation,tvAccountAssignment;
     Button btnMore, btnBio;
     View bnvMainNav;
     ImageView ivAccountPic;
@@ -60,8 +60,9 @@ public class AccountFragment extends Fragment {
         tvAccountName = view.findViewById(R.id.tvAccountName);
         tvAccountNo = view.findViewById(R.id.tvAccountNo);
         tvAccountAttendance = view.findViewById(R.id.tvAccountAttendance);
-        tvAccountGrade = view.findViewById(R.id.tvAccountGrade);
         tvAccountAchievement = view.findViewById(R.id.tvAccountAchievement);
+        tvAccountViolation = view.findViewById(R.id.tvAccountViolation);
+        tvAccountAssignment = view.findViewById(R.id.tvAccountAssignment);
 
         btnBio = view.findViewById(R.id.btnBio);
         bnvMainNav = getActivity().findViewById(R.id.bnvMainNav);
@@ -107,8 +108,9 @@ public class AccountFragment extends Fragment {
                     mStudent = response.body();
                     ListStudent lsData = mStudent.getData();
                     tvAccountAttendance.setText(lsData.getTotal_kehadiran() + " %");
-                    tvAccountGrade.setText(lsData.getTotal_rr() + "");
-                    tvAccountAchievement.setText(lsData.getTotal_prestasi() + " Poin");
+                    tvAccountAchievement.setText(lsData.getTotal_prestasi()+"");
+                    tvAccountViolation.setText(lsData.getTotal_pelanggaran()+"");
+                    tvAccountAssignment.setText(lsData.getTotal_tugas() + "");
 
                     navAccountBio();
 
